@@ -1,0 +1,10 @@
+.container {
+	display: grid; 
+	grid-template-columns: 8fr 4fr; 
+	grid-template-rows: 1fr; 
+	gap: 0px 0px; 
+	grid-template-areas: 
+	  "left right"; 
+  }
+  .left { grid-area: left; }
+  .right { grid-area: right; }
