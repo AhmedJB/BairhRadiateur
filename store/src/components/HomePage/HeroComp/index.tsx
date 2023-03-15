@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from '../../../styles/modular/HomeStyles/HeroComp.module.css'
 import MainOffre from './MainOffre'
+import SecondaryOffre from './SecondaryOffre'
 
 type Props = {}
 
@@ -13,6 +14,7 @@ const HeroComp = (props: Props) => {
 			<MainOffre />
 		</div>
 		<div className={`${styles.right}`}>
+			<SecondaryOffre />
 
 		</div>
 	</div>

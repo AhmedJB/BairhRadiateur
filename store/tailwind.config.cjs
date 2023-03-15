@@ -14,9 +14,12 @@ module.exports = {
       gray: '#8E8E8E',
       lightgray : '#C9C9C9',
       lightWhite : '#EEEEEE',
+      lighterGray : '#B8B8B8'
 
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    /* require("flowbite/plugin") */
+  ],
 };
