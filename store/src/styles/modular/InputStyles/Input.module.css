@@ -1,0 +1,46 @@
+
+
+.InputContainer{
+	display:flex;
+	align-items: center;
+	width:100%;
+
+}
+
+.IconContainer{
+	height:32px;
+	width:32px;
+	margin:10px;
+	position:relative;
+	
+
+}
+
+.InputField{
+	padding: 10px;
+	background-color: transparent;
+	outline:none;
+	border:none;
+	border-bottom: 1px solid #707070;
+	width:100%;
+	margin:15px 10px;
+
+
+}
+
+
+
+
+.disabled input{
+	color:#B4B4B4;
+}
+
+.Area{
+	width:100%;
+	height:350px;
+	padding:10px;
+	border-radius: 10px;
+	margin:10px;
+	outline:none;
+	border: 1px solid #707070;
+}

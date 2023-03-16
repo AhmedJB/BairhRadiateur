@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import Header from '../General/Header';
 import TopHeader from '../General/TopHeader';
 import HeroComp from './HeroComp';
@@ -7,11 +7,16 @@ import EmailSub from './EmailSub';
 import Qualities from './Qualities';
 import Recommendation from './Recommendation';
 import About from './About';
+import Auth from './Auth';
+
+import styles from "../../styles/modular/AuthStyles/Auth.module.css"
 
 type Props = {}
 
 const HomePage = (props: Props) => {
+	const [AuthOpen,setAuthOpen]  = useState(true);
   return <>
+	<Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } />
 	<TopHeader />
 	<Header />
 	<SearchComp />

@@ -31,3 +31,54 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CF3939", en
 .lightBorder{
 	border: 1px solid #707070;
 }
+
+
+.backdrop{
+	position: fixed;
+	  top: 0;
+	  left: 0;
+	  height: 100%;
+	  width: 100%;
+	  z-index: 1000;
+	  background: rgba(0,0,0,.8823529411764706);
+	  /* justify-content: center;
+	  
+	  display:flex;
+  
+	  align-items: center; */
+	  overflow-y: visible;
+  }
+
+
+
+  .modal {
+	margin: 40px auto;
+	overflow-x: hidden;
+	
+	width:fit-content;
+	transition: width 2s, height 4s;
+  }
+  
+  
+  
+  
+  .modal::-webkit-scrollbar {
+	width: 1px;
+  }
+  
+  /* Track */
+  .modal::-webkit-scrollbar-track {
+	background: transparent; 
+  }
+   
+  /* Handle */
+  .modal::-webkit-scrollbar-thumb {
+	background: transparent;
+	height:2px;
+	width:2px; 
+  }
+  
+  /* Handle on hover */
+  .modal::-webkit-scrollbar-thumb:hover {
+	background:var(--red); 
+  }

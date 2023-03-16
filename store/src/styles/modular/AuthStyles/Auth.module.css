@@ -1,0 +1,98 @@
+.ModalTitle{
+	text-align:centterr;
+	font-size : 2rem;
+	color:black;
+
+}
+
+
+.InputFieldsContainer{
+	
+	padding:30px;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+.Submit{
+	width:200px;
+	padding: 10px;
+	font-size:1.1rem;
+	margin-top: 1.5rem;
+	color:#F9F9F9;
+	background-color:var(--red);
+	border-radius: 40px;
+	font-weight: 700;
+}
+
+.SelectField input{
+	width:100% !important;
+}
+
+.reminder{
+	color:#B4B4B4;
+	margin:10px;
+}
+
+.reminder span,.rules span{
+	color:var(--red);
+	cursor:pointer;
+}
+
+
+.rules{
+	color:#B4B4B4;
+	margin:40px 10px 0px 10px;
+}
+
+.loginForgot{
+	color:var(--red);
+	align-self: flex-end;
+	cursor:pointer;
+	
+}
+
+.modalAuth{
+    background-color:var(--mwhite);
+    width:max(100%,300px);
+    max-width:1000px;
+    max-height: 90%;
+    overflow-y: auto;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding:20px 20px 3px 20px; */
+    border-radius:10px;
+    background:white;
+
+}
+
+
+.modalAuth::-webkit-scrollbar {
+    width: 5px;
+    
+  }
+  
+  /* Track */
+  .modalAuth::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+   
+  /* Handle */
+  .modalAuth::-webkit-scrollbar-thumb {
+    background: var(--red); 
+    
+  }
+  
+  /* Handle on hover */
+  .modalAuth::-webkit-scrollbar-thumb:hover {
+    background: var(--text-red); 
+  }
+
+@media  screen and (max-width:600px) {
+    .modalAuth{
+        border-radius : 10px;
+    }
+    
+}
