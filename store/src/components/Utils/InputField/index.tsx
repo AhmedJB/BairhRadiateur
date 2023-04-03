@@ -18,14 +18,21 @@ export default function InputField(props : any){
 	  }
 	const html = <Fragment>
 		{!props.checkbox  && <div className={styles.InputContainer + " " + (props.disabled ? styles.disabled : '')}>
-			{ props.image && <span className={styles.IconContainer + (props.notCenter ? " self-start" : "")}>
-					<Image alt="alt-quote" src={props.image} layout="fill" objectFit="fill"></Image>
-				
-				</span>}
+			{ (props.image || props.placeholder) && <div className="flex items-center h-[20px]">
 			
-				{ !props.textarea  && <input disabled={props.disabled ? true : false} defaultValue={props.defaultValue ? props.defaultValue : ""} className={styles.InputField + " xl:text-xl lg:text-xl md:text-base text-sm sm:text-sm xl:placeholder:text-xl lg:placeholder:text-xl md:placeholder:text-base placeholder:text-sm sm:placeholder:text-sm  "}  type={props.type} placeholder={props.placeholder} id={props.id} /> }
+				{props.image && <span className={styles.IconContainer + (props.notCenter ? " self-start" : "")}> <Image alt="alt-quote" src={props.image} layout="fill" objectFit="fill"></Image>
+				
+				</span> }
 
-				{ props.textarea && <textarea className={styles.Area} disabled={props.disabled} placeholder={props.placeholder} id={props.id}></textarea> }
+				{
+					props.placeholder && <h3 className="text-darkGray font-medium">{props.placeholder}</h3>
+				}
+					 
+				</div>}
+			
+				{ !props.textarea  && <input disabled={props.disabled ? true : false} defaultValue={props.defaultValue ? props.defaultValue : ""} className={styles.InputField + " xl:text-xl lg:text-xl md:text-base text-sm sm:text-sm xl:placeholder:text-xl lg:placeholder:text-xl md:placeholder:text-base placeholder:text-sm sm:placeholder:text-sm  "}  type={props.type}  id={props.id} /> }
+
+				{ props.textarea && <textarea className={styles.Area} disabled={props.disabled}  id={props.id}></textarea> }
 				
 				
 			</div>}

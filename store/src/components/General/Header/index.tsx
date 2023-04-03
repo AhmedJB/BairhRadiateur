@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import Image from "next/image"
 import logo from '../../../assets/general/LOGO.svg'
 
@@ -7,12 +7,31 @@ import {FaRegUser} from "react-icons/fa"
 import {AiOutlineHeart,AiOutlinePoweroff} from "react-icons/ai";
 
 import InfoComp from './InfoComp'
+import Auth from '../../HomePage/Auth'
+
+import styles from "../../../styles/modular/AuthStyles/Auth.module.css"
+import { signOut, useSession } from 'next-auth/react'
 
 
 type Props = {}
 
 const Header = (props: Props) => {
+
+	const [AuthOpen,setAuthOpen] = useState(false);
+
+	const {status,data} = useSession();
+
+	const logout = async () => {
+		console.log("signin out")
+		signOut({
+			redirect : false
+		});
+	}
+
+
+
   return <>
+	<Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } />
 	<div className="w-full">
 		<div className="mx-auto w-full xl:container flex items-center justify-between px-4">
 			<div className="relative w-[400px] h-[100px]">
@@ -21,10 +40,16 @@ const Header = (props: Props) => {
 
 			<div className="flex items-center">
 				<InfoComp icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
-				<InfoComp icon={FaRegUser} title={"Bonjour!"} content={"Mon compte"} />
+				{
+					status === "authenticated" && <>
+						<InfoComp icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+					</>
+				}
+				
+				
 				<div className='flex gap-3 items-center ml-4'>
 					<AiOutlineHeart className='text-4xl text-mainBlack font-semibold'/>
-					<AiOutlinePoweroff className='text-4xl text-mainBlack font-semibold'/>
+					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>
 			</div>
 

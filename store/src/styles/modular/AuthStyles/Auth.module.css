@@ -42,12 +42,10 @@
 
 
 .rules{
-	color:#B4B4B4;
 	margin:40px 10px 0px 10px;
 }
 
 .loginForgot{
-	color:var(--red);
 	align-self: flex-end;
 	cursor:pointer;
 	

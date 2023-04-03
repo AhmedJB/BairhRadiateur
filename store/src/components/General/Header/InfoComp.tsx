@@ -6,7 +6,7 @@ import { IconType } from 'react-icons/lib'
 type Props = {
 	icon : IconType,
 	title : string,
-	content : string
+	content : string | undefined
 }
 
 const InfoComp = (props: Props) => {
