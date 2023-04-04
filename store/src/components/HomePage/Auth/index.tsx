@@ -17,6 +17,7 @@ import Email from "../../../assets/modalIcons/email.svg";
 import Pass from "../../../assets/modalIcons/lock.svg";
 import CIN from "../../../assets/modalIcons/card.svg";
 import Location from "../../../assets/modalIcons/check.svg";
+import Tel from "../../../assets/modalIcons/tel.svg"
 
 import styles from "../../../styles/modular/AuthStyles/Auth.module.css";
 import InputField from "../../Utils/InputField";
@@ -37,6 +38,8 @@ import { api } from "../../../server/utils/api";
 
 import {toast} from "react-toastify"
 import { signIn, signOut } from "next-auth/react";
+import {formatErrorMSG} from "../../../Helpers/helperUtils.js"
+
 
 
 const schools: any[] = [];
@@ -48,13 +51,27 @@ export default function Auth(props: any) {
   const [AuthPage, setAuthPage] = useState("login");
   const registerMutation = api.authHandler.register.useMutation({
     onSuccess : (resp) => {
+      console.log(resp);
       console.log("success")
-      toast.success("registered")
+      toast.success("Succès")
+      setAuthPage("login");
     },
     onError : (data) => {
       console.log("error handling here")
-      let dt = JSON.parse(data.message)
-      toast.error("failed")
+      console.log(data.message)
+      try{
+        console.log(data.message)
+        let dt = JSON.parse(data.message)
+        console.log(dt)
+        for (let msg of dt){
+          console.log(msg)
+          let formated = formatErrorMSG(msg)      
+          toast.error(formated)
+        }
+        
+      }catch (e){
+        toast.error(data.message);
+      }  
     }
   });
 
@@ -103,7 +120,8 @@ export default function Auth(props: any) {
     let res = await signIn("credentials",body)
 
     if (res?.ok) {
-      toast.success("logged in");
+      toast.success("Succès");
+      setOpen(false);
       //Router.reload();
     }else{
       toast.error(res?.error)
@@ -120,6 +138,7 @@ export default function Auth(props: any) {
     let email = (document.getElementById("email") as HTMLInputElement)?.value;
     let password = (document.getElementById("password") as HTMLInputElement)?.value;
     let confirm = (document.getElementById("conf") as HTMLInputElement)?.value;
+    let tel = (document.getElementById("tel") as HTMLInputElement)?.value;
     //let tel = (document.getElementById("phone") as HTMLInputElement).value;
     let cin = (document.getElementById("cin") as HTMLInputElement)?.value;
     let address = (document.getElementById("address") as HTMLInputElement)?.value;
@@ -127,10 +146,12 @@ export default function Auth(props: any) {
       let body = {
         name,
         username,
+        surname,
         email,
         password,
         naissance : dateValue ? (new Date(dateValue)) :  new Date(),
         address,
+        tel,
         cin
   
       }
@@ -142,7 +163,7 @@ export default function Auth(props: any) {
       
       
     }else{
-      toast.error("Password missmatch")
+      toast.error("les mots de passe saisis ne sont pas identiques")
     }
     
 
@@ -226,6 +247,12 @@ export default function Auth(props: any) {
             id="conf"
             placeholder={"Confirmez le mot de passe"}
             type={"password"}
+          />
+          <InputField
+            image={Tel}
+            id="tel"
+            placeholder={"Numéro de téléphone "}
+            type={"text"}
           />
           
           <div className="flex w-full flex-wrap items-center justify-between">

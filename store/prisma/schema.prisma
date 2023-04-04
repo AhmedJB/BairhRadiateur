@@ -50,6 +50,7 @@ model Session {
 model User {
     id            String    @id @default(cuid())
     name          String
+    surname       String   @default("")
     email         String   @unique
     username      String   @unique
     password      String
@@ -73,6 +74,7 @@ model UserInformation {
     cin String 
     naissance DateTime
     address String
+    tel String @unique
     user User @relation(fields: [userId] , references: [id])
     userId String @unique
     

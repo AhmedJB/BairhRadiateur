@@ -32,6 +32,7 @@ type newToken = {
   sub : string;
   id : string;
   username : string;
+  surname : string;
   iat : number;
   exp : number;
   jti : string;
@@ -52,6 +53,7 @@ export const authOptions: NextAuthOptions = {
         (session.user as User).username  = newtoken.username;
         (session.user as User).email  = newtoken.email;
         (session.user as User).name  = newtoken.name;
+        (session.user as User).surname = newtoken.surname;
         
       }
       return session;
@@ -62,6 +64,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user?.id
         token.name = user?.name
         token.username = ( user as User ).username 
+        token.surname = ( user as User).surname
       }
       return token
     }
@@ -96,13 +99,21 @@ export const authOptions: NextAuthOptions = {
           email : string,
           password : string
         }
-        console.log(encryptPassword(password))
+        //console.log(encryptPassword(password))
         // Add logic here to look up the user from the credentials supplied
         let user = await prisma.user.findUnique({
           where : {
             email : email
           }
         })
+
+        if (!user){
+          user = await prisma.user.findUnique({
+            where : {
+              username : email
+            }
+          })
+        }
 
   
         if (user) {

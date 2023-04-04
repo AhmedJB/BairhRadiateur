@@ -18,8 +18,7 @@ type Props = {}
 
 const HomePage = (props: Props) => {
 	const [AuthOpen,setAuthOpen]  = useState(true);
-  return  <PreLoad>
-	<>
+  return  <>
 	{/* <Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } /> */}
 	<TopHeader />
 	<Header />
@@ -50,7 +49,7 @@ const HomePage = (props: Props) => {
   
   </>
 
-  </PreLoad>
+  
 }
 
 

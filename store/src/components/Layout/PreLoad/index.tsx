@@ -3,6 +3,7 @@ import Loader from '../Loader';
 import { useSession } from 'next-auth/react';
 import Auth from '../../HomePage/Auth';
 import styles from "../../../styles/modular/AuthStyles/Auth.module.css"
+import { useRouter } from 'next/router';
 
 
 type Props = {
@@ -14,6 +15,7 @@ function PreLoad({children}: Props) {
     const [AuthOpen,setAuthOpen] = useState(false);
 
     const [loading,setLoading] = useState(true);
+    const router = useRouter();
 
     useEffect(() => {
         console.log("checking auth")
@@ -22,13 +24,16 @@ function PreLoad({children}: Props) {
         if (status !== "loading"){
             setLoading(false);
         }
+        if (status === "unauthenticated" ) {
+            router.push("/")
+        }
     },[status])
 
   return (
-    loading ? <div className="w-screen h-screen grid place-items-center"><Loader /></div> :<>
-       {/*  <Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } /> */}
-        {children}
-     </> 
+    ( !loading && status == "authenticated") ?<>
+    {/*  <Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } /> */}
+     {children}
+  </>   : <div className="w-screen h-screen grid place-items-center"><Loader /></div> 
   )
 }
 
