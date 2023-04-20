@@ -238,12 +238,14 @@ export default function Auth(props: any) {
           />
           <InputField
             image={Pass}
+            hidden={true}
             id="password"
             placeholder={"Mot de passe"}
             type={"password"}
           />
           <InputField
             image={Pass}
+            hidden={true}
             id="conf"
             placeholder={"Confirmez le mot de passe"}
             type={"password"}
@@ -352,6 +354,7 @@ export default function Auth(props: any) {
           <InputField
             image={Pass}
             id="password"
+            hidden={true}
             placeholder={"Mot de passe"}
             type={"password"}
           />
