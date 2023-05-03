@@ -16,7 +16,7 @@ const ProductPage = (props: Props) => {
 	<Header />
 	<ProductLayout   />
 	
-	{/* <Footer /> */}
+	<Footer />
   
   </>
 

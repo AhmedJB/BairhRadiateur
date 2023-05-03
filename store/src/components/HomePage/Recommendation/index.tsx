@@ -1,5 +1,5 @@
 import React from 'react'
-import testImage from "../../../assets/home/demoImage.jpg"
+import testImage from "../../../assets/home/radiator2.png"
 import RecommendationCard from './RecommendationCard'
 
 type Props = {}

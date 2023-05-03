@@ -1,0 +1,12 @@
+1 - l'intérêt de l'informatique décisionnelle 
+2 - l'intérêt d'un DW et ETL 
+
+3- Pentaho :-
+Kettle 
+Mondarion 
+Talend 
+SQL/Server BI 
+
+4 - citer quelques fonctionnalités de OLAP 
+
+5 - deux modèles dimensionnelles avec des exemples 
