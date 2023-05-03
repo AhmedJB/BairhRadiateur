@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import testImage from "../../../assets/home/demoImage.jpg"
+import testImage from "../../../assets/home/radiator2.png"
 import ProductCard from './ProductCard'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
