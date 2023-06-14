@@ -1,4 +1,4 @@
-import React , {useState} from 'react'
+import React , {useEffect, useState} from 'react'
 import Image from "next/image"
 import logo from '../../../assets/general/LOGO.svg'
 
@@ -11,6 +11,7 @@ import Auth from '../../HomePage/Auth'
 
 import styles from "../../../styles/modular/AuthStyles/Auth.module.css"
 import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 
 type Props = {}
@@ -20,6 +21,7 @@ const Header = (props: Props) => {
 	const [AuthOpen,setAuthOpen] = useState(false);
 
 	const {status,data} = useSession();
+	const router = useRouter();
 
 	const logout = async () => {
 		console.log("signin out")
@@ -27,6 +29,18 @@ const Header = (props: Props) => {
 			redirect : false
 		});
 	}
+
+
+	useEffect(() => {
+		if (status  === "authenticated") {
+			if (data?.user?.isAdmin){
+				router.push("/adminpan/dashboard")
+			}
+	  
+		  }
+
+
+	},[status,data])
 
 
 
@@ -42,7 +56,7 @@ const Header = (props: Props) => {
 				<InfoComp icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
 				{
 					status === "authenticated" && <>
-						<InfoComp icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+						<InfoComp icon={FaRegUser} title={"Bonjo ur!"} content={data?.user?.username} />
 					</>
 				}
 				

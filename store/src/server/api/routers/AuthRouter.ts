@@ -32,7 +32,7 @@ export const authRouter = createTRPCRouter({
               email : input.email,
               username : input.username,
               password : encryptPassword(input.password),
-              userinfo : {
+              UserInformation : {
                 create : {
                   naissance : input.naissance,
                   address : input.address,
@@ -56,6 +56,7 @@ export const authRouter = createTRPCRouter({
             throw Error( field + " existe déjà")
           }
         }
+        throw Error("something  wrong")
 
       }
       

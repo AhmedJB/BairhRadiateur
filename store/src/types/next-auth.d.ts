@@ -11,6 +11,7 @@ declare module "next-auth" {
       name : string,
       surname :string,
       email : string,
+      isAdmin : boolean
     }
   }
 

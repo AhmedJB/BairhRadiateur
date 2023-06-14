@@ -36,6 +36,7 @@ type newToken = {
   iat : number;
   exp : number;
   jti : string;
+  isAdmin : boolean;
 }
 
 
@@ -54,6 +55,7 @@ export const authOptions: NextAuthOptions = {
         (session.user as User).email  = newtoken.email;
         (session.user as User).name  = newtoken.name;
         (session.user as User).surname = newtoken.surname;
+        (session.user as User).isAdmin = newtoken.isAdmin;
         
       }
       return session;
@@ -65,6 +67,7 @@ export const authOptions: NextAuthOptions = {
         token.name = user?.name
         token.username = ( user as User ).username 
         token.surname = ( user as User).surname
+        token.isAdmin = ( user as User).isAdmin;
       }
       return token
     }
@@ -125,7 +128,8 @@ export const authOptions: NextAuthOptions = {
               id : user.id,
               email : user.email,
               name : user.name,
-              username : user.username
+              username : user.username,
+              isAdmin : user.isAdmin
             }
             return u
           }else{

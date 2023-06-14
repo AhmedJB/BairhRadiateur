@@ -14,6 +14,7 @@ import PreLoad from '../Layout/PreLoad';
 import Decouvert from './Decouvert';
 import Footer from '../General/Footer';
 
+
 type Props = {}
 
 const HomePage = (props: Props) => {

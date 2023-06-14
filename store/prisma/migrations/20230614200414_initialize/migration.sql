@@ -35,9 +35,11 @@ CREATE TABLE "Session" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
+    "surname" TEXT NOT NULL DEFAULT '',
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "password" TEXT NOT NULL,
+    "isAdmin" BOOLEAN NOT NULL DEFAULT false
 );
 
 -- CreateTable
@@ -49,7 +51,13 @@ CREATE TABLE "VerificationToken" (
 
 -- CreateTable
 CREATE TABLE "UserInformation" (
-    "id" TEXT NOT NULL PRIMARY KEY
+    "id" TEXT NOT NULL PRIMARY KEY,
+    "cin" TEXT NOT NULL,
+    "naissance" DATETIME NOT NULL,
+    "address" TEXT NOT NULL,
+    "tel" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    CONSTRAINT "UserInformation_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 -- CreateIndex
@@ -69,3 +77,9 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserInformation_tel_key" ON "UserInformation"("tel");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserInformation_userId_key" ON "UserInformation"("userId");
