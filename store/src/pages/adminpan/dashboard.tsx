@@ -2,6 +2,7 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect,useState } from 'react'
 import { useRouter } from 'next/router';
 import FullPageLoader from '../../components/General/FullPageLoader';
+import Dashboard from '../../components/AdmComponents/Dashboard';
 
 
 type Props = {}
@@ -14,7 +15,7 @@ function dashboard({}: Props) {
   const router = useRouter();
 
   useEffect(() => {
-
+    setLoading(true);
     if (status  === "authenticated") {
       if (data?.user?.isAdmin){
         setLoading(false);
@@ -30,7 +31,7 @@ function dashboard({}: Props) {
 
   return <>
     {
-      !loading && <> dashbord </>
+      !loading && <Dashboard />
     }
     {
       loading && <FullPageLoader />

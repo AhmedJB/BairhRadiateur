@@ -157,3 +157,8 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CF3939", en
   .modal::-webkit-scrollbar-thumb:hover {
 	background:var(--red); 
   }
+
+
+  .smooth-shadow-1 {
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }

@@ -57,7 +57,7 @@ function Recommendation({}: Props) {
 		<div className='mx-auto w-full xl:container px-4 flex items-center gap-10 flex-wrap'>
             {
                 testData.map((e,i) => {
-                    return <RecommendationCard image={e.image} title={e.title} subtitle={e.subtitle} rating={e.rating} price={e.price} />
+                    return <RecommendationCard key={`recommendation-${i}`} image={e.image} title={e.title} subtitle={e.subtitle} rating={e.rating} price={e.price} />
                 })
             }
 
