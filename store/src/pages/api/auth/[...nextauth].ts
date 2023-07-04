@@ -86,6 +86,7 @@ export const authOptions: NextAuthOptions = {
   }, */
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
+  secret: process.env.AUTH_SECRET,
   providers: [
 
     CredentialsProvider({

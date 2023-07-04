@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import AdminNav from '../AdminNav'
 import { Payment, columns } from "./orders/columns"
 import { DataTable } from "./orders/data-table"
+import { api } from '../../../server/utils/api'
 
 type Props = {}
 
@@ -19,6 +20,8 @@ function Dashboard({}: Props) {
 			  }
 		} )
 	}
+
+	const userData = api.adminHandler.getUsers.useQuery();
 
 	async function loadData() {
 		let d = await getData();

@@ -3,6 +3,7 @@ import logo from "../../../assets/general/LOGO.svg"
 import Image from 'next/image'
 import {RxHamburgerMenu} from "react-icons/rx"
 import { signOut } from 'next-auth/react'
+import Link from 'next/link'
 
 
 type Props = {}
@@ -57,7 +58,7 @@ function AdminNav({}: Props) {
 		<ul className="list-none">
   			{
 				links.map((e,i) => {
-					return <li key={`admin-link-${i}`} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>{e.name}</li>
+					return <Link href={e.link}><li key={`admin-link-${i}`} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>{e.name}</li></Link> 
 				})
 			}
 

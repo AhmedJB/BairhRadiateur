@@ -3,6 +3,7 @@ import Image from "next/image"
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 
 type Props = {
+    key: string,
     image : any,
     title : string,
     subtitle : string,
@@ -13,7 +14,7 @@ type Props = {
 
 const RecommendationCard = (props: Props) => {
   return  <>
-    <div className="flex flex-col h-[300px] w-[200px]">
+    <div key={props.key} className="flex flex-col h-[300px] w-[200px]">
         <div className="w-full h-1/2 relative mb-3">
             <Image src={props.image} className="rounded-md" alt="prod Image" fill={true} />
         </div>

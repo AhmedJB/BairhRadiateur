@@ -2,7 +2,7 @@ import { useSession } from 'next-auth/react'
 import React, { useEffect,useState } from 'react'
 import { useRouter } from 'next/router';
 import FullPageLoader from '../../components/General/FullPageLoader';
-import Dashboard from '../../components/AdmComponents/Dashboard';
+import Clients from '../../components/AdmComponents/Clients';
 
 
 type Props = {}
@@ -32,7 +32,7 @@ function dashboard({}: Props) {
 
   return <>
     {
-      !loading && <Dashboard />
+      !loading && <Clients />
     }
     {
       loading && <FullPageLoader />
