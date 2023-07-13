@@ -12,6 +12,7 @@ import Auth from '../../HomePage/Auth'
 import styles from "../../../styles/modular/AuthStyles/Auth.module.css"
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 
 type Props = {}
@@ -48,9 +49,9 @@ const Header = (props: Props) => {
 	<Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } />
 	<div className="w-full">
 		<div className="mx-auto w-full xl:container flex items-center justify-between px-4">
-			<div className="relative w-[400px] h-[100px]">
+			<Link href="/"><div className="relative w-[400px] h-[100px]">
 				<Image src={logo}  alt={"logo"} fill={true} />
- 			</div>
+ 			</div></Link>
 
 			<div className="flex items-center">
 				<InfoComp icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />

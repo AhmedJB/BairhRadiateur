@@ -68,7 +68,7 @@ function Products({}: Props) {
 
   return <>
     <div className="w-full my-11">
-        <div className="w-full my-4 flex items-center justify-between">
+        <div className="w-full xl:container my-4 flex items-center justify-between">
             <h1 className="text-3xl font-semibold text-darkGray uppercase">Nos Produits</h1>
              <Box sx={{ minWidth: 250 }}>
                 <FormControl fullWidth>
@@ -87,7 +87,7 @@ function Products({}: Props) {
                 </FormControl>
             </Box>
         </div>
-		<div className='mx-auto w-full xl:container  flex items-center gap-4 flex-wrap'>
+		<div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
             {
                 testData.map((e,i) => {
                     return <ProductCard image={e.image} title={e.title} subtitle={e.subtitle} rating={e.rating} price={e.price} />

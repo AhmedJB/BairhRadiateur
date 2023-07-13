@@ -4,6 +4,7 @@ import logo from "../../../assets/general/whiteLogo.svg"
 import {HiLocationMarker} from "react-icons/hi"
 import {BsFacebook} from "react-icons/bs"
 import {AiOutlineInstagram} from "react-icons/ai"
+import Link from 'next/link'
 
 type Props = {}
 
@@ -23,22 +24,22 @@ function Footer({}: Props) {
              <div className="md:w-3/12 w-full px-14 flex flex-col xl:border-r-2 border-gray min-h-[230px] min-w-[250px]">
               <h1 className=' text-white font-semibold'>Mon Compte</h1>
               <ul className='list-none text-gray'>
-                 <li className="font-medium my-3">Mon Profil</li>
-                 <li className="font-medium my-3">Liste des souhaits</li>
-                 <li className="font-medium my-3">FAQ's</li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Mon Profil</li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Liste des souhaits</li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">FAQ's</li>
 
 
              </ul>
             </div>
             
-             <div className="md:w-3/12 w-full px-14 flex flex-col min-h-[230px] min-w-[350px]">
+             <div className="md:w-3/12 w-full px-14 flex flex-col min-h-[230px] min-w-[300px]">
               <h1 className=' text-white font-semibold'>Liens Utiles</h1>
               <ul className='list-none text-gray'>
-                 <li className="font-medium my-3">A propos</li>
-                 <li className="font-medium my-3">Nous Contacter</li>
-                 <li className="font-medium my-3">Politique de confidentialité</li>
-                <li className="font-medium my-3">Conditions d'utilisation </li>
-                 <li className="font-medium my-3">Sécurité</li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">A propos</li>
+                <Link href="/contact"><li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Nous Contacter</li></Link> 
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Politique de confidentialité</li>
+                <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Conditions d'utilisation </li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Sécurité</li>
 
 
 

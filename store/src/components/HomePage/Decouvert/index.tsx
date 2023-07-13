@@ -8,6 +8,7 @@ import centerImage from "../../../assets/home/centerImage.png"
 import metalImage from "../../../assets/home/radiator.png"
 import DecouvertCard from './DecouvertCard'
 import Image from 'next/image'
+import Link from 'next/link'
 
 
 type Props = {}
@@ -19,16 +20,22 @@ function Decouvert({}: Props) {
 
         <div className="flex flex-col items-center gap-3">
             <div className="flex items-center ">
-                    <DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" />
+                
+            <Link href="/products"><DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" /></Link>
                     <div className="relative w-[200px] h-[200px]">
-                        <Image src={topLeft} alt="topLeft" fill={true} />
+                    <Image src={topLeft} alt="topLeft" fill={true} /> 
                     </div>
+                
+                    
             </div>
             <div className="flex items-center ">
-                    <DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" />
+            
+            <Link href="/products"><DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" /></Link>
                     <div className="relative w-[200px] h-[200px]">
-                        <Image src={bottomLeft} alt="topLeft" fill={true} />
+                      <Image src={bottomLeft} alt="topLeft" fill={true} />
                     </div>
+
+            
             </div>
 
 
@@ -39,18 +46,19 @@ function Decouvert({}: Props) {
         </div>
         <div className="flex flex-col items-center gap-3">
             <div className="flex items-center ">
+            
             <div className="relative w-[200px] h-[200px]">
-                        <Image src={topRight} alt="topRight" fill={true} />
+             <Image src={topRight} alt="topRight" fill={true} /> 
                     </div>
-                    <DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" />
-                    
+                    <Link href="/products"> <DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" /> </Link> 
+              
             </div>
             <div className="flex items-center ">
+            
             <div className="relative w-[200px] h-[200px]">
-                        <Image src={bottomRight} alt="topRight" fill={true} />
+             <Image src={bottomRight} alt="topRight" fill={true} />
                     </div>
-                    <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" />
-                    
+                    <Link href="/products">   <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" /> </Link> 
             </div>
 
 

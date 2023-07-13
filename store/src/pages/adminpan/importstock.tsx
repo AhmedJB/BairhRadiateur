@@ -3,11 +3,12 @@ import React, { useEffect,useState } from 'react'
 import { useRouter } from 'next/router';
 import FullPageLoader from '../../components/General/FullPageLoader';
 import Clients from '../../components/AdmComponents/Clients';
+import ImportStockPage from '../../components/AdmComponents/ImportStockPage';
 
 
 type Props = {}
 
-function clients({}: Props) {
+function importstock({}: Props) {
 
   const [loading,setLoading] = useState(true);
 
@@ -32,7 +33,7 @@ function clients({}: Props) {
 
   return <>
     {
-      !loading && <Clients />
+      !loading && <ImportStockPage />
     }
     {
       loading && <FullPageLoader />
@@ -40,4 +41,4 @@ function clients({}: Props) {
   </>
 }
 
-export default clients
+export default importstock

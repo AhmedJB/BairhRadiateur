@@ -1,10 +1,10 @@
 import React from 'react'
-import testImage from "../../../assets/home/radiator2.png"
+import testImage from "../../../../assets/home/radiator2.png"
 import RecommendationCard from './RecommendationCard'
 
 type Props = {}
 
-function Recommendation({}: Props) {
+function ProductRecommendation({}: Props) {
   
     const testData = [
     {
@@ -66,4 +66,4 @@ function Recommendation({}: Props) {
   </>
 }
 
-export default Recommendation
+export default ProductRecommendation

@@ -29,7 +29,7 @@ const HomePage = (props: Props) => {
 	<Qualities />
 	<div className="w-full">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-			<h1 className="text-xl font-semibold text-darkGray w-2/12">Découvrez Nos Produits</h1> <hr className="w-10/12 border-lighterGray" />
+			<h1 className="text-xl font-semibold text-darkGray w-[300px]">Découvrez Nos Produits</h1> <hr className="w-full border-lighterGray" />
 		</div>
 	</div>
 	<Decouvert />

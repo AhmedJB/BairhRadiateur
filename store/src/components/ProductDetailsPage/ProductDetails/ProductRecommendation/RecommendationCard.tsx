@@ -15,8 +15,8 @@ type Props = {
 
 const RecommendationCard = (props: Props) => {
   return  <>
-    <Link key={props.key} href="/details">
-    <div  className="flex flex-col h-[300px] w-[200px]">
+    <Link  href="/details">
+    <div key={props.key}  className="flex flex-col h-[300px] w-[200px]">
         <div className="w-full h-1/2 relative mb-3">
             <Image src={props.image} className="rounded-md" alt="prod Image" fill={true} />
         </div>

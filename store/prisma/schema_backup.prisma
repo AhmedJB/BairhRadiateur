@@ -71,19 +71,6 @@ model VerificationToken {
 }
 
 
-model ImportedProduct {
-  id String @id @default(cuid())
-  productId String
-  price Float
-  isEnabled Boolean @default(true)
-  name String
-  description String @default("")
-  imported DateTime @default(now())
-
-
-}
-
-
 model TestTest{
   id String @id @default(cuid())
 }

@@ -38,7 +38,7 @@ function AdminNav({}: Props) {
 	},
 	{
 		name : "Importer",
-		link : "/adminpan/import"
+		link : "/adminpan/importstock"
 	}
   ]
    
