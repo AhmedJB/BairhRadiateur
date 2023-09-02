@@ -57,7 +57,7 @@ const Header = (props: Props) => {
 				<InfoComp icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
 				{
 					status === "authenticated" && <>
-						<InfoComp icon={FaRegUser} title={"Bonjo ur!"} content={data?.user?.username} />
+						<InfoComp icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
 					</>
 				}
 				

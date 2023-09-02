@@ -14,11 +14,7 @@ function ImportStockPage({}: Props) {
     const [tableData,setTableData] : [ProductT[] | null , any] = useState([]);
 	const cols = columns();
 
-	
-
 	const {data : productData} = api.adminHandler.getAppProducts.useQuery();
-
-	
 
     useEffect(() => {
 		console.log(productData)
@@ -34,15 +30,12 @@ function ImportStockPage({}: Props) {
 
 
 
-
-
-  return <>
+return <>
 	<AdminNav />
 	<div className="container mx-auto py-10">
       <DataTable columns={cols} data={tableData} />
     </div>
 	<>
-	
 	</>
   </>
 }

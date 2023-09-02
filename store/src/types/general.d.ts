@@ -1,3 +1,5 @@
+import { ImportedProduct } from "@prisma/client"
+
 export interface ProductRespT {
 	fournisseur: Fournisseur
 	product: ProductT
@@ -38,3 +40,22 @@ export interface ProductRespT {
 	date: string
 	product: number
   }
+
+  export interface ProductInfoResponseT {
+	id: number
+	images: Image[]
+	p_id: string
+	name: string
+	ptype: string
+	paid: number
+	price_vente: number
+	price_achat: number
+	quantity: number
+	date: string
+	provider: number
+  }
+
+export interface generalProuctInfotT  {
+	info : ImportedProduct | undefined,
+	serverInfo : ProductInfoResponseT
+}
