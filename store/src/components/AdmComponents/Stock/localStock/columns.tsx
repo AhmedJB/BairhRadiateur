@@ -13,8 +13,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../../../../../components/ui/dropdown-menu"
-import { importProductRespMutation } from "../../../../Helpers/mutations"
+import {  importProductRespMutation } from "../../../../Helpers/mutations"
 import { api } from "../../../../server/utils/api"
+import { toast } from "react-toastify"
+import { useQueryClient } from "@tanstack/react-query"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -34,20 +36,44 @@ export type userDataT = {
   tel : string | undefined
 }
 
+type Props = {
+  handleModal : (product : ImportedProduct) => any
+}
 
-export const columns: ( ) => ColumnDef<ImportedProduct | undefined>[] = () => {
+
+export const columns: (handleModal : (product : ImportedProduct) => any ) => ColumnDef<ImportedProduct | undefined>[] = (handleModal) => {
+
+  const utils = api.useContext();
+
+  const deleteProductRespMutation = {
+    onSuccess : (resp :any) => {
+      console.log(resp);
+      console.log("success")
+      utils.adminHandler.showProductWithInfo.invalidate();
+      toast.success("Succès")
+      },
+      onError : (data : any) => {
+      console.log("error handling here")
+      console.log(data.message)
+      toast.error("failed deleting product") 
+      }
+  }
 
   const importProductMutation = api.adminHandler.importProduct.useMutation(importProductRespMutation)
+  const deleteProductMutation = api.adminHandler.deleteImportedProduct.useMutation(deleteProductRespMutation)
   
-  const handleImport = (product : ProductT) => {
-    let body = {
-      name : product.name,
-      price : product.price_vente,
-      p_id : product.p_id
-    }
-    importProductMutation.mutate(body)
+  
 
+
+  const handleDelete = (product : ImportedProduct | undefined) => {
+    if (product){
+      let body = {
+        id : product.id
+      }
+      deleteProductMutation.mutate(body);
+    }
     
+
   }
   
   return [
@@ -87,10 +113,19 @@ export const columns: ( ) => ColumnDef<ImportedProduct | undefined>[] = () => {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 onClick={() => {
-                  //handleImport(product)
+                  if (product){
+                   handleModal(product)
+                  }
                 }}
               >
-                Import
+                Modifier
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  handleDelete(product)                
+                }}
+              >
+                Supprimer
               </DropdownMenuItem>
               
             </DropdownMenuContent>

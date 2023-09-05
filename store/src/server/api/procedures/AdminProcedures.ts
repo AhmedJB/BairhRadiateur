@@ -52,6 +52,24 @@ export const  importProduct = adminProcedure
             }
          )
 
+export const deleteImportedProduct = adminProcedure
+			.input(z.object({
+				id : z.string()
+			}))
+			.mutation(
+				async ({input,ctx}) => {
+					try{
+						let r = await ctx.prisma.importedProduct.delete({
+							where : {
+								id : input.id
+							}
+						})
+					}catch (e) {
+						throw Error("Failed Product Delete")
+					}
+				}
+			)
+
 export const showProductWithInfo = adminProcedure
 			.query(async ({ctx}) => {
 				const products = await ctx.prisma.importedProduct.findMany({
