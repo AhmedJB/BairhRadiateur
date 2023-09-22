@@ -70,20 +70,16 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-
 model ImportedProduct {
-  id String @id @default(cuid())
-  productId String
-  price Float
-  isEnabled Boolean @default(true)
-  name String
-  description String @default("")
-  imported DateTime @default(now())
-
-
+  id          String   @id @default(cuid())
+  productId   String
+  price       Float
+  isEnabled   Boolean  @default(false)
+  name        String
+  description String   @default("")
+  imported    DateTime @default(now())
 }
 
-
-model TestTest{
+model TestTest {
   id String @id @default(cuid())
 }

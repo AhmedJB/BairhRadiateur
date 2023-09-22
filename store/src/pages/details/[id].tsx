@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductDetailsPage from '../components/ProductDetailsPage'
+import ProductDetailsPage from '../../components/ProductDetailsPage'
 
 type Props = {}
 

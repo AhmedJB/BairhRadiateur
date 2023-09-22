@@ -16,6 +16,7 @@ type Props = {
     required?: boolean;
     sublabel?: string;
     name?: string;
+    id ?: string;
     type?: string;
     defaultValue?: string;
     value?: string;
@@ -25,7 +26,7 @@ type Props = {
     setChecked?: Dispatch<SetStateAction<boolean>>;
     switchLabel?: string;
     options?: SelectOptionsT[];
-    changeFunc?: (event: React.ChangeEvent<onChangeType>) => any
+    changeFunc?: (event: React.ChangeEvent<any>) => any
 
 
 }
@@ -42,7 +43,7 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-function InputField({ label, required, sublabel, type, inputType, placeholder, checked, setChecked, switchLabel, options, name, changeFunc, defaultValue, value }: Props) {
+function InputField({ label, required, sublabel, type, inputType, placeholder,id, checked, setChecked, switchLabel, options, name, changeFunc, defaultValue, value }: Props) {
 
     const handleSwitchChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (setChecked) {
@@ -77,6 +78,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder, c
                         className="w-full my-3 rounded-xl p-3 bg-inputBg placeholder:text-subgray text-mainBlack font-normal placeholder:text-[0.65rem] placeholder:font-light border-2 outline-none"
                         placeholder={placeholder}
                         value={value}
+                        id={id}
                         defaultValue={defaultValue}
                         type={type}
                     />
@@ -91,6 +93,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder, c
                         className="w-full my-3 rounded-xl p-3 bg-inputBg placeholder:text-subgray text-mainBlack border-2 outline-none font-normal min-h-[300px] placeholder:text-[0.8rem] placeholder:font-light"
                         placeholder={placeholder}
                         defaultValue={defaultValue}
+                        id={id}
                         value={value}
 
 
@@ -120,8 +123,9 @@ function InputField({ label, required, sublabel, type, inputType, placeholder, c
                 inputType === InputTypeEnum.select && <>
                     <select
                         name={name}
-                        onChange={changeFunc}
+                        onChange={changeFunc ? changeFunc : () => {}}
                         value={value}
+                        id={id}
                         defaultValue={defaultValue}
                         className="w-full my-3 rounded-xl p-3  bg-inputBg placeholder:text-subgray text-white font-normal placeholder:text-[0.65rem] placeholder:font-light">
                         {

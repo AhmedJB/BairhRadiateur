@@ -7,8 +7,7 @@ import Dashboard from '../../components/AdmComponents/Dashboard';
 
 type Props = {}
 
-function dashboard({}: Props) {
-
+function DashboardComp({} : Props) {
   const [loading,setLoading] = useState(true);
 
   const {status , data} = useSession();
@@ -22,11 +21,11 @@ function dashboard({}: Props) {
         setLoading(false);
         console.log("admin here")
       }else{
-        router.push("/")
+        router.push("/").catch((e) => {console.log(e)})
       }
 
-    }else{
-      router.push("/")
+    }else if ( status === "unauthenticated"){
+      router.push("/").catch((e) => {console.log(e)})
     }
   },[status])
 
@@ -38,6 +37,11 @@ function dashboard({}: Props) {
       loading && <FullPageLoader />
     }
   </>
+}
+
+function dashboard({}: Props) {
+
+  return <DashboardComp />
 }
 
 export default dashboard

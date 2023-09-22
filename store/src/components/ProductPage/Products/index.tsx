@@ -6,13 +6,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { generalProuctInfotT } from '../../../types/general';
+import { formatImage } from '../../../Helpers/helpers';
 
 
 
 
-type Props = {}
+type Props = {
+    products : generalProuctInfotT[]
+}
 
-function Products({}: Props) {
+function Products({products}: Props) {
 
     const [value,setValue] = useState("");
     const handleFilter = (event: SelectChangeEvent) => {
@@ -89,8 +93,11 @@ function Products({}: Props) {
         </div>
 		<div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
             {
-                testData.map((e,i) => {
-                    return <ProductCard image={e.image} title={e.title} subtitle={e.subtitle} rating={e.rating} price={e.price} />
+               products && products.map((e,i) => {
+                if (e.info && e.serverInfo){
+                    return <ProductCard image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} />
+                }
+                    
                 })
             }
 

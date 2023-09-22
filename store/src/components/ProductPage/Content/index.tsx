@@ -1,11 +1,14 @@
 import React from 'react'
 import Products from '../Products'
+import { generalProuctInfotT } from '../../../types/general'
 
-type Props = {}
+type Props = {
+  products: generalProuctInfotT[]
+}
 
-const Content = (props: Props) => {
+const Content = ({products}: Props) => {
   return (
-	<Products />
+	<Products products={products} />
   )
 }
 

@@ -9,8 +9,7 @@ import StockComponent from '../../components/AdmComponents/Stock/indext';
 
 type Props = {}
 
-function stock({}: Props) {
-
+function StockPage({} : Props){
   const [loading,setLoading] = useState(true);
   const {status , data} = useSession();
   const router = useRouter();
@@ -23,11 +22,11 @@ function stock({}: Props) {
         setLoading(false);
         console.log("admin here")
       }else{
-        router.push("/")
+        router.push("/").catch((e) => {console.log(e)})
       }
 
     }else{
-      router.push("/")
+      router.push("/").catch((e) => {console.log(e)})
     }
   },[status])
 
@@ -39,6 +38,12 @@ function stock({}: Props) {
       loading && <FullPageLoader />
     }
   </>
+}
+
+
+function stock({}: Props) {
+ return <StockPage />
+  
 }
 
 export default stock;

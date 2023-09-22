@@ -14,8 +14,8 @@ import { User } from "@prisma/client";
 
 
 const encryptPassword = (pass : string) => {
-  let salt = bcrypt.genSaltSync(10);
-  let hash = bcrypt.hashSync(pass, salt);
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(pass, salt);
   return hash;
 }
 
@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
     session({ session, user,token }) {
-      let newtoken = token as newToken;
+      const newtoken = token as newToken;
 
       console.log("session callback")
       console.log(session)
@@ -60,7 +60,7 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    async jwt({ token, account, user , profile }) {
+    jwt({ token, account, user , profile }) {
       if (account) {
         token.accessToken = account.access_token
         token.id = user?.id
@@ -99,7 +99,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
       },
       async authorize(credentials, req) {
-        let {email ,password } = credentials as {
+        const {email ,password } = credentials as {
           email : string,
           password : string
         }
@@ -122,10 +122,10 @@ export const authOptions: NextAuthOptions = {
   
         if (user) {
           // Any object returned will be saved in `user` property of the JWT
-          let comparison = await bcrypt.compare(password, user.password);
+          const comparison = await bcrypt.compare(password, user.password);
           if (comparison){
             console.log("valid password")
-            let u = {
+            const u = {
               id : user.id,
               email : user.email,
               name : user.name,

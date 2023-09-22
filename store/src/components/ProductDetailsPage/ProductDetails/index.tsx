@@ -21,6 +21,10 @@ import StarReview from "./StarReview";
 import HeartCheckboxComponent from "../../General/HeartCheckboxComponent";
 import Radiator from "../../../assets/home/radiator.png"
 import { StaticImageData } from "next/image";
+import { useRouter } from "next/router";
+import { api } from "../../../server/utils/api";
+import { generalProuctInfotT } from "../../../types/general";
+import { formatImage } from "../../../Helpers/helpers";
 
 interface Product {
   _id: string;
@@ -68,12 +72,33 @@ const ProductDetails = ({}: Props) => {
     maxDays: 10,
   });
 
+  const [productId,setProductId] = useState("-1");
+  const {data : productData,status} = api.authHandler.fetchProducts.useQuery();
+
+  const [filtered  ,setFiltered] = useState<generalProuctInfotT>()
+  const router=  useRouter();
+
   const [quantity, setQuantity] = useState(1);
 
   const [index, setIndex] = useState(0);
 
   const myRef : RefObject<HTMLDivElement> = useRef(null);
   const [openDescription, setOpenDescription] = useState(false);
+
+  useEffect(() => {
+    if (router.isReady){
+      console.log(router.query)
+      setProductId(router.query.id as string);
+    }
+  },[router.isReady])
+
+  useEffect(() => {
+    if (status === "success" && productId !== '-1') {
+      let temp = (productData as generalProuctInfotT[]).filter(e => e.info && e.info.id === productId )
+      
+      setFiltered(temp[0])
+    }
+  },[productId,status,productData])
 
   /* useEffect(() => {
     const images = myRef.current!.children;
@@ -121,7 +146,7 @@ const ProductDetails = ({}: Props) => {
           <div className={"flex gap-11 "}>
             <div className={"flex flex-col items-center ml-4"} key={product.id}>
               <div className={styles["big-img"]+ " relative"}>
-                <img src={product.src[index]?.src} alt="" />
+                <img src={formatImage(filtered?.serverInfo.images[index]?.image)} alt="" />
                 
                   <HeartCheckboxComponent className="absolute top-2  right-1 "  size="text-sm" />
                 
@@ -135,12 +160,12 @@ const ProductDetails = ({}: Props) => {
             <div className={"flex flex-col gap-3 pt-12"}>
               <div className="">
                 <h2 className="text-2xl font-semibold text-mainBlack mt-3 inter">
-                  {product.title}
+                  {filtered?.info?.name}
                 </h2>
-                <h3 className="text-lighterGray  text-lg font-medium">{product.subtitle}</h3>
+                <h3 className="text-lighterGray  text-lg font-medium">{filtered?.serverInfo.ptype}</h3>
                 <StarReview rating={product.rating} />
                 <p className="text-mainBlack text-3xl font-semibold p-2 my-4">
-                  {product.price} MAD
+                  {filtered?.info?.price} MAD
                 </p>
               </div>
 

@@ -11,6 +11,7 @@ type Props = {
     subtitle : string,
     rating : number,
     price : number,
+    id : string
 
 }
 
@@ -28,7 +29,7 @@ const ProductCard = (props: Props) => {
             
             <Image src={props.image} className="rounded-tl-md rounded-tr-md" alt="prod Image" fill={true} />
         </div>
-        <Link href="/details"><button className='w-full p-1 text-white bg-blue'>Aperçu</button></Link>
+        <Link href={"/details/"+props.id}><button className='w-full p-1 text-white bg-blue'>Aperçu</button></Link>
         <div className="p-2">
         <h3 className="text-mainBlack text-[16px] my-0 font-semibold">{props.title}</h3>
         <h3 className="text-lighterGray  text-[16px] font-medium">{props.subtitle}</h3>

@@ -8,21 +8,34 @@ import FormControl from '@mui/material/FormControl';
 import { Checkbox } from '@mui/material';
 import Slider from '@mui/material/Slider';
 
-type Props = {}
+type Props = {
+  catList : string[],
+  markList: string[],
+  tubList : string[],
+  categories: string[],
+  marks: string[],
+  tubs : string[],
+  priceRange : number[],
+  setCategories : any,
+  setMarks: any,
+  setTubs : any,
+  setPriceRange: any,
 
-const Sidebar = (props: Props) => {
+}
+
+const Sidebar = ({catList,markList,tubList,categories,marks,tubs,priceRange,setCategories,setMarks,setTubs,setPriceRange}: Props) => {
 
   // categories 
-  const [categories,setCategories]  = useState([] as string[]);
-  const [catList,setCatList] = useState(["testCat1" , "testCat2" , "testCat3"])
+  //const [categories,setCategories]  = useState([] as string[]);
+  //const [catList,setCatList] = useState(["testCat1" , "testCat2" , "testCat3"])
   // Marque
-  const [marks,setMarks] = useState([] as string[]);
-  const [markList,setMarkList] = useState(["Mark1", "Mark2", "Mark3"])
+  //const [marks,setMarks] = useState([] as string[]);
+  //const [markList,setMarkList] = useState(["Mark1", "Mark2", "Mark3"])
   // Tube
-  const [tubs,setTubs] = useState([] as string[]);
-  const [tubList,setTubeList] = useState(["Tube1","Tube2","Tube3"])
+  //const [tubs,setTubs] = useState([] as string[]);
+  //const [tubList,setTubeList] = useState(["Tube1","Tube2","Tube3"])
   // Price Range
-  const [priceRange,setPriceRange] = useState([0,20])
+  //const [priceRange,setPriceRange] = useState([0,20])
   
   // handle Price changes
   

@@ -7,8 +7,8 @@ import Clients from '../../components/AdmComponents/Clients';
 
 type Props = {}
 
-function clients({}: Props) {
 
+function ClientsComp({} : Props) {
   const [loading,setLoading] = useState(true);
 
   const {status , data} = useSession();
@@ -22,11 +22,11 @@ function clients({}: Props) {
         setLoading(false);
         console.log("admin here")
       }else{
-        router.push("/")
+        router.push("/").catch((e) => {console.log(e)})
       }
 
     }else{
-      router.push("/")
+      router.push("/").catch((e) => {console.log(e)})
     }
   },[status])
 
@@ -38,6 +38,11 @@ function clients({}: Props) {
       loading && <FullPageLoader />
     }
   </>
+}
+
+function clients({}: Props) {
+  return <ClientsComp />
+ 
 }
 
 export default clients

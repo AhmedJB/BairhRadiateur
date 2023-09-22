@@ -21,9 +21,9 @@ export const getUsers =  adminProcedure
 
 export const getAppProducts = adminProcedure.
         query(async ({ctx}) : Promise<ProductRespT[] | null> => {
-            let resp = await axios.get(AppUrl + "silentpd")
+            const resp = await axios.get(AppUrl + "silentpd")
             if (resp.status === 200){
-                return resp.data
+                return resp.data as ProductRespT[]
             }else {
                 return null
             }
@@ -38,7 +38,7 @@ export const  importProduct = adminProcedure
         .mutation(
             async ({input,ctx}) => {
                 try{
-                    let r = await ctx.prisma.importedProduct.create({
+                    const r = await ctx.prisma.importedProduct.create({
                         data : {
                             name : input.name,
                             price : input.price,
@@ -59,7 +59,7 @@ export const deleteImportedProduct = adminProcedure
 			.mutation(
 				async ({input,ctx}) => {
 					try{
-						let r = await ctx.prisma.importedProduct.delete({
+						const r = await ctx.prisma.importedProduct.delete({
 							where : {
 								id : input.id
 							}
@@ -73,16 +73,16 @@ export const deleteImportedProduct = adminProcedure
 export const showProductWithInfo = adminProcedure
 			.query(async ({ctx}) => {
 				const products = await ctx.prisma.importedProduct.findMany({
-					
+					 
 				})
-				let ids = products.map(e => e.productId)
-				let resp = await ServerHandler.post("silentProducts/getinfo",{
+				const ids = products.map(e => e.productId)
+				const resp = await ServerHandler.post("silentProducts/getinfo",{
 					ids
 				})
 				if (resp.status === 200){
-					let respData : ProductInfoResponseT[] = resp.data;
-					let finalRes : generalProuctInfotT[] = [];
-					for (let productResp of respData){
+					const respData : ProductInfoResponseT[] = (resp.data as ProductInfoResponseT[]) ;
+					const finalRes : generalProuctInfotT[] = [];
+					for (const productResp of respData){
 						console.log("Filtering product" , productResp.p_id)
 						let index = -1
 						products.forEach((e,i) => {
@@ -106,4 +106,36 @@ export const showProductWithInfo = adminProcedure
 					return products
 				}
 			})
+
+
+export const modifyProducts = adminProcedure
+			.input(
+				z.object({
+					id : z.string(),
+					name : z.string(),
+					description : z.string(),
+					price : z.number(),
+					isEnabled : z.boolean()
+				})
+			)
+			.mutation(
+				async ({input,ctx}) => {
+					try{
+						const res = await ctx.prisma.importedProduct.update({
+							where : {
+								id : input.id
+							},
+							data : {
+								name : input.name,
+								description : input.description,
+								price : input.price,
+								isEnabled : input.isEnabled
+							}
+						})
+					}catch {
+						throw Error("Modified Product")
+					}
+
+				}
+			)
 

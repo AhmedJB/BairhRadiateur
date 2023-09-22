@@ -4,6 +4,8 @@ import validator from "validator"
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { encryptPassword } from "../../../utils/helpers";
 import { Prisma } from "@prisma/client";
+import { ServerHandler } from "../handler";
+import { ProductInfoResponseT, generalProuctInfotT } from "../../../types/general";
 
 export const authRouter = createTRPCRouter({
   register: publicProcedure
@@ -25,7 +27,7 @@ export const authRouter = createTRPCRouter({
         ))
     .mutation(async ({ input ,ctx}) => {
       try{
-        let r = await ctx.prisma.user.create({
+        const r = await ctx.prisma.user.create({
           data : {
               name : input.name,
               surname : input.surname,
@@ -61,7 +63,42 @@ export const authRouter = createTRPCRouter({
       }
       
     }),
-
+  fetchProducts : publicProcedure
+  .query(async ({ctx}) => {
+    const products = await ctx.prisma.importedProduct.findMany({
+       
+    })
+    const ids = products.map(e => e.productId)
+    const resp = await ServerHandler.post("silentProducts/getinfo",{
+      ids
+    })
+    if (resp.status === 200){
+      const respData : ProductInfoResponseT[] = (resp.data as ProductInfoResponseT[]);
+      const finalRes : generalProuctInfotT[] = [];
+      for (const productResp of respData){
+        console.log("Filtering product" , productResp.p_id)
+        let index = -1
+        products.forEach((e,i) => {
+          if (e.productId === productResp.p_id){
+            index = i;
+          }
+        })
+        
+        console.log("index ", index)
+        if (products[index]){
+          finalRes.push({
+            info : products[index],
+            serverInfo : productResp
+          })
+        }
+        
+        
+      }
+      return finalRes;
+    }else{
+      return products
+    }
+  })
   
 });
 

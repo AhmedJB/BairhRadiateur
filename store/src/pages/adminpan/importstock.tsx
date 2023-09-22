@@ -8,8 +8,7 @@ import ImportStockPage from '../../components/AdmComponents/ImportStockPage';
 
 type Props = {}
 
-function importstock({}: Props) {
-
+function ImportStockComp({} : Props) {
   const [loading,setLoading] = useState(true);
 
   const {status , data} = useSession();
@@ -23,11 +22,11 @@ function importstock({}: Props) {
         setLoading(false);
         console.log("admin here")
       }else{
-        router.push("/")
+        router.push("/").catch((e) => {console.log(e)})
       }
 
     }else{
-      router.push("/")
+      router.push("/").catch((e) => {console.log(e)})
     }
   },[status])
 
@@ -39,6 +38,11 @@ function importstock({}: Props) {
       loading && <FullPageLoader />
     }
   </>
+}
+
+function importstock({}: Props) {
+  return <ImportStockComp />
+  
 }
 
 export default importstock
