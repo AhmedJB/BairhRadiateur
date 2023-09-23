@@ -20,7 +20,7 @@ const dropIn = {
 
 
 interface propType {
-    handleClose : any;
+    handleClose : () => void;
     children : React.ReactChild | React.ReactFragment | React.ReactPortal | boolean | null | undefined;
     classes : string
 }

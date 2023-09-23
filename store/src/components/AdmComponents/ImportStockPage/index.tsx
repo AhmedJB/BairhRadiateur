@@ -10,17 +10,17 @@ import { toast } from 'react-toastify';
 type Props = {}
 
 function ImportStockPage({}: Props) {
-	const [respData,setRespData] : [ProductRespT[] | null, any] = useState(null)
-    const [tableData,setTableData] : [ProductT[] | null , any] = useState([]);
+	const [respData,setRespData] = useState<ProductRespT[] | null>(null)
+    const [tableData,setTableData]  = useState<ProductT[] | null>([]);
 	const cols = columns();
 
 	const {data : productData} = api.adminHandler.getAppProducts.useQuery();
 
     useEffect(() => {
 		console.log(productData)
-		setRespData(productData);
+		setRespData(productData as ProductRespT[]);
 		if (productData){
-			let temp = productData.map((e,i) => {
+			const temp = productData.map((e,i) => {
 				return e.product
 			}) 
 			setTableData(temp);
@@ -33,7 +33,7 @@ function ImportStockPage({}: Props) {
 return <>
 	<AdminNav />
 	<div className="container mx-auto py-10">
-      <DataTable columns={cols} data={tableData} />
+      <DataTable columns={cols} data={tableData as ProductT[]} />
     </div>
 	<>
 	</>

@@ -8,12 +8,12 @@ type Props = {}
 
 function Dashboard({}: Props) {
 
-	const [demoData,setDemoData] : [Payment[] | null,any] = useState([])
+	const [demoData,setDemoData] = useState<Payment[] | null>([])
 
-	const getData = async () : Promise<Payment[]> => {
+	const getData =  () :Payment[]  => {
 		return new Array(100).fill(0).map((e,i) => {
 			return {
-				id: "m5gr84i9"+ Math.random(),
+				id: `m5gr84i9 ${Math.random()}`,
 				amount: 1000 * Math.random(),
 				status: "success",
 				email: "ken99@yahoo.com",
@@ -23,8 +23,8 @@ function Dashboard({}: Props) {
 
 	const userData = api.adminHandler.getUsers.useQuery();
 
-	async function loadData() {
-		let d = await getData();
+	function loadData() {
+		const d = getData();
 		setDemoData(d);
 	}
 
@@ -38,7 +38,7 @@ function Dashboard({}: Props) {
   return <>
 	<AdminNav />
 	<div className="container mx-auto py-10">
-      <DataTable columns={columns} data={demoData} />
+      <DataTable columns={columns} data={demoData as Payment[]} />
     </div>
 	<>
 	

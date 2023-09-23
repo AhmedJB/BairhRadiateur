@@ -15,7 +15,7 @@ type Props = {
 }
 
 function EditModal({open,closeModal,product}: Props) {
-	const modalStyle = styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 "
+	const modalStyle = `${styles.modalAuth as string} xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1` 
 
 	const [modifiedProduct , setModifiedProduct] = useState<ImportedProduct>();
 	const [visible,setVisible] = useState(false);
@@ -34,13 +34,12 @@ function EditModal({open,closeModal,product}: Props) {
     onSuccess : (resp :any) => {
       console.log(resp);
       console.log("success")
-      utils.adminHandler.showProductWithInfo.invalidate();
+      utils.adminHandler.showProductWithInfo.invalidate().catch(e=> console.log(e));
       toast.success("Succès")
 	  closeModal()
       },
       onError : (data : any) => {
-      console.log("error handling here")
-      console.log(data.message)
+
       toast.error("failed modifying product") 
       }
   }
@@ -52,9 +51,9 @@ function EditModal({open,closeModal,product}: Props) {
 
 	const handleInputChange = (arg : React.ChangeEvent<HTMLInputElement>) => {
 		if (modifiedProduct){
-			let t = arg.target;
-			let key = t.id as keyof typeof temp;
-			let temp : ImportedProduct = {...modifiedProduct};
+			const t = arg.target;
+			const key = t.id as keyof typeof temp;
+			const temp : ImportedProduct = {...modifiedProduct};
 			let val : string | number = t.value;
 			if (key === "price"){
 				val = Number(val);
@@ -65,9 +64,9 @@ function EditModal({open,closeModal,product}: Props) {
 		
 	}
 
-	const submitChanges = async () => {
+	const submitChanges =  () => {
 		if (modifiedProduct){
-			let body = {
+			const body = {
 				name : modifiedProduct.name,
 				description : modifiedProduct.description,
 				price : modifiedProduct.price,
@@ -127,7 +126,7 @@ function EditModal({open,closeModal,product}: Props) {
 
 							/>
 							<button
-							onClick={submitChanges}
+							onClick={(() => submitChanges()) as React.MouseEventHandler<HTMLButtonElement>}
                   className={
                     "w-[250px] bg-blue mx-auto mb-5 py-3 px-8 text-white font-semibold rounded-md text-xl"
                   }

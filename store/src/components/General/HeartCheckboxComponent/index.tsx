@@ -18,14 +18,14 @@ const HeartCheckboxComponent = ({size,color,className} : Props) => {
   };
 
   return (
-       <label className={styles.container + " " + className}>
+       <label className={`${styles.container as string} ${className as string}`}>
         <input
           checked={checked}
           type="checkbox"
           onChange={handleCheckboxChange}
         />
         {
-          checked ? <FaHeart className={styles.checkmark + " "  +size + " text-red" } /> : <FaRegHeart className={styles.checkmark + " " + size +  (color ? (" " + color)  : " text-black"  )} />
+          checked ? <FaHeart className={`${styles.checkmark as string} ${size as string} text-red` } /> : <FaRegHeart className={`${styles.checkmark as string} ${size as string} ${color ? color  : " text-black"}`} />
 
         }
       </label>

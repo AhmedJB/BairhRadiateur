@@ -10,7 +10,7 @@ export const importProductRespMutation = {
 	  },
 	  onError : (data : any) => {
 		console.log("error handling here")
-		console.log(data.message)
+		console.log("failed import product")
 		toast.error("failed") 
 	  }
 }

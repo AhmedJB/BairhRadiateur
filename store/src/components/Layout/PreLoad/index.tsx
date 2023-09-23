@@ -25,7 +25,7 @@ function PreLoad({children}: Props) {
             setLoading(false);
         }
         if (status === "unauthenticated" ) {
-            router.push("/")
+            router.push("/").catch(e => console.log(e))
         }
     },[status])
 

@@ -47,7 +47,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder,id
 
     const handleSwitchChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (setChecked) {
-            let isChecked = event?.target?.checked ?? false;
+            const isChecked = event?.target?.checked ?? false;
             setChecked(isChecked);
         }
     }
@@ -123,14 +123,14 @@ function InputField({ label, required, sublabel, type, inputType, placeholder,id
                 inputType === InputTypeEnum.select && <>
                     <select
                         name={name}
-                        onChange={changeFunc ? changeFunc : () => {}}
+                        onChange={changeFunc ? changeFunc : () => {console.log("change")}}
                         value={value}
                         id={id}
                         defaultValue={defaultValue}
                         className="w-full my-3 rounded-xl p-3  bg-inputBg placeholder:text-subgray text-white font-normal placeholder:text-[0.65rem] placeholder:font-light">
                         {
                             options?.map((e, i) => {
-                                return <option key={e.value + "_" + i} value={e.value}>{e.name}</option>
+                                return <option key={`${e.value}_${i}`} value={e.value}>{e.name}</option>
                             })
                         }
 

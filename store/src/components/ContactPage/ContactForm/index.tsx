@@ -6,6 +6,7 @@ import User from "../../../assets/modalIcons/user.svg";
 import Email from "../../../assets/modalIcons/email.svg";
 import Phone from "../../../assets/modalIcons/tel.svg";
 import QA from "../../../assets/modalIcons/card.svg";
+import { StaticImageData } from 'next/image';
 
 
 type Props = {}
@@ -14,7 +15,7 @@ function ContactForm({}: Props) {
 
 	const [checked,setChecked] = useState(false);
 
-	const handleContact = async () => {};
+	const handleContact =  () => {console.log("contact")};
 
 
 
@@ -23,7 +24,7 @@ function ContactForm({}: Props) {
         <div className="flex w-full flex-wrap items-center justify-between">
           <div className="w-full md:w-full lg:w-6/12 xl:w-6/12">
             <InputField
-              image={User}
+              image={User as StaticImageData}
               id="name"
               placeholder={"Prenom"}
               type={"text"}
@@ -41,21 +42,21 @@ function ContactForm({}: Props) {
         </div>
 
         <InputField
-          image={Email}
+          image={Email as StaticImageData}
           id="email"
           placeholder={"E-mail"}
           type={"email"}
         />
 
         <InputField
-          image={Phone}
+          image={Phone as StaticImageData}
           id="phone"
           placeholder={"Télé"}
           type={"phone"}
         />
 
         <InputField
-          image={QA}
+          image={QA as StaticImageData}
           id="sujet"
           placeholder={"Sujet"}
           textarea={true}
@@ -63,7 +64,7 @@ function ContactForm({}: Props) {
         
 
         <button
-          onClick={handleContact}
+          onClick={(() => handleContact()) as React.MouseEventHandler<HTMLButtonElement>}
           className=" subBtn m-6 rounded-xl bg-red p-3 text-[#ffffff]"
         >
           Envoyer

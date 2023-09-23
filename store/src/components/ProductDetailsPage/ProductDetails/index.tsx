@@ -94,7 +94,7 @@ const ProductDetails = ({}: Props) => {
 
   useEffect(() => {
     if (status === "success" && productId !== '-1') {
-      let temp = (productData as generalProuctInfotT[]).filter(e => e.info && e.info.id === productId )
+      const temp = (productData as generalProuctInfotT[]).filter(e => e.info && e.info.id === productId )
       
       setFiltered(temp[0])
     }
@@ -123,7 +123,7 @@ const ProductDetails = ({}: Props) => {
   };
 
   const handleStep = (step : number) => {
-      let newQuantity = quantity + step;
+      const newQuantity = quantity + step;
       if (step < 0  ) {
         if (newQuantity <= 0) {
           setQuantity(1);
@@ -142,10 +142,10 @@ const ProductDetails = ({}: Props) => {
   return (
     <>
       <Container>
-        <div className={`mx-auto ${styles.app} max-w-[1100px] my-16`}>
+        <div className={`mx-auto ${styles.app as string} max-w-[1100px] my-16`}>
           <div className={"flex gap-11 "}>
             <div className={"flex flex-col items-center ml-4"} key={product.id}>
-              <div className={styles["big-img"]+ " relative"}>
+              <div className={ `${styles["big-img"] as string} relative`}>
                 <img src={formatImage(filtered?.serverInfo.images[index]?.image)} alt="" />
                 
                   <HeartCheckboxComponent className="absolute top-2  right-1 "  size="text-sm" />

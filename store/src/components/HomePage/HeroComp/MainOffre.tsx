@@ -15,7 +15,7 @@ const MainOffre = (props: Props) => {
 			<h2  className='text-mainBlack  text-3xl uppercase font-semibold tracking-wider  opacity-70 '>799DH</h2>
 			<p className="text-mainBlack text-md font-light my-2 tracking-wider">Commencez votre achat dès maintenant</p>
 			<button className='p-3 bg-darkGray uppercase text-white font-medium text-md cursor-pointer'>
-				Voir L'offre
+				{`Voir L'offre`}
 			</button>
 			
 		</div>

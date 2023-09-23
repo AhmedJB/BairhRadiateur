@@ -4,6 +4,7 @@ import Payment from "../../../assets/home/payment.svg"
 import Repare from "../../../assets/home/repare.svg"
 import Livraison from "../../../assets/home/livraison.svg"
 import QualityCard from './QualityCard'
+import { StaticImageData } from 'next/image'
 
 type Props = {}
 
@@ -11,19 +12,19 @@ const Qualities = (props: Props) => {
 
     const cardData = [
         {
-            image : Garantie,
+            image : Garantie as StaticImageData,
             caption : "GARANTIE"
         },
         {
-            image : Payment,
+            image : Payment as StaticImageData,
             caption : "PAIEMENT SECURISEE"
         },
         {
-            image : Repare,
+            image : Repare as StaticImageData,
             caption : "REPARATION EFFICACE"
         },
         {
-            image : Livraison,
+            image : Livraison as StaticImageData,
             caption : "LIVRAISON RAPIDE"
         }
     ]
@@ -36,7 +37,7 @@ const Qualities = (props: Props) => {
             <div className="flex w-full items-center justify-between px-6 py-20">
                 {
                     cardData.map((e,i) => {
-                   return <QualityCard image={e.image} caption={e.caption} />      
+                   return <QualityCard key={`quality-${i}`} image={e.image} caption={e.caption} />      
                     })
                 }
                 

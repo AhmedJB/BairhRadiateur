@@ -49,12 +49,10 @@ export const columns: (handleModal : (product : ImportedProduct) => any ) => Col
     onSuccess : (resp :any) => {
       console.log(resp);
       console.log("success")
-      utils.adminHandler.showProductWithInfo.invalidate();
+      utils.adminHandler.showProductWithInfo.invalidate().catch(e=> console.log(e));
       toast.success("Succès")
       },
       onError : (data : any) => {
-      console.log("error handling here")
-      console.log(data.message)
       toast.error("failed deleting product") 
       }
   }
@@ -67,7 +65,7 @@ export const columns: (handleModal : (product : ImportedProduct) => any ) => Col
 
   const handleDelete = (product : ImportedProduct | undefined) => {
     if (product){
-      let body = {
+      const body = {
         id : product.id
       }
       deleteProductMutation.mutate(body);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import logo from "../../../assets/general/LOGO.svg"
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import {RxHamburgerMenu} from "react-icons/rx"
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -17,11 +17,11 @@ function AdminNav({}: Props) {
 
 	const [open,setOpen] = useState(false)
 
-	const logout = async () => {
+	const logout =  () => {
 		console.log("signin out")
 		signOut({
 			redirect : false
-		});
+		}).catch(e=> console.log(e));
 	}
 
   const links : linksType[] = [
@@ -47,7 +47,7 @@ function AdminNav({}: Props) {
 
   return <div className={`w-full h-[100px] bg-mainBlack flex items-center justify-between p-3 `}>
 	<div className="relative w-[300px] h-[80px]">
-				<Image src={logo}  alt={"logo"} fill={true} />
+				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  	</div>
 
 	<div className='relative h-full grid place-items-center'>
@@ -58,11 +58,11 @@ function AdminNav({}: Props) {
 		<ul className="list-none">
   			{
 				links.map((e,i) => {
-					return <Link href={e.link}><li key={`admin-link-${i}`} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>{e.name}</li></Link> 
+					return <Link key={e.link} href={e.link}><li key={`admin-link-${i}`} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>{e.name}</li></Link> 
 				})
 			}
 
-<li onClick={logout} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>Se déconnecter</li>
+<li onClick={(() => logout()) as React.MouseEventHandler<HTMLLIElement>} className='p-3 text-mainBlack font-medium md:text-xl text-lg w-full transition-all hover:bg-blue hover:text-white cursor-pointer'>Se déconnecter</li>
 		</ul>
 	</div>
 	}

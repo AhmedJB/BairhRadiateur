@@ -1,6 +1,6 @@
 import React from 'react'
 import ContactGroup from "../../../assets/logIcons/contactgroup.svg";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 type Props = {}
 
@@ -20,7 +20,7 @@ function ContactHeader({}: Props) {
         <div className=" flex w-full items-center  justify-center md:w-5/12 lg:w-5/12 xl:w-5/12">
           <div className="relative h-[400px] w-[100%]">
             <Image
-              src={ContactGroup}
+              src={ContactGroup as StaticImageData}
               alt={"conctact image"}
               fill={true}
             />

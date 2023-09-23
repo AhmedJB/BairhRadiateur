@@ -40,7 +40,7 @@ export const columns: ( ) => ColumnDef<ProductT>[] = () => {
   const importProductMutation = api.adminHandler.importProduct.useMutation(importProductRespMutation)
   
   const handleImport = (product : ProductT) => {
-    let body = {
+    const body = {
       name : product.name,
       price : product.price_vente,
       p_id : product.p_id

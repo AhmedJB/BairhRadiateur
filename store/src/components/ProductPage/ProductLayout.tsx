@@ -30,11 +30,11 @@ const ProductLayout = (props: Props) => {
 
 	const handleFilter = () => {
 		if (productData ){
-			let temp = (productData as generalProuctInfotT[]).filter(e => {
-				let catCondition = categories.includes("cat-"+e.serverInfo.ptype) || categories.length === 0;
-				let minRange = Math.floor(100000 * ( (priceRange[0] ?? 0) / 100))
-				let maxRange = Math.ceil(100000 * ( (priceRange[1] ?? 0) / 100 ))
-				let priceCondition = e.info   && e.info.price >= minRange && e.info.price <= maxRange
+			const temp = (productData as generalProuctInfotT[]).filter(e => {
+				const catCondition = categories.includes("cat-"+e.serverInfo.ptype) || categories.length === 0;
+				const minRange = Math.floor(100000 * ( (priceRange[0] ?? 0) / 100))
+				const maxRange = Math.ceil(100000 * ( (priceRange[1] ?? 0) / 100 ))
+				const priceCondition = e.info   && e.info.price >= minRange && e.info.price <= maxRange
 				return catCondition && priceCondition
 			}   )
 
@@ -50,9 +50,9 @@ const ProductLayout = (props: Props) => {
 
     useEffect(() => {
         if  ( status === "success"){
-            let temp = productData as generalProuctInfotT[];
+            const temp = productData as generalProuctInfotT[];
 			if (temp){
-				let cats : string[] = [];
+				const cats : string[] = [];
 				temp.forEach((e,i)=> {
 					if (!cats.includes(e.serverInfo.ptype)){
 						cats.push(e.serverInfo.ptype);
@@ -78,8 +78,8 @@ const ProductLayout = (props: Props) => {
 					}
 				]}
 			/>
-			<div className={`${styles.gridContainer} `}>
-				<div className={`${styles.sidebar} `}>
+			<div className={`${styles.gridContainer as string} `}>
+				<div className={`${styles.sidebar as string} `}>
 					<Sidebar 
 						catList={catList}
 						markList={markList}
@@ -95,7 +95,7 @@ const ProductLayout = (props: Props) => {
 					
 					/>
 				</div>
-				<div className={`${styles.content}  `}>
+				<div className={`${styles.content as string}  `}>
 					<Content products={filtered as generalProuctInfotT[]} />
 
 				</div>

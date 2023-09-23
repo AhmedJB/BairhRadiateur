@@ -9,11 +9,11 @@ const HeroComp = (props: Props) => {
   return <>
   <div className="w-full">
 		<div className='mx-auto w-full xl:container px-4 my-8 '>
-		<div className={`${styles.container}`}>
-		<div className={`${styles.left}`}>
+		<div className={`${styles.container as string}`}>
+		<div className={`${styles.left as string}`}>
 			<MainOffre />
 		</div>
-		<div className={`${styles.right}`}>
+		<div className={`${styles.right as string}`}>
 			<SecondaryOffre />
 
 		</div>

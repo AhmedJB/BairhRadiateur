@@ -9,13 +9,13 @@ type Props = {}
 
 function Clients({}: Props) {
 
-	const [demoData,setDemoData] : [Payment[] | null,any] = useState([])
-    const [tableData,setTableData] : [userDataT[] | null , any] = useState([]);
+	const [demoData,setDemoData]  = useState<Payment[] | null>([])
+    const [tableData,setTableData]  = useState<userDataT[] | null>([]);
 
-	const getData = async () : Promise<Payment[]> => {
+	const getData =  () :Payment[]  => {
 		return new Array(100).fill(0).map((e,i) => {
 			return {
-				id: "m5gr84i9"+ Math.random(),
+				id: `m5gr84i9 ${Math.random()}`,
 				amount: 1000 * Math.random(),
 				status: "success",
 				email: "ken99@yahoo.com",
@@ -25,14 +25,14 @@ function Clients({}: Props) {
 
 	const {data : userData} = api.adminHandler.getUsers.useQuery();
 
-	async function loadData() {
-		let d = await getData();
+	 function loadData() {
+		const d =  getData();
 		setDemoData(d);
 	}
 
     useEffect(() => {
 		console.log(userData)
-        let temp : userDataT[] | undefined = userData?.map((e,i) => {
+        const temp : userDataT[] | undefined = userData?.map((e,i) => {
             return {
                 id : e.id,
                 name : e.name,
@@ -42,7 +42,7 @@ function Clients({}: Props) {
                 tel : e.UserInformation?.tel
             }
         })
-        setTableData(temp);
+        setTableData(temp as userDataT[]);
     },[userData])
 
 
@@ -55,7 +55,7 @@ function Clients({}: Props) {
   return <>
 	<AdminNav />
 	<div className="container mx-auto py-10">
-      <DataTable columns={columns} data={tableData} />
+      <DataTable columns={columns} data={tableData as userDataT[]} />
     </div>
 	<>
 	

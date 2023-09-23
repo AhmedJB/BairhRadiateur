@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import React from 'react'
 import logo from "../../../assets/general/whiteLogo.svg"
 import {HiLocationMarker} from "react-icons/hi"
@@ -13,7 +13,7 @@ function Footer({}: Props) {
     <div className="w-full mt-6 bg-darkGray ">
 		<div className='mx-auto w-full xl:container p-4 flex flex-col '>
         <div className="relative w-[450px] h-[80px] my-2">
-				<Image src={logo}  alt={"logo"} fill={true} />
+				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div>
 
         <div className="w-full flex flex-wrap ">
@@ -26,7 +26,7 @@ function Footer({}: Props) {
               <ul className='list-none text-gray'>
                  <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Mon Profil</li>
                  <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Liste des souhaits</li>
-                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">FAQ's</li>
+                 <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">{"FAQ's"}</li>
 
 
              </ul>
@@ -38,7 +38,7 @@ function Footer({}: Props) {
                  <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">A propos</li>
                 <Link href="/contact"><li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Nous Contacter</li></Link> 
                  <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Politique de confidentialité</li>
-                <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Conditions d'utilisation </li>
+                <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">{"Conditions d'utilisation"} </li>
                  <li className="font-medium my-3 transition-colors hover:text-red cursor-pointer">Sécurité</li>
 
 

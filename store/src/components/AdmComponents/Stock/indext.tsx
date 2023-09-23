@@ -31,7 +31,7 @@ function StockComponent({}: Props) {
 		console.log(productData)
 		setRespData(productData);
 		if (productData){
-			let temp = productData.map((e,i) => {     
+			const temp = productData.map((e,i) => {     
 				return (e as generalProuctInfotT).info
 			}) 
 			setTableData(temp);

@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Fragment, useState, useContext, useEffect } from "react";
+import { Fragment, useState, useContext, useEffect, Dispatch, SetStateAction, MouseEventHandler,MouseEvent } from "react";
 import Modal from "../../General/Modal";
 
 /* import User from "../../../assets/images/registerIcons/user.svg";
@@ -32,21 +32,25 @@ import Link from "next/link";
 
 import CloseIcon from "@mui/icons-material/Close";
 
-import { RegisterVariants, LoginVariants } from "../../../helpers/authStyling";
+import { RegisterVariants, LoginVariants } from "../../../Helpers/authStyling";
 import Router from "next/router";
 import { api } from "../../../server/utils/api";
 
 import {toast} from "react-toastify"
 import { signIn, signOut } from "next-auth/react";
 import {formatErrorMSG} from "../../../Helpers/helperUtils.js"
+import { StaticImageData } from "next/image";
 
 
 
-const schools: any[] = [];
+type Props = {
+  handler : [boolean,Dispatch<SetStateAction<boolean>>],
+  classes : string
+}
 
-export default function Auth(props: any) {
+export default function Auth(props: Props) {
   const [open, setOpen] = props.handler;
-  const [dateValue, setDateValue] = useState(null);
+  const [dateValue, setDateValue] = useState<Date | null>(null);
   const [selectValue, setSelectValue] = useState(new Date());
   const [AuthPage, setAuthPage] = useState("login");
   const registerMutation = api.authHandler.register.useMutation({
@@ -61,11 +65,11 @@ export default function Auth(props: any) {
       console.log(data.message)
       try{
         console.log(data.message)
-        let dt = JSON.parse(data.message)
+        const dt = JSON.parse(data.message) as unknown[]
         console.log(dt)
-        for (let msg of dt){
+        for (const msg of dt){
           console.log(msg)
-          let formated = formatErrorMSG(msg)      
+          const formated = formatErrorMSG(msg)      
           toast.error(formated)
         }
         
@@ -81,43 +85,23 @@ export default function Auth(props: any) {
     fontSize: "2rem",
   };
 
-  const filterOptions = (options: any, state: any) => {
-    let newOptions: any[] = [];
-    console.log("filtering now");
-    options.forEach((element: any) => {
-      if (
-        element.name
-          .split(" ")
-          .filter((e: any) =>
-            e.toLowerCase().startsWith(state.inputValue.toLowerCase())
-          ).length > 0
-      ) {
-        newOptions.push(element);
-      }
-    });
-    console.log(newOptions);
-    return newOptions;
-  };
+  
 
-  const defaultProps = {
-    options: schools,
-    getOptionLabel: (option: any) => option.name,
-  };
 
-  const loginMethod = async (e: any) => {
-    e.preventDefault();
+
+  const loginMethod  = async (e : MouseEvent<HTMLButtonElement>  ) => {
     console.log("here login")
-    let email = (document.getElementById("email") as HTMLInputElement)?.value;
-    let password = (document.getElementById("password") as HTMLInputElement)?.value;
+    const email = (document.getElementById("email") as HTMLInputElement)?.value;
+    const password = (document.getElementById("password") as HTMLInputElement)?.value;
     
-    let body = {
+    const body = {
       email,
       password,
       redirect : false
     }
 
     console.log(body)
-    let res = await signIn("credentials",body)
+    const res = await signIn("credentials",body)
 
     if (res?.ok) {
       toast.success("Succès");
@@ -130,20 +114,20 @@ export default function Auth(props: any) {
 
   };
 
-  const Register = async () => {
+  const Register =  () => {
     console.log("here register");
-    let name = (document.getElementById("name") as HTMLInputElement)?.value;
-    let username = (document.getElementById("username") as HTMLInputElement)?.value;
-    let surname = (document.getElementById("surname") as HTMLInputElement).value;
-    let email = (document.getElementById("email") as HTMLInputElement)?.value;
-    let password = (document.getElementById("password") as HTMLInputElement)?.value;
-    let confirm = (document.getElementById("conf") as HTMLInputElement)?.value;
-    let tel = (document.getElementById("tel") as HTMLInputElement)?.value;
-    //let tel = (document.getElementById("phone") as HTMLInputElement).value;
-    let cin = (document.getElementById("cin") as HTMLInputElement)?.value;
-    let address = (document.getElementById("address") as HTMLInputElement)?.value;
+    const name = (document.getElementById("name") as HTMLInputElement)?.value;
+    const username = (document.getElementById("username") as HTMLInputElement)?.value;
+    const surname = (document.getElementById("surname") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement)?.value;
+    const password = (document.getElementById("password") as HTMLInputElement)?.value;
+    const confirm = (document.getElementById("conf") as HTMLInputElement)?.value;
+    const tel = (document.getElementById("tel") as HTMLInputElement)?.value;
+    //const tel = (document.getElementById("phone") as HTMLInputElement).value;
+    const cin = (document.getElementById("cin") as HTMLInputElement)?.value;
+    const address = (document.getElementById("address") as HTMLInputElement)?.value;
     if (confirm === password){
-      let body = {
+      const body = {
         name,
         username,
         surname,
@@ -171,7 +155,7 @@ export default function Auth(props: any) {
   };
 
 
-  const handleReset = async () => {};
+  const handleReset =  () => {console.log("reset")};
 
   const registerHtml = (
     <>
@@ -201,14 +185,14 @@ export default function Auth(props: any) {
 
         <div
           className={
-            styles.InputFieldsContainer +
+            (styles.InputFieldsContainer as string ) +
             " w-full sm:w-full md:w-10/12 lg:w-10/12"
           }
         >
           <div className="flex w-full flex-wrap items-center justify-between gap-2">
             <div className="w-full md:w-full lg:w-5/12 xl:w-5/12">
               <InputField
-                image={User}
+                image={User as StaticImageData}
                 id="name"
                 placeholder={"Prenom"}
                 type={"text"}
@@ -231,27 +215,27 @@ export default function Auth(props: any) {
             type={"text"}
           />
           <InputField
-            image={Email}
+            image={Email as StaticImageData}
             id="email"
             placeholder={"E-mail"}
             type={"email"}
           />
           <InputField
-            image={Pass}
+            image={Pass as StaticImageData}
             hidden={true}
             id="password"
             placeholder={"Mot de passe"}
             type={"password"}
           />
           <InputField
-            image={Pass}
+            image={Pass as StaticImageData}
             hidden={true}
             id="conf"
             placeholder={"Confirmez le mot de passe"}
             type={"password"}
           />
           <InputField
-            image={Tel}
+            image={Tel as StaticImageData}
             id="tel"
             placeholder={"Numéro de téléphone "}
             type={"text"}
@@ -260,7 +244,7 @@ export default function Auth(props: any) {
           <div className="flex w-full flex-wrap items-center justify-between">
             <div className="w-full md:w-full lg:w-6/12 xl:w-6/12">
               <InputField
-                image={CIN}
+                image={CIN as StaticImageData}
                 id="cin"
                 placeholder={"CIN"}
                 type={"text"}
@@ -272,7 +256,7 @@ export default function Auth(props: any) {
                         <DatePicker
                           label="Date de naissance"
                           value={dateValue}
-                          onChange={(newValue : any) => {
+                          onChange={(newValue : Date | null) => {
                             setDateValue(newValue);
                           }}
                           
@@ -284,20 +268,19 @@ export default function Auth(props: any) {
           
 
           <InputField
-            image={Location}
+            image={Location as StaticImageData}
             id="address"
             placeholder={"Adress"}
             type={"text"}
           />
 
-          <button className={styles.Submit + " subBtn"} onClick={Register}>
+          <button className={`${styles.Submit as string} subBtn`} onClick={Register}>
             Inscription
           </button>
 
           <p
             className={
-              styles.reminder +
-              " text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl "
+               `${styles.reminder as string} text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl`
             }
           >
             Vous avez déjà un compte ?{" "}
@@ -306,8 +289,7 @@ export default function Auth(props: any) {
 
           <p
             className={
-              styles.rules +
-              " text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl text-darkGray text-center"
+              ` ${styles.rules as string } text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl text-darkGray text-center `
             }
           >
             En vous inscrivant, vous acceptez nos{" "}
@@ -341,18 +323,17 @@ export default function Auth(props: any) {
 
         <div
           className={
-            styles.InputFieldsContainer +
-            " w-full sm:w-full md:w-10/12 lg:w-10/12"
+            `${styles.InputFieldsContainer as string} w-full sm:w-full md:w-10/12 lg:w-10/12`
           }
         >
           <InputField
-            image={User}
+            image={User as StaticImageData}
             id="email"
             placeholder={"E-mail/Nom d'utilisateur"}
             type={"text"}
           />
           <InputField
-            image={Pass}
+            image={Pass as StaticImageData}
             id="password"
             hidden={true}
             placeholder={"Mot de passe"}
@@ -361,24 +342,22 @@ export default function Auth(props: any) {
 
           <p
             className={
-              styles.loginForgot +
-              " text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl text-red"
+              `${styles.loginForgot as string} text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl text-red`
             }
             onClick={() => setAuthPage("recup")}
           >
             Mot de passe oublié ?
           </p>
 
-          <button className={styles.Submit + " subBtn"} onClick={loginMethod}>
+          <button type="submit" className={`${styles.Submit as string} subBtn`} onClick={((e) => loginMethod(e)) as MouseEventHandler<HTMLButtonElement>}>
             Connexion
           </button>
           <p
             className={
-              styles.reminder +
-              " text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl "
+              `${styles.reminder as string} text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl `
             }
           >
-            Vous n'avez pas de compte ?{" "}
+           {"Vous n'avez pas de compte ?"}
             <span onClick={() => setAuthPage("register")}>Inscription</span>
           </p>
         </div>
@@ -405,24 +384,22 @@ export default function Auth(props: any) {
         </p>
         <div
           className={
-            styles.InputFieldsContainer +
-            " w-full sm:w-full md:w-10/12 lg:w-10/12"
+            `${styles.InputFieldsContainer as string} w-full sm:w-full md:w-10/12 lg:w-10/12` 
           }
         >
           <InputField
-            image={Email}
+            image={Email as StaticImageData}
             id="email"
             placeholder={"E-mail"}
             type={"email"}
           />
 
-          <button onClick={handleReset} className={styles.Submit + " subBtn"}>
+          <button onClick={handleReset} className={`${styles.Submit as string} subBtn`}>
             Réinitialiser
           </button>
           <p
             className={
-              styles.reminder +
-              " text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl "
+              `${styles.reminder as string} text-sm sm:text-sm md:text-base lg:text-xl xl:text-2xl `
             }
           >
             <span onClick={() => setAuthPage("login")}>Cancel</span>

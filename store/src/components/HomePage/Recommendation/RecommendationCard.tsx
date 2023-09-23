@@ -1,11 +1,11 @@
 import React from 'react'
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 import Link from 'next/link'
 
 type Props = {
     key: string,
-    image : any,
+    image : string | StaticImageData,
     title : string,
     subtitle : string,
     rating : number,
@@ -23,16 +23,16 @@ const RecommendationCard = (props: Props) => {
         <h3 className="text-mainBlack text-[16px] my-0 font-semibold">{props.title}</h3>
         <h3 className="text-lighterGray  text-[16px] font-medium">{props.subtitle}</h3>
         <div className="flex items-center my-1">
-            {
-                [...Array(props.rating)].map((e,i) => <AiFillStar className="text-yellow text-[16px]"></AiFillStar>)
+        {
+                [...(Array(props.rating) as number[])].map((e,i) => <AiFillStar key={`pstar-${i}`} className="text-yellow text-[16px]"></AiFillStar>)
             }
             {
-                [...Array(5-props.rating)].map((e,i) => <AiOutlineStar className="text-[16px]"></AiOutlineStar>)
+                [...(Array(5-props.rating) as number[])].map((e,i) => <AiOutlineStar key={`nstar-${i}`} className="text-[16px]"></AiOutlineStar>)
             }
 
 
         </div>
-        <h1 className="text-2xl text-darkGray my-1 font-semibold">{"DH "+props.price}</h1>
+        <h1 className="text-2xl text-darkGray my-1 font-semibold">{`DH ${props.price}`}</h1>
 
     </div>
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -16,8 +16,8 @@ interface ValuesType {
 
 
 type Props = {
-    value : any,
-    setValue : any,
+    value : string,
+    setValue : Dispatch<SetStateAction<string>>,
     label : string,
     options : ValuesType[]
 }
@@ -27,7 +27,7 @@ type Props = {
 const SelectorComp = (props: Props) => {
 
     const handleChange = (event: SelectChangeEvent) => {
-        props.setValue(event.target.value as string);
+        props.setValue(event.target.value);
       }; 
 
 
@@ -59,7 +59,7 @@ const SelectorComp = (props: Props) => {
         >
             {
                 props.options.map((e,i) => {
-                    return  <MenuItem key={e.name+" " + e.value + i} value={e.value}>{e.name}</MenuItem>
+                    return  <MenuItem key={`${e.name} ${e.value}  ${i}`} value={e.value}>{e.name}</MenuItem>
                 })
             }
             

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, Dispatch, SetStateAction} from 'react'
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Radio from '@mui/material/Radio';
@@ -16,10 +16,10 @@ type Props = {
   marks: string[],
   tubs : string[],
   priceRange : number[],
-  setCategories : any,
-  setMarks: any,
-  setTubs : any,
-  setPriceRange: any,
+  setCategories : Dispatch<SetStateAction<string[]>>,
+  setMarks: Dispatch<SetStateAction<string[]>>,
+  setTubs : Dispatch<SetStateAction<string[]>>,
+  setPriceRange: Dispatch<SetStateAction<number[]>>,
 
 }
 
@@ -53,23 +53,23 @@ const Sidebar = ({catList,markList,tubList,categories,marks,tubs,priceRange,setC
   // handle Checkbox changes
   
   const removeElemFromState = (arr: string[],setState : React.Dispatch<React.SetStateAction<string[]>>,id : string)  => {
-     let index = arr.indexOf(id);
-     let new_array = [...arr]
+     const index = arr.indexOf(id);
+     const new_array = [...arr]
      new_array.splice(index,1)
      setState(new_array)
   }
 
 
   const appendToState = (arr: string[],setState : React.Dispatch<React.SetStateAction<string[]>>,id : string) => {
-    let newArray = [...arr,id]
+    const newArray = [...arr,id]
     setState(newArray)
   }
 
 
   const handleCheckBoxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      let check_id = event.target.id;
-      let prefix = check_id.split("-")[0];
-      let checked = event.target.checked;
+      const check_id = event.target.id;
+      const prefix = check_id.split("-")[0];
+      const checked = event.target.checked;
       switch(prefix){
          case  "cat" : 
           if (checked) { 

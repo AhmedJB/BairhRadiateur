@@ -13,7 +13,7 @@ const StarReview = ({rating} : Props) => {
 
     <div className="flex items-center">
           <div className="flex items-center gap-1">
-            {[...Array(5)].map((_, index) => (
+            {[...(Array(5) as number[])].map((_, index) => (
               <FaStar
                 key={index}
                 className={`cursor-pointer text-xl my-2 ${

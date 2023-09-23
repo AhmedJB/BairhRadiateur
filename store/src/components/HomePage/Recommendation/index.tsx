@@ -60,7 +60,7 @@ function Recommendation({}: Props) {
 
     useEffect(() => {
         if  ( status === "success"){
-            let temp = productData.slice(0,6) as generalProuctInfotT[];
+            const temp = productData.slice(0,6) as generalProuctInfotT[];
             setRecoms(temp);
         }
     },[productData])

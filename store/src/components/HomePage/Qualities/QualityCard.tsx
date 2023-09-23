@@ -1,8 +1,8 @@
 import React from 'react'
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 
 type Props = {
-    image : any,
+    image : string | StaticImageData,
     caption : string
 
 }

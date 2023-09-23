@@ -1,5 +1,5 @@
 import React , {useEffect, useState} from 'react'
-import Image from "next/image"
+import Image, { StaticImageData } from "next/image"
 import logo from '../../../assets/general/LOGO.svg'
 
 import {BiPhoneCall} from "react-icons/bi"
@@ -24,18 +24,18 @@ const Header = (props: Props) => {
 	const {status,data} = useSession();
 	const router = useRouter();
 
-	const logout = async () => {
+	const logout =  () => {
 		console.log("signin out")
 		signOut({
 			redirect : false
-		});
+		}).catch(e => console.log(e));
 	}
 
 
 	useEffect(() => {
 		if (status  === "authenticated") {
 			if (data?.user?.isAdmin){
-				router.push("/adminpan/dashboard")
+				router.push("/adminpan/dashboard").catch(e => console.log(e))
 			}
 	  
 		  }
@@ -46,11 +46,11 @@ const Header = (props: Props) => {
 
 
   return <>
-	<Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } />
+	<Auth handler={[AuthOpen,setAuthOpen]} classes={`${styles.modalAuth as string} xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 ` } />
 	<div className="w-full">
 		<div className="mx-auto w-full xl:container flex items-center justify-between px-4">
 			<Link href="/"><div className="relative w-[400px] h-[100px]">
-				<Image src={logo}  alt={"logo"} fill={true} />
+				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div></Link>
 
 			<div className="flex items-center">

@@ -20,7 +20,7 @@ function Products({products}: Props) {
 
     const [value,setValue] = useState("");
     const handleFilter = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
+    setValue(event.target.value);
   };
   
     const testData = [
@@ -95,7 +95,7 @@ function Products({products}: Props) {
             {
                products && products.map((e,i) => {
                 if (e.info && e.serverInfo){
-                    return <ProductCard image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} />
+                    return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} />
                 }
                     
                 })

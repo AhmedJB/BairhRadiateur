@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import arrow from '../../assets/home/WhiteArrow.svg'
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import {BsArrowRightCircle} from 'react-icons/bs'
 import SelectorComp from './SelectorComp';
 
@@ -25,20 +25,20 @@ const SearchComp = (props: Props) => {
 				<option disabled={true} selected={true} value={""}>Par Catégorie</option>
 			</select> */}
 			<SelectorComp value={category} setValue={setCategory} label="Par Catégorie" options={categories}    />
-			<Image src={arrow} alt="arrow" width={150} height={50} />
+			<Image src={arrow as StaticImageData} alt="arrow" width={150} height={50} />
 			{/* <select className=' bg-transparent cursor-pointer outline-none  text-white font-semibold' >
 				<option disabled={true} selected={true} value={""}>Par Métal</option>
 				
 			</select> */}
 			<SelectorComp value={metal} setValue={setMetal} label="Par Métal" options={categories}    />
 
-			<Image src={arrow} alt="arrow" width={150} height={50} />
+			<Image src={arrow as StaticImageData} alt="arrow" width={150} height={50} />
 			{/* <select className=' bg-transparent cursor-pointer outline-none  text-white font-semibold' >
 				<option disabled={true} selected={true} value={""}>Par Type</option>
 			</select> */}
 			<SelectorComp value={type} setValue={setType} label="Par Type" options={categories}    />
 
-			<Image src={arrow} alt="arrow" width={150} height={50} />
+			<Image src={arrow as StaticImageData} alt="arrow" width={150} height={50} />
 			{/* <select className=' bg-transparent cursor-pointer outline-none  text-white font-semibold' >
 				<option disabled={true} selected={true} value={""}>Par Marque</option>
 			</select> */}

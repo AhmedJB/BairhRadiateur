@@ -4,7 +4,7 @@ import React from "react";
 
 interface propType {
     children :  React.ReactChild | React.ReactFragment | React.ReactPortal | boolean | null | undefined;
-    onClick : any
+    onClick : React.MouseEventHandler<HTMLDivElement>
 
 }
 
