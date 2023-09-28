@@ -6,7 +6,7 @@ services:
       ports:
         - "8000:80"
       extra_hosts:
-        - "database:192.168.65.254"
+        - "database:192.1168.65.254"
 
     storeFront:
       image: "storefront:alpha"
