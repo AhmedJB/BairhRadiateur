@@ -1,11 +1,11 @@
-FROM node:18-alpine AS base
+FROM node:20 AS base
 
 
 
 # Production image, copy all the files and run next
 FROM base AS runner
 
-RUN apk add --no-cache libc6-compat
+RUN DEBIAN_FRONTEND=noninteractive apt-get install  libc6
 
 RUN addgroup --system --gid 1001 nodejs
 
