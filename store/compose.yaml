@@ -1,0 +1,18 @@
+
+
+services:
+    gestionApp:
+      image: "gestion:alpha"
+      ports:
+        - "8000:80"
+      extra_hosts:
+        - "database:192.168.65.254"
+
+    storeFront:
+      image: "storefront:alpha"
+      ports:
+        - "3000:3000"
+      extra_hosts:
+        - "database:192.168.65.254"
+      links:
+        - "gestionApp:apphost"
