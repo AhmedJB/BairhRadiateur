@@ -6,13 +6,20 @@ services:
       ports:
         - "8000:80"
       extra_hosts:
-        - "database:192.1168.65.254"
+        - "database:85.31.236.214"
+    
+    gestionFront:
+      image: appfront:alpha
+      ports:
+        - "4000:3000"
+      links:
+        - "gestionApp:apphost"
 
     storeFront:
       image: "storefront:alpha"
       ports:
         - "3000:3000"
       extra_hosts:
-        - "database:192.168.65.254"
+        - "database:85.31.236.214"
       links:
         - "gestionApp:apphost"

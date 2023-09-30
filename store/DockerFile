@@ -7,9 +7,6 @@ FROM base AS runner
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install  libc6
 
-RUN addgroup --system --gid 1001 nodejs
-
-RUN adduser --system --uid 1001 nextjs
 
 WORKDIR /app
 
@@ -24,9 +21,7 @@ RUN npm install -g dotenv
 
 RUN npm run build
 
-RUN chown nextjs:nodejs .next
 
-USER nextjs
 
 EXPOSE 3000
 
