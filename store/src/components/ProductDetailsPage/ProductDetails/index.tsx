@@ -152,7 +152,7 @@ const ProductDetails = ({}: Props) => {
                 
               </div>
               <DetailsThumb
-                images={product.src}
+                images={filtered?.serverInfo.images}
                 tab={handleTab}
                 myRef={myRef}
               />
@@ -208,7 +208,7 @@ const ProductDetails = ({}: Props) => {
                 <TbTruckDelivery className="text-5xl text-mainBlack " />
                 <p className="text-lg text-mainBlack font-medium mx-2 w-[300px]">Delivery </p>
                 <span className={"text-lg font-medium text-red"}>
-                  {formatDelivery(product.minDays, product.maxDays)}
+                  {filtered?.info && formatDelivery(filtered?.info?.minShipping, filtered?.info?.maxShipping)}
                 </span>
               </div>
               <div className={"flex items-center mb-4"}>

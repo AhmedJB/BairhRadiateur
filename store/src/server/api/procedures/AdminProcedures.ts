@@ -5,6 +5,7 @@ import App from "next/app"
 import axios from "axios"
 import { ProductInfoResponseT, ProductRespT, generalProuctInfotT } from "../../../types/general"
 import { ServerHandler } from "../handler"
+import { ImportedProduct } from "@prisma/client"
 
 export const getUsers =  adminProcedure
     .query(({ctx}) => {
@@ -72,7 +73,7 @@ export const deleteImportedProduct = adminProcedure
 
 export const showProductWithInfo = adminProcedure
 			.query(async ({ctx}) => {
-				const products = await ctx.prisma.importedProduct.findMany({
+				const products  = await ctx.prisma.importedProduct.findMany({
 					 
 				})
 				const ids = products.map(e => e.productId)
@@ -115,7 +116,9 @@ export const modifyProducts = adminProcedure
 					name : z.string(),
 					description : z.string(),
 					price : z.number(),
-					isEnabled : z.boolean()
+					isEnabled : z.boolean(),
+					minShipping : z.number(),
+					maxShipping : z.number()
 				})
 			)
 			.mutation(
@@ -129,7 +132,9 @@ export const modifyProducts = adminProcedure
 								name : input.name,
 								description : input.description,
 								price : input.price,
-								isEnabled : input.isEnabled
+								isEnabled : input.isEnabled,
+								minShipping : input.minShipping,
+								maxShipping : input.maxShipping
 							}
 						})
 					}catch {

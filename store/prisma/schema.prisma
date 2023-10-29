@@ -77,6 +77,8 @@ model ImportedProduct {
   isEnabled   Boolean  @default(false)
   name        String
   description String   @default("")
+  minShipping Int      @default(0)
+  maxShipping Int      @default(0)
   imported    DateTime @default(now())
 }
 

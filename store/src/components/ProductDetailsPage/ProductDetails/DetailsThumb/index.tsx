@@ -4,9 +4,11 @@ import React, { Component, ReactNode, RefObject } from 'react';
 
 import styles from "../../../../styles/modular/ProductDetails/ProductDetails.module.css"
 import { StaticImageData } from 'next/image';
+import { Image } from '../../../../types/general';
+import { formatImage } from '../../../../Helpers/helpers';
 
 interface DetailsThumbProps {
-  images: StaticImageData[];
+  images: Image[] | undefined;
   tab: (index: number) => void;
   myRef: RefObject<HTMLDivElement>;
 }
@@ -18,9 +20,9 @@ const DetailsThumb = ({images,tab,myRef} : DetailsThumbProps ) => {
   
   return <>
     <div className={styles.thumb} ref={myRef}>
-        {images.map((img, index) => (
+        {images?.map((img, index) => (
           <img
-            src={img.src}
+            src={formatImage(img.image)}
             alt=""
             key={index}
             onClick={() => tab(index)}

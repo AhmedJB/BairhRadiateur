@@ -16,6 +16,7 @@ function StockComponent({}: Props) {
   const [selectedProduct , setSelectedProduct] = useState<ImportedProduct | undefined>(undefined);
 
   const handleSelectProduct = (product : ImportedProduct) => {
+    console.log(product)
     setOpen(true);
     setSelectedProduct(product);
   }

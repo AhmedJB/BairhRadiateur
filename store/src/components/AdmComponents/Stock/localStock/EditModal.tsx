@@ -57,6 +57,8 @@ function EditModal({open,closeModal,product}: Props) {
 			let val : string | number = t.value;
 			if (key === "price"){
 				val = Number(val);
+			}else if (key === "minShipping" || key === "maxShipping"){
+				val = Number(val)
 			}
 			(temp[key] as (string | number )) = val
 			setModifiedProduct(temp);
@@ -71,7 +73,9 @@ function EditModal({open,closeModal,product}: Props) {
 				description : modifiedProduct.description,
 				price : modifiedProduct.price,
 				isEnabled : visible,
-				id : modifiedProduct.id
+				id : modifiedProduct.id,
+				minShipping : modifiedProduct.minShipping,
+				maxShipping : modifiedProduct.maxShipping
 	
 			}
 
@@ -117,6 +121,28 @@ function EditModal({open,closeModal,product}: Props) {
 							changeFunc={handleInputChange}							
 							
 						/>	
+
+
+						<div className="w-full flex items-center gap-3">
+						<InputField 
+							label="Delai minimum"
+							inputType={InputTypeEnum.input}
+							type="number"
+							id="minShipping"
+							value={modifiedProduct.minShipping.toFixed(0)}
+							changeFunc={handleInputChange}							
+							
+						/>	
+						<InputField 
+							label="Delai Maximum"
+							inputType={InputTypeEnum.input}
+							type="number"
+							id="maxShipping"
+							value={modifiedProduct.maxShipping.toFixed(0)}
+							changeFunc={handleInputChange}							
+							
+						/>	
+						</div>
 
 						<InputField
 							label={"Visiblité"}
