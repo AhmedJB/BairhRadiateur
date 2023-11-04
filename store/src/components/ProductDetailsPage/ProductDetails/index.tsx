@@ -148,7 +148,7 @@ const ProductDetails = ({}: Props) => {
               <div className={ `${styles["big-img"] as string} relative`}>
                 <img src={formatImage(filtered?.serverInfo.images[index]?.image)} alt="" />
                 
-                  <HeartCheckboxComponent className="absolute top-2  right-1 "  size="text-sm" />
+                  <HeartCheckboxComponent pid={filtered && filtered.info ? filtered.info.id : ""}  className="absolute top-2  right-1 "  size="text-sm" />
                 
               </div>
               <DetailsThumb

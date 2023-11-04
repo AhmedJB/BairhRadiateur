@@ -12,7 +12,8 @@ type Props = {
     rating : number,
     price : number,
     id : string,
-    key:string
+    key:string,
+    pid : string
 
 }
 
@@ -24,7 +25,7 @@ const ProductCard = (props: Props) => {
             <BsFillCartPlusFill className=" text-white text-xl" />
             </span>
             <span className="bg-blue p-2 rounded-full absolute transition-transform hover:scale-110 cursor-pointer right-[5px] top-[10px] z-10 ">
-            <HeartCheckboxComponent className='' size="text-[0.6rem]" color='text-white' />
+            <HeartCheckboxComponent className='' pid={props.pid} size="text-[0.6rem]" color='text-white' />
             </span>
             
             

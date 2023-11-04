@@ -98,8 +98,103 @@ export const authRouter = createTRPCRouter({
     }else{
       return products
     }
-  })
-  
+  }),
+  handleFavorite : protectedProcedure
+    .input(z.object({
+      pid : z.string()
+    }))
+    .mutation(async ({input,ctx,}) => {
+      try{
+        const test = await ctx.prisma.favorites.findFirst({
+          where : {
+            userId : ctx.session.user.id,
+            productId : input.pid
+          }
+        })
+        if (!test){
+          const f = await ctx.prisma.favorites.create({
+            data : {
+              userId : ctx.session.user.id,
+              productId : input.pid
+            }
+          })
+        }else {
+          const f = await ctx.prisma.favorites.delete({
+            where : {
+              id : test.id
+            }
+          })
+        }
+        
+      }catch (e) {
+        throw Error("Failed Liking the product")
+      }
+    }),
+  checkFavorite : protectedProcedure
+    .input(z.object({
+      pid : z.string()
+    }))
+    .query(async ({input,ctx}) => {
+      try{
+        const f = await ctx.prisma.favorites.findFirstOrThrow({
+          where : {
+            userId : ctx.session.user.id,
+            productId : input.pid  
+          }
+        })
+        return {status : true}
+      }catch (e){
+        console.log("Error Checking favorite")
+        //console.log(e)
+        return {status : false}
+      }
+    }),
+  getFavorites : protectedProcedure
+    .query(async ({input,ctx}) => {
+      try{
+        const f = await ctx.prisma.favorites.findMany({
+          where : {
+            userId : ctx.session.user.id
+          },
+          include : {
+            ImportedProduct : true
+          }
+        })
+        const products = f.map(e => e.ImportedProduct);
+        const ids = products.map(e => e.productId)
+      const resp = await ServerHandler.post("silentProducts/getinfo",{
+        ids
+      })
+      if (resp.status === 200){
+        const respData : ProductInfoResponseT[] = (resp.data as ProductInfoResponseT[]);
+        const finalRes : generalProuctInfotT[] = [];
+        for (const productResp of respData){
+          console.log("Filtering product" , productResp.p_id)
+          let index = -1
+          products.forEach((e,i) => {
+            if (e.productId === productResp.p_id){
+              index = i;
+            }
+          })
+          
+          console.log("index ", index)
+          if (products[index]){
+            finalRes.push({
+              info : products[index],
+              serverInfo : productResp
+            })
+          }
+          
+          
+        }
+        return finalRes;
+      }else{
+        return products
+      }
+      }catch (e) {
+        return []
+      }
+    })
 });
 
 

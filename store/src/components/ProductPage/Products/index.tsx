@@ -13,10 +13,11 @@ import { formatImage } from '../../../Helpers/helpers';
 
 
 type Props = {
-    products : generalProuctInfotT[]
+    products : generalProuctInfotT[],
+    title ?: string
 }
 
-function Products({products}: Props) {
+function Products({products,title}: Props) {
 
     const [value,setValue] = useState("");
     const handleFilter = (event: SelectChangeEvent) => {
@@ -73,7 +74,7 @@ function Products({products}: Props) {
   return <>
     <div className="w-full my-11">
         <div className="w-full xl:container my-4 flex items-center justify-between">
-            <h1 className="text-3xl font-semibold text-darkGray uppercase">Nos Produits</h1>
+            <h1 className="text-3xl font-semibold text-darkGray uppercase">{title ? title : "Nos Produits"}</h1>
              <Box sx={{ minWidth: 250 }}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Tri...</InputLabel>
@@ -95,7 +96,7 @@ function Products({products}: Props) {
             {
                products && products.map((e,i) => {
                 if (e.info && e.serverInfo){
-                    return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} />
+                    return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
                 }
                     
                 })

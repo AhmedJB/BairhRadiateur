@@ -50,6 +50,7 @@ model User {
   Account         Account[]
   Session         Session[]
   UserInformation UserInformation?
+  Favorites       Favorites[]
 }
 
 model UserInformation {
@@ -62,6 +63,15 @@ model UserInformation {
   User      User     @relation(fields: [userId], references: [id])
 }
 
+model Favorites {
+  id              String          @id @default(cuid())
+  userId          String
+  productId       String
+  User            User            @relation(fields: [userId], references: [id])
+  ImportedProduct ImportedProduct @relation(fields: [productId], references: [id])
+  created         DateTime        @default(now())
+}
+
 model VerificationToken {
   identifier String
   token      String   @unique
@@ -71,15 +81,16 @@ model VerificationToken {
 }
 
 model ImportedProduct {
-  id          String   @id @default(cuid())
+  id          String      @id @default(cuid())
   productId   String
   price       Float
-  isEnabled   Boolean  @default(false)
+  isEnabled   Boolean     @default(false)
   name        String
-  description String   @default("")
-  minShipping Int      @default(0)
-  maxShipping Int      @default(0)
-  imported    DateTime @default(now())
+  description String      @default("")
+  minShipping Int         @default(0)
+  maxShipping Int         @default(0)
+  imported    DateTime    @default(now())
+  Favorites   Favorites[]
 }
 
 model TestTest {

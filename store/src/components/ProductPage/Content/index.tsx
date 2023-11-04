@@ -3,12 +3,13 @@ import Products from '../Products'
 import { generalProuctInfotT } from '../../../types/general'
 
 type Props = {
-  products: generalProuctInfotT[]
+  products: generalProuctInfotT[],
+  title ?: string
 }
 
-const Content = ({products}: Props) => {
+const Content = ({title,products}: Props) => {
   return (
-	<Products products={products} />
+	<Products products={products} title={title} />
   )
 }
 
