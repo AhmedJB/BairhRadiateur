@@ -7,6 +7,7 @@ import { api } from "../server/utils/api";
 import "../styles/globals/globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Cart from "../components/General/Cart";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,6 +15,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <Cart />
       <Component {...pageProps} />
       <ToastContainer
         position="top-center"

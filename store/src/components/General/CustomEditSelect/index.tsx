@@ -7,6 +7,7 @@ import { Modes, Targets } from '../../../enums';
 import { api } from '../../../server/utils/api';
 import { OptionT } from '../../../types/general';
 import { toast } from 'react-toastify';
+import { text } from 'stream/consumers';
 
 
 
@@ -51,8 +52,13 @@ function CustomEditSelect({options_,target,currentValue,handleValueChange}: Prop
 
 
 	const handleMutation = () => {
-		const mut = target === Targets.MARK ? markMutation : tubeMutation;
-		mut.mutate({name : textValue});
+		if (textValue && textValue.length > 0) {
+			const mut = target === Targets.MARK ? markMutation : tubeMutation;
+			mut.mutate({name : textValue});
+		}else{
+			setCurrentMode(Modes.SELECT);
+		}
+		
 	}
 
 

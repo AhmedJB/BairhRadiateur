@@ -230,6 +230,10 @@
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 	  }
 
+	  .smooth-shadow-cart {
+		box-shadow: rgba(100, 100, 111, 0.2) -50px 0px 29px 0px;
+	  }
+
 
 
 
