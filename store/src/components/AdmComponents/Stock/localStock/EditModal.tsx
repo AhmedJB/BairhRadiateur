@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styles from "../../../../styles/modular/AuthStyles/Auth.module.css"
-import { ImportedProduct } from '@prisma/client'
+import { ImportedProduct, Mark, Tube } from '@prisma/client'
 import { AnimatePresence } from 'framer-motion'
 import Modal from '../../../General/Modal'
 import InputField from '../../../General/InputField'
-import { InputTypeEnum } from '../../../../enums'
+import { InputTypeEnum, Targets } from '../../../../enums'
 import { toast } from 'react-toastify'
 import { api } from '../../../../server/utils/api'
+import CustomEditSelect from '../../../General/CustomEditSelect'
+import { OptionT } from '../../../../types/general'
 
 type Props = {
 	open : boolean,
@@ -19,6 +21,11 @@ function EditModal({open,closeModal,product}: Props) {
 
 	const [modifiedProduct , setModifiedProduct] = useState<ImportedProduct>();
 	const [visible,setVisible] = useState(false);
+
+	const [selectedTube , setSelectedTube] = useState(product?.tubeId)
+	const [selectedMark , setSelectedMark] = useState(product?.markId)
+	const [markOptions, setMarkOptions] = useState<OptionT[]>([]);
+	const [tubeOptions,setTubeOptions] = useState<OptionT[]>([]);
 
 	useEffect(() => {
 		if (product){
@@ -45,7 +52,33 @@ function EditModal({open,closeModal,product}: Props) {
   }
 
   	const modifyProductMutation = api.adminHandler.modifyProducts.useMutation(modifyProductRespMutation);
+  	const {data : marks,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
+	const {data : tubes,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
 
+
+	const formatData = (data : Tube[] | Mark[]) => {
+		let res = data.map((e,i) => {
+			return {
+				value : e.id,
+				label : e.name
+			}
+		})
+		return res;
+	}
+
+	useEffect(() => {
+		if (markStatus === "success") {
+			const d = formatData(marks);
+			setMarkOptions(d);
+		}
+	},[markStatus,marks])
+
+	useEffect(() => {
+		if (tubeStatus === "success") {
+			const d = formatData(tubes);
+			setTubeOptions(d);
+		}
+	},[tubeStatus,tubes])
 
 
 
@@ -68,22 +101,41 @@ function EditModal({open,closeModal,product}: Props) {
 
 	const submitChanges =  () => {
 		if (modifiedProduct){
-			const body = {
-				name : modifiedProduct.name,
-				description : modifiedProduct.description,
-				price : modifiedProduct.price,
-				isEnabled : visible,
-				id : modifiedProduct.id,
-				minShipping : modifiedProduct.minShipping,
-				maxShipping : modifiedProduct.maxShipping
+			if (!selectedTube || selectedTube.length === 0) {
+				toast.warning("Please select tube")
+			}else if (!selectedMark || selectedMark.length === 0) {
+				toast.warning("Please select mark")
+			}else {
+				const body = {
+					name : modifiedProduct.name,
+					description : modifiedProduct.description,
+					price : modifiedProduct.price,
+					isEnabled : visible,
+					id : modifiedProduct.id,
+					minShipping : modifiedProduct.minShipping,
+					maxShipping : modifiedProduct.maxShipping,
+					tubeId : selectedTube,
+					markId : selectedMark
 	
+		
+				}
+	
+				modifyProductMutation.mutate(body);
 			}
 
-			modifyProductMutation.mutate(body);
+			
 		}
 		
 
 	}
+
+  const handleMarkChange = (newv : string) =>  {
+    setSelectedMark(newv);
+  }
+
+  const handleTubeChange = (newv : string) =>  {
+    setSelectedTube(newv);
+  }
 
   return (
 	<AnimatePresence>
@@ -93,6 +145,30 @@ function EditModal({open,closeModal,product}: Props) {
 					{
 						 modifiedProduct && <>
 						<div className="flex flex-col w-full h-full">
+							<div className="flex flex-col">
+							<label className="text-mainBlack font-semibold text-lg">
+								Mark
+								<CustomEditSelect 
+								  target={Targets.MARK}
+								  currentValue={selectedMark as string}
+								  options_={markOptions}
+								  handleValueChange={handleMarkChange}
+								/>
+								</label>
+							</div>
+
+							<div className="flex flex-col">
+							<label className="text-mainBlack font-semibold text-lg">
+								Tube
+								<CustomEditSelect 
+								  target={Targets.TUBE}
+								  currentValue={selectedTube as string}
+								  options_={tubeOptions}
+								  handleValueChange={handleTubeChange}
+								/>
+								</label>
+							</div>
+						
 						<InputField 
 							label="Nom"
 							inputType={InputTypeEnum.input}

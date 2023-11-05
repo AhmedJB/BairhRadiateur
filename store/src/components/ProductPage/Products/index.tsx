@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import testImage from "../../../assets/home/radiator2.png"
 import ProductCard from './ProductCard'
 import Box from '@mui/material/Box';
@@ -20,54 +20,46 @@ type Props = {
 function Products({products,title}: Props) {
 
     const [value,setValue] = useState("");
+    const [filtered,setFiltered] = useState<generalProuctInfotT[][]>([]);
+    const [index,setIndex] = useState(0);
+
+    const productLimit = 15;
+
+
+    const splitHandler = (prods : generalProuctInfotT[]) => {
+        let final : generalProuctInfotT[][] = []
+        let temp : generalProuctInfotT[] = [];
+        for (let i = 0 ; i < prods.length ; i++) {
+
+                if (temp.length >= productLimit) {
+                    final.push(temp);
+                    temp = [prods[i] as generalProuctInfotT] 
+                }else {
+                    temp.push(prods[i] as generalProuctInfotT)
+                }
+                
+        }
+
+        if (temp.length > 0) {
+            final.push(temp);
+        }
+        setFiltered(final)
+    }
+
+
+    useEffect(() => {
+        if (products){
+            splitHandler(products);
+        }
+        
+    },[products])
+
+    
     const handleFilter = (event: SelectChangeEvent) => {
     setValue(event.target.value);
   };
   
-    const testData = [
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    },
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    },
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    },
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    },
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    },
-    {
-        image : testImage,
-        title : "test Title",
-        subtitle : "this is a subtitle",
-        rating : 3,
-        price : 850
-    }
-    ]
+    
  
 
 
@@ -94,12 +86,22 @@ function Products({products,title}: Props) {
         </div>
 		<div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
             {
-               products && products.map((e,i) => {
+               filtered && filtered[index] && <>
+                {(filtered[index] as generalProuctInfotT[]).map((e,i) => {
                 if (e.info && e.serverInfo){
                     return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
                 }
                     
-                })
+                })}
+                <div className="flex items-center mt-10 w-full gap-3">
+                {
+                    (new Array(filtered.length)).fill(0).map((e,i) => <span className={`w-[40px] aspect-square ${index === i ? "bg-blue text-white" : "bg-white text-black"} font-semibold smooth-shadow-1  grid place-items-center rounded-xl cursor-pointer transition-transform hover:scale-110 `} onClick={() => {
+                        setIndex(i);
+                    }}>{i+1}</span>)
+                }
+                </div>
+                
+               </> 
             }
 
         </div>

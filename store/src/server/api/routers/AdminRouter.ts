@@ -1,6 +1,6 @@
 
 import { createTRPCRouter} from "../trpc";
-import { getUsers,getAppProducts,importProduct,showProductWithInfo, deleteImportedProduct,modifyProducts } from "../procedures/AdminProcedures";
+import { getUsers,getAppProducts,importProduct,showProductWithInfo, deleteImportedProduct,modifyProducts, addMark,addTube } from "../procedures/AdminProcedures";
 
 export const AdminRouter = createTRPCRouter({
     getUsers,
@@ -8,5 +8,7 @@ export const AdminRouter = createTRPCRouter({
     importProduct,
     showProductWithInfo,
     deleteImportedProduct,
-    modifyProducts
+    modifyProducts,
+    addMark,
+    addTube
   });

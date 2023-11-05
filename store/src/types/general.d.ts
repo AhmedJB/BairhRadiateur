@@ -59,3 +59,8 @@ export interface generalProuctInfotT  {
 	info : ImportedProduct | undefined,
 	serverInfo : ProductInfoResponseT
 }
+
+export interface OptionT  {
+	readonly value : string;
+	readonly label : string
+}

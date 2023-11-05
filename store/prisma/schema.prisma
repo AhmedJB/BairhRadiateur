@@ -80,6 +80,18 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
+model Tube {
+  id       String            @id @default(cuid())
+  name     String
+  products ImportedProduct[]
+}
+
+model Mark {
+  id       String            @id @default(cuid())
+  name     String
+  products ImportedProduct[]
+}
+
 model ImportedProduct {
   id          String      @id @default(cuid())
   productId   String
@@ -91,6 +103,10 @@ model ImportedProduct {
   maxShipping Int         @default(0)
   imported    DateTime    @default(now())
   Favorites   Favorites[]
+  tubeId      String?
+  markId      String?
+  tube        Tube?       @relation(fields: [tubeId], references: [id])
+  mark        Mark?       @relation(fields: [markId], references: [id])
 }
 
 model TestTest {

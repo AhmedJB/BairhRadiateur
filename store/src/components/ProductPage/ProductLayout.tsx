@@ -7,6 +7,7 @@ import BreadCrumbs from '../General/BreadCrumbs';
 import { api } from '../../server/utils/api';
 import { AirlineSeatReclineNormalSharp } from '@mui/icons-material';
 import { generalProuctInfotT } from '../../types/general';
+import { Mark, Tube } from '@prisma/client';
 
 type Props = {
 }
@@ -28,6 +29,34 @@ const ProductLayout = (props: Props) => {
 	const [priceRange,setPriceRange] = useState([0,20]) 
 
 
+	const {data : marksd,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
+	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
+
+
+	
+
+	useEffect(() => {
+		if (markStatus === "success") {
+			setMarkList(marksd.map(e => e.name));
+		}
+	},[markStatus,marksd])
+
+	useEffect(() => {
+		if (tubeStatus === "success") {
+			setTubeList(tubesd.map(e => e.name))
+		}
+	},[tubeStatus,tubesd])
+
+	const getIdByName = (data : Mark[] | Tube[],name : string,prefix : string) => {
+		const r = data.filter(e =>prefix + e.name === name)
+		if (r.length > 0){
+			return r[0]?.id
+		}else{
+			return undefined
+		}
+	}
+
+
 	const handleFilter = () => {
 		if (productData ){
 			const temp = (productData as generalProuctInfotT[]).filter(e => {
@@ -35,7 +64,11 @@ const ProductLayout = (props: Props) => {
 				const minRange = Math.floor(100000 * ( (priceRange[0] ?? 0) / 100))
 				const maxRange = Math.ceil(100000 * ( (priceRange[1] ?? 0) / 100 ))
 				const priceCondition = e.info   && e.info.price >= minRange && e.info.price <= maxRange
-				return catCondition && priceCondition
+				const convertedMarks = marks.map(e => getIdByName(marksd as Mark[],e,"mark-"))
+				const convertedTubs = tubs.map(e => getIdByName(tubesd as Tube[],e,"tub-"))
+				const marksCondtion = convertedMarks.includes(e.info?.markId as string) || marks.length === 0;
+				const tubsCondition = convertedTubs.includes(e.info?.tubeId as string) || tubs.length === 0;
+				return catCondition && priceCondition && marksCondtion && tubsCondition
 			}   )
 
 			setFiltered(temp);
@@ -46,7 +79,7 @@ const ProductLayout = (props: Props) => {
 
 	useEffect(() => {
 		handleFilter();
-	},[categories,priceRange])
+	},[categories,priceRange,tubs,marks])
 
     useEffect(() => {
         if  ( status === "success"){

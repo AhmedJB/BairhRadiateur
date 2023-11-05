@@ -194,7 +194,25 @@ export const authRouter = createTRPCRouter({
       }catch (e) {
         return []
       }
-    })
+    }),
+  getMarks : publicProcedure
+    .query(async ({ctx}) =>{
+      try{
+        const res = await  ctx.prisma.mark.findMany();
+        return res;
+      }catch(e){
+        return [];
+      }
+    }),
+  getTubes : publicProcedure
+  .query(async ({ctx}) =>{
+    try{
+      const res = await  ctx.prisma.tube.findMany();
+      return res;
+    }catch(e){
+      return [];
+    }
+  })
 });
 
 

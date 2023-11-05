@@ -4,3 +4,14 @@ export enum InputTypeEnum {
     switch,
     select
 }
+
+
+export enum Targets {
+	TUBE,
+	MARK
+}
+
+export enum Modes {
+	SELECT,
+	EDIT
+}

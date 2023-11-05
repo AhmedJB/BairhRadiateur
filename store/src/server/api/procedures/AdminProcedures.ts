@@ -118,7 +118,9 @@ export const modifyProducts = adminProcedure
 					price : z.number(),
 					isEnabled : z.boolean(),
 					minShipping : z.number(),
-					maxShipping : z.number()
+					maxShipping : z.number(),
+					markId : z.string(),
+					tubeId : z.string()
 				})
 			)
 			.mutation(
@@ -134,7 +136,9 @@ export const modifyProducts = adminProcedure
 								price : input.price,
 								isEnabled : input.isEnabled,
 								minShipping : input.minShipping,
-								maxShipping : input.maxShipping
+								maxShipping : input.maxShipping,
+								markId : input.markId,
+								tubeId : input.tubeId
 							}
 						})
 					}catch {
@@ -144,3 +148,43 @@ export const modifyProducts = adminProcedure
 				}
 			)
 
+
+export const addMark = adminProcedure
+			.input(
+				z.object({
+					name : z.string()
+				})
+			)
+			.mutation(
+				async ({input,ctx}) => {
+					try{
+						const r = await ctx.prisma.mark.create({
+							data : {
+								name : input.name
+							}
+						})
+					}catch {
+						throw Error("Failed Creating Mark")
+					}
+				}
+			)
+
+export const addTube = adminProcedure
+			.input(
+				z.object({
+					name : z.string()
+				})
+			)
+			.mutation(
+				async ({input,ctx}) => {
+					try{
+						const r = await ctx.prisma.tube.create({
+							data : {
+								name : input.name
+							}
+						})
+					}catch {
+						throw Error("Failed Creating Tube")
+					}
+				}
+			)
