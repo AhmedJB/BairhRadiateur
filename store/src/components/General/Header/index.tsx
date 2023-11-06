@@ -1,18 +1,20 @@
-import React , {useEffect, useState} from 'react'
+import React , {useEffect, useState,useContext} from 'react'
 import Image, { StaticImageData } from "next/image"
 import logo from '../../../assets/general/LOGO.svg'
 
 import {BiPhoneCall} from "react-icons/bi"
 import {FaRegUser} from "react-icons/fa"
-import {AiOutlineHeart,AiOutlinePoweroff} from "react-icons/ai";
+import {AiOutlineHeart,AiOutlinePoweroff,AiOutlineShopping} from "react-icons/ai";
 
 import InfoComp from './InfoComp'
 import Auth from '../../HomePage/Auth'
+
 
 import styles from "../../../styles/modular/AuthStyles/Auth.module.css"
 import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { CartContext } from '../../../contexts/CartContext'
 
 
 type Props = {}
@@ -20,6 +22,8 @@ type Props = {}
 const Header = (props: Props) => {
 
 	const [AuthOpen,setAuthOpen] = useState(false);
+
+	const cartState = useContext(CartContext)
 
 	const {status,data} = useSession();
 	const router = useRouter();
@@ -44,6 +48,14 @@ const Header = (props: Props) => {
 	},[status,data])
 
 
+ 
+	const handleCartOpen = () => {
+		if (cartState) {
+			cartState.setOpen(true);
+		}
+	}
+
+
 
   return <>
 	<Auth handler={[AuthOpen,setAuthOpen]} classes={`${styles.modalAuth as string} xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 ` } />
@@ -62,8 +74,9 @@ const Header = (props: Props) => {
 				}
 				
 				
-				<div className='flex gap-3 items-center ml-4'>
+				<div className='flex gap-3 items-center ml-4 cursor-pointer'>
 					<AiOutlineHeart className='text-4xl text-mainBlack font-semibold'/>
+					<AiOutlineShopping className='text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
 					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>
 			</div>

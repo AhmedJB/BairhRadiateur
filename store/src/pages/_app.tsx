@@ -8,6 +8,8 @@ import "../styles/globals/globals.css";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Cart from "../components/General/Cart";
+import { CartProvider } from "../contexts/CartContext";
+import GeneralContainer from "../components/General/GeneralContainer";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -15,8 +17,13 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <CartProvider>
+      
       <Cart />
+      <GeneralContainer>
       <Component {...pageProps} />
+      </GeneralContainer>
+      
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -29,6 +36,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
         pauseOnHover
         theme="light"
         />
+      </CartProvider>
+      
     </SessionProvider>
   );
 };
