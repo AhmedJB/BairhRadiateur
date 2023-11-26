@@ -212,7 +212,24 @@ export const authRouter = createTRPCRouter({
     }catch(e){
       return [];
     }
-  })
+  }),
+  getUserInfo : protectedProcedure
+    .query(async ({ctx}) => {
+      try{
+        const ud = await ctx.prisma.user.findUnique({
+          where : {
+            id : ctx.session.user.id
+          },
+          include : {
+            UserInformation : true
+          }
+        })
+        return ud
+      }catch {
+        return null
+      }
+      
+    })
 });
 
 

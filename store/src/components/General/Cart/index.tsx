@@ -1,6 +1,7 @@
 import React , {useContext} from 'react'
 import CartCard from './CartCard'
 import { CartContext } from '../../../contexts/CartContext'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -27,12 +28,20 @@ function Cart({}: Props) {
             <h1 className='text-2xl font-semibold text-black text-center'>Cart</h1>
             <div className="flex  flex-col overflow-y-auto flex-1 gap-2 custom-scroll py-4">
                 {
-                    (new Array(20).fill(0).map((e,i) => {
+                    
+                        cartState.cartData?.map((e,i) => {
+                            return <CartCard quantity={e.quantity} product={e.product} key={e.product.info?.id} />
+                        })
+                    
+                    
+                    /* (new Array(20).fill(0).map((e,i) => {
                         return <CartCard quantity={5} key={`cart-elem-${i}`} />
-                    }))
+                    })) */
                 }
             </div>
-            <button className="">Submit</button>
+            <Link href="/confirm" className='w-full flex items-center justify-center'>
+            <button className="p-2 font-semibold text-lg text-white bg-blue rounded-xl w-[150px] mx-auto mt-5">Continue</button>
+            </Link>
         </div>
         </>
 

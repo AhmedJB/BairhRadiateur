@@ -4,6 +4,7 @@ import React, {
   Component,
   RefObject,
   createRef,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -25,6 +26,8 @@ import { useRouter } from "next/router";
 import { api } from "../../../server/utils/api";
 import { generalProuctInfotT } from "../../../types/general";
 import { formatImage } from "../../../Helpers/helpers";
+import { CartContext } from "../../../contexts/CartContext";
+import { orderColumns } from "@tanstack/react-table";
 
 interface Product {
   _id: string;
@@ -85,6 +88,8 @@ const ProductDetails = ({}: Props) => {
   const myRef : RefObject<HTMLDivElement> = useRef(null);
   const [openDescription, setOpenDescription] = useState(false);
 
+  const cartState = useContext(CartContext);
+
   useEffect(() => {
     if (router.isReady){
       console.log(router.query)
@@ -139,6 +144,40 @@ const ProductDetails = ({}: Props) => {
       }
   }
 
+
+  const handleAddToCart = () => {
+ 
+    let data = cartState?.cartData ? cartState.cartData : [];
+    if (cartState  && filtered){
+      let temp = [...data];
+      let index = -1;
+      let old = temp.filter((e,i) => {
+        if (e?.product?.info?.id === productId){
+          index = i;
+          return true;
+        }
+      } );
+      if (old.length === 0){
+        const data = {
+          product : filtered,
+          quantity
+        }
+        temp.push(data);
+      }else if ( old[0] ){
+        temp.splice(index,1);
+        old[0].quantity = quantity
+        temp.push(old[0])
+      }
+      cartState.setCartData(temp);
+    }
+    
+  }
+
+  const orderDirectly = () => {
+    handleAddToCart();
+    router.push("/confirm")
+  }
+
   return (
     <>
       <Container>
@@ -176,10 +215,11 @@ const ProductDetails = ({}: Props) => {
                   className={
                     "w-[250px] bg-blue py-3 px-8 text-white font-semibold rounded-md text-xl"
                   }
+                  onClick={orderDirectly}
                 >
                   Commander 
                                   </button>
-                <FaCartPlus className="text-4xl text-mainBlack cursor-pointer transition-all hover:text-orange hover:scale-105" />
+                <FaCartPlus className="text-4xl text-mainBlack cursor-pointer transition-all hover:text-orange hover:scale-105" onClick={handleAddToCart} />
               </div>
 
               <button
