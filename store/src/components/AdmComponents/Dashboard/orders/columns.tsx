@@ -2,28 +2,65 @@
 
 import { User } from "@prisma/client"
 import { ColumnDef } from "@tanstack/react-table"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "../../../../../components/ui/dropdown-menu";
+import { OrderDetailsT, OrderTableDataT } from "../../../../types/general";
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
-  email: string
+export type OrderT = {
+  address: string;
+  name: string;
+  tel: string;
+  total: number;
 }
 
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: (handleModal : (details : OrderTableDataT ) => any) => ColumnDef<OrderTableDataT>[] = (handleModal) => {
+  
+  return [
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "id",
+    header: "Order ID",
   },
   {
-    accessorKey: "email",
-    header: "Email",
+    accessorKey: "name",
+    header: "Nom",
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "tel",
+    header: "Tel",
   },
-]
+  {
+    accessorKey : "total",
+    header : "Total"
+  },{
+    id: "actions",
+    cell: ({ row }) => {
+      const details = row.original
+ 
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button className="">
+              ...
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => {
+                if (details){
+                 handleModal(details)
+                }
+              }}
+            >
+              Details
+            </DropdownMenuItem>
+            
+            
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )
+    },
+  },
+]}

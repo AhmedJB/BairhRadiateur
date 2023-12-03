@@ -112,3 +112,24 @@ model ImportedProduct {
 model TestTest {
   id String @id @default(cuid())
 }
+
+model Order {
+  id         String         @id @default(cuid())
+  name       String
+  tel        String
+  address    String
+  total      Float
+  isFinished Boolean        @default(false)
+  date       DateTime       @default(now())
+  details    OrderProduct[]
+}
+
+model OrderProduct {
+  id         Int    @id @default(autoincrement())
+  name       String
+  price      Float
+  product_id String
+  quantity   Int
+  orderId    String
+  order      Order  @relation(fields: [orderId], references: [id])
+}

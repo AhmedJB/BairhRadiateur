@@ -6,6 +6,7 @@ import { encryptPassword } from "../../../utils/helpers";
 import { Prisma } from "@prisma/client";
 import { ServerHandler } from "../handler";
 import { ProductInfoResponseT, generalProuctInfotT } from "../../../types/general";
+import { formatOrder, sendMessage } from "../../utils/tgHelper";
 
 export const authRouter = createTRPCRouter({
   register: publicProcedure
@@ -229,7 +230,34 @@ export const authRouter = createTRPCRouter({
         return null
       }
       
-    })
+    }),
+  submitOrder : protectedProcedure
+  .input(z.object({
+    order : z.object({
+      name : z.string(),
+      tel : z.string(),
+      address : z.string(),
+      total : z.number()
+    }),
+    orderDetails : z.array(z.object({
+      name : z.string(),
+      price : z.number(),
+      product_id : z.string(),
+      quantity : z.number()
+    }))
+  }))
+  .mutation(async ({input,ctx,}) => {
+    const res = await ctx.prisma.order.create({
+      data : {
+        ...input.order,
+        details : {
+          create : input.orderDetails
+        }
+      }
+    }) 
+    await sendMessage(formatOrder(input,res.id,res.date));
+    return res;
+  })
 });
 
 

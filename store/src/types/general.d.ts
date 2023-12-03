@@ -64,3 +64,23 @@ export interface OptionT  {
 	readonly value : string;
 	readonly label : string
 }
+
+export interface OrderDetailsT {
+	name: string;
+	price: number;
+	product_id: string;
+	quantity: number;
+}
+
+export interface OrderTableDataT {
+	address: string;
+        name: string;
+        tel: string;
+        total: number;
+		details : {
+			name: string;
+			price: number;
+			product_id: string;
+			quantity: number;
+		}[]
+}

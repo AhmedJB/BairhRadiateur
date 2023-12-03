@@ -188,3 +188,20 @@ export const addTube = adminProcedure
 					}
 				}
 			)
+
+
+export const getOrders = adminProcedure
+			.query(
+				async ({ctx}) => {
+					try{
+						const r = await ctx.prisma.order.findMany({
+							include : {
+								details : true
+							}
+						});
+						return r;
+					}catch {
+						throw Error("Failed fetching orders")
+					}
+				}
+			)

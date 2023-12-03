@@ -6,9 +6,7 @@ import {
   getCoreRowModel,
   getPaginationRowModel,
   useReactTable,
-  VisibilityState,
-  ColumnFiltersState,
-  getFilteredRowModel
+  VisibilityState
 } from "@tanstack/react-table"
 
 import {
@@ -40,7 +38,6 @@ export function DataTable<TData, TValue>({
 }: DataTableProps<TData, TValue>) {
 
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({})
-  const [columnFilters,setColumnFilterState] = useState<ColumnFiltersState>([]);
 
   const table = useReactTable({
     data,
@@ -48,12 +45,8 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
 	getPaginationRowModel : getPaginationRowModel(),
 	onColumnVisibilityChange: setColumnVisibility,
-  onColumnFiltersChange : setColumnFilterState,
-  getFilteredRowModel: getFilteredRowModel(),
     state: {
       columnVisibility,
-      columnFilters
-
     },
   })
   
@@ -63,18 +56,7 @@ export function DataTable<TData, TValue>({
   },[])
 
   return (<>
-  <div className="flex justify-between items-center py-4">
-
-  <div className="w-1/3  ">
-        <input className="w-full border-2 border-mainBlack rounded-lg p-3" 
-          placeholder="Search ..."
-          value={(table.getColumn("id")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("id")?.setFilterValue(event.target.value)}
-        >
-
-        </input>
-        </div> 
+  {/* <div className="flex items-center py-4">
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -104,7 +86,7 @@ export function DataTable<TData, TValue>({
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
+      </div> */}
   <div className="rounded-md border w-full">
       <Table>
         <TableHeader>
