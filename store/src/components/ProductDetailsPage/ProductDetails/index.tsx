@@ -2,7 +2,9 @@
 "use client";
 import React, {
   Component,
+  Dispatch,
   RefObject,
+  SetStateAction,
   createRef,
   useContext,
   useEffect,
@@ -56,11 +58,15 @@ interface ProductDetailsT {
   rating : number;
   minDays: number;
   maxDays: number;
+  
 }
 
-type Props = {};
+type Props = {
+  setMark : Dispatch<SetStateAction<string | undefined>>
+  setProductId_ : Dispatch<SetStateAction<string | undefined>>
+};
 
-const ProductDetails = ({}: Props) => {
+const ProductDetails = ({setMark,setProductId_}: Props) => {
   const [product, setProduct]: [ProductDetailsT, any] = useState({
     id: 1,
     title: "Radiateur Covere Ford Ranger",
@@ -102,6 +108,8 @@ const ProductDetails = ({}: Props) => {
       const temp = (productData as generalProuctInfotT[]).filter(e => e.info && e.info.id === productId )
       
       setFiltered(temp[0])
+      setMark(temp[0]?.info?.markId as string)
+      setProductId_(temp[0]?.info?.id as string)
     }
   },[productId,status,productData])
 

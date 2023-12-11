@@ -257,7 +257,55 @@ export const authRouter = createTRPCRouter({
     }) 
     await sendMessage(formatOrder(input,res.id,res.date));
     return res;
-  })
+  }),
+  getRecommendation : publicProcedure
+    .input(z.object({
+      mark : z.string()
+    })).query(async ({input,ctx}) => {
+      console.log("Receiving recommendations")
+      console.log(input.mark)
+      const res = await ctx.prisma.mark.findFirst({
+        where : {
+          id : input.mark
+        },
+        include : {
+          products : true
+        }
+      })
+      
+    const products = res?.products;
+    if (products){
+      const ids = products.map(e => e.productId)
+    const resp = await ServerHandler.post("silentProducts/getinfo",{
+      ids
+    })
+    if (resp.status === 200){
+      const respData : ProductInfoResponseT[] = (resp.data as ProductInfoResponseT[]);
+      const finalRes : generalProuctInfotT[] = [];
+      for (const productResp of respData){
+        let index = -1
+        products.forEach((e,i) => {
+          if (e.productId === productResp.p_id){
+            index = i;
+          }
+        })
+        if (products[index]){
+          finalRes.push({
+            info : products[index],
+            serverInfo : productResp
+          })
+        } 
+      }
+      return finalRes;
+    }else{
+      return products
+    }
+    }else{
+      return []
+    }
+    
+      
+    })
 });
 
 

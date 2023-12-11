@@ -8,6 +8,7 @@ import { api } from '../../server/utils/api';
 import { AirlineSeatReclineNormalSharp } from '@mui/icons-material';
 import { generalProuctInfotT } from '../../types/general';
 import { Mark, Tube } from '@prisma/client';
+import { useRouter } from 'next/router';
 
 type Props = {
 }
@@ -28,9 +29,24 @@ const ProductLayout = (props: Props) => {
 	// Price Range
 	const [priceRange,setPriceRange] = useState([0,20]) 
 
+	// loader
+	const [loading,setLoading] = useState(true);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		if (router.isReady  ){
+			let temp = [...tubs];
+			temp.push("tub-"+router.query.tube as string)
+			setTubs(temp);
+			setLoading(false);
+		}
+	},[router.isReady])
 
 	const {data : marksd,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
 	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
+
+
 
 
 	
@@ -100,8 +116,10 @@ const ProductLayout = (props: Props) => {
     },[productData])
 
 
-  return (
-	<div className="w-full ">
+  return (<>
+	{
+		!loading && <>
+		<div className="w-full ">
 		<div className={`mx-auto w-full xl:container flex flex-col`} >
 			<BreadCrumbs  
 				path = {[
@@ -137,6 +155,11 @@ const ProductLayout = (props: Props) => {
 
 		</div>
 	</div>
+		</>
+	}
+	
+  </>
+	
   )
 }
 

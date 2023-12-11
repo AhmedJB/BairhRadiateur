@@ -21,7 +21,7 @@ function Decouvert({}: Props) {
         <div className="flex flex-col items-center gap-3">
             <div className="flex items-center ">
                 
-            <Link href="/products"><DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" /></Link>
+            <Link href={`/products?tube=cuivre`}><DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" /></Link>
                     <div className="relative w-[200px] h-[200px]">
                     <Image src={topLeft} alt="topLeft" fill={true} /> 
                     </div>
@@ -30,7 +30,7 @@ function Decouvert({}: Props) {
             </div>
             <div className="flex items-center ">
             
-            <Link href="/products"><DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" /></Link>
+            <Link href={`/products?tube=aluminium`}><DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" /></Link>
                     <div className="relative w-[200px] h-[200px]">
                       <Image src={bottomLeft} alt="topLeft" fill={true} />
                     </div>
@@ -50,7 +50,7 @@ function Decouvert({}: Props) {
             <div className="relative w-[200px] h-[200px]">
              <Image src={topRight} alt="topRight" fill={true} /> 
                     </div>
-                    <Link href="/products"> <DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" /> </Link> 
+                    <Link href={`/products?tube=chauffage`}> <DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" /> </Link> 
               
             </div>
             <div className="flex items-center ">
@@ -58,7 +58,7 @@ function Decouvert({}: Props) {
             <div className="relative w-[200px] h-[200px]">
              <Image src={bottomRight} alt="topRight" fill={true} />
                     </div>
-                    <Link href="/products">   <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" /> </Link> 
+                    <Link href={`/products?tube=clim`}>   <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" /> </Link> 
             </div>
 
 
