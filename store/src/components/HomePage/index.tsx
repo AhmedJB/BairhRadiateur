@@ -21,28 +21,28 @@ const HomePage = (props: Props) => {
 	const [AuthOpen,setAuthOpen]  = useState(true);
   return  <>
 	{/* <Auth handler={[AuthOpen,setAuthOpen]} classes={styles.modalAuth + " xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 " } /> */}
-	<TopHeader />
+	{/* <TopHeader />
 	<Header />
-	<SearchComp />
+	<SearchComp /> */}
 	<HeroComp />
 	<EmailSub />
 	<Qualities />
 	<div className="w-full">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-			<h1 className="text-xl font-semibold text-darkGray w-[300px]">Découvrez Nos Produits</h1> <hr className="w-full border-lighterGray" />
+			<h1 className="text-sm lg:text-xl font-semibold text-darkGray w-[300px]">Découvrez Nos Produits</h1> <hr className="w-full border-lighterGray" />
 		</div>
 	</div>
 	<Decouvert />
 
 	<div className="w-full ">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-			<h1 className="text-xl font-semibold text-darkGray w-2/12">MEILLEURES VENTES</h1> <hr className="w-10/12 border-lighterGray" />
+			<h1 className="text-sm lg:text-xl font-semibold text-darkGray w-[250px]">MEILLEURES VENTES</h1> <hr className="w-10/12 border-lighterGray" />
 		</div>
 	</div>
 	<Recommendation />
 	<div className="w-full ">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-			<h1 className="text-xl font-semibold text-darkGray w-2/12">QUI SOMMES NOUS?</h1> <hr className="w-10/12 border-lighterGray" />
+			<h1 className="text-sm lg:text-xl font-semibold text-darkGray w-[250px]">QUI SOMMES NOUS?</h1> <hr className="w-10/12 border-lighterGray" />
 		</div>
 	</div>
 	<About />

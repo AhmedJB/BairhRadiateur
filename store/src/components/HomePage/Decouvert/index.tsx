@@ -16,13 +16,13 @@ type Props = {}
 function Decouvert({}: Props) {
   return (
     <div className="w-full my-11">
-		<div className='mx-auto w-full xl:container px-4 flex items-center '>
+		<div className='mx-auto w-full xl:container px-4 flex items-center flex-wrap xl:flex-nowrap justify-center xl:justify-start '>
 
-        <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center ">
+        <div className="justify-center flex xl:flex-col flex-row flex-wrap items-center gap-3">
+            <div className="flex items-center  ">
                 
             <Link href={`/products?tube=cuivre`}><DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" /></Link>
-                    <div className="relative w-[200px] h-[200px]">
+                    <div className="relative hidden xl:block w-[200px] h-[200px]">
                     <Image src={topLeft} alt="topLeft" fill={true} /> 
                     </div>
                 
@@ -31,7 +31,7 @@ function Decouvert({}: Props) {
             <div className="flex items-center ">
             
             <Link href={`/products?tube=aluminium`}><DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" /></Link>
-                    <div className="relative w-[200px] h-[200px]">
+                    <div className="relative hidden xl:block w-[200px] h-[200px]">
                       <Image src={bottomLeft} alt="topLeft" fill={true} />
                     </div>
 
@@ -41,13 +41,14 @@ function Decouvert({}: Props) {
 
         </div>
 
-        <div className="relative w-[500px] h-[400px]">
+        <div className="relative hidden xl:block w-[500px] h-[400px]">
             <Image src={centerImage} alt="centerImage" className="rounded-lg" fill={true} />
         </div>
-        <div className="flex flex-col items-center gap-3">
-            <div className="flex items-center ">
+
+        <div className="flex justify-center xl:flex-col flex-row flex-wrap items-center gap-3">
+            <div className="flex items-center  ">
             
-            <div className="relative w-[200px] h-[200px]">
+            <div className="relative hidden xl:block w-[200px] h-[200px]">
              <Image src={topRight} alt="topRight" fill={true} /> 
                     </div>
                     <Link href={`/products?tube=chauffage`}> <DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" /> </Link> 
@@ -55,7 +56,7 @@ function Decouvert({}: Props) {
             </div>
             <div className="flex items-center ">
             
-            <div className="relative w-[200px] h-[200px]">
+            <div className="relative hidden xl:block w-[200px] h-[200px]">
              <Image src={bottomRight} alt="topRight" fill={true} />
                     </div>
                     <Link href={`/products?tube=clim`}>   <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" /> </Link> 
@@ -63,8 +64,6 @@ function Decouvert({}: Props) {
 
 
         </div>
-           
-
         </div>
     </div>
   )

@@ -12,12 +12,12 @@ function Footer({}: Props) {
   return (
     <div className="w-full mt-6 bg-darkGray ">
 		<div className='mx-auto w-full xl:container p-4 flex flex-col '>
-        <div className="relative w-[450px] h-[80px] my-2">
+        <div className="relative w-[450px] max-w-full h-[80px] my-2">
 				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div>
 
-        <div className="w-full flex flex-wrap ">
-            <p className="text-gray text-justify  text-lg font-medium w-full md:w-6/12 md:border-r-2 border-gray  p-6 min-h-[230px] min-w-[500px]">
+        <div className="w-full flex flex-wrap justify-center ">
+            <p className="text-gray text-justify  text-lg font-medium w-full md:w-6/12 md:border-r-2 border-transparent  p-6 min-w-full">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
 
                             </p>
@@ -51,10 +51,10 @@ function Footer({}: Props) {
 
        </div>
 
-       <div className="flex flex-col px-10">
-        <h1 className="font-bold text-xl text-white uppercase"> Questions?</h1>
-        <h1 className="font-bold text-3xl text-blue">+212 6 61 103 924</h1>
-        <h1 className="font-bold text-3xl text-blue">bairhradiator@gmail.com</h1>
+       <div className="flex flex-col px-2 lg:px-10">
+        <h1 className="font-bold lg:text-xl text-base text-white uppercase"> Questions?</h1>
+        <h1 className="font-bold lg:text-3xl text-lg text-blue">+212 6 61 103 924</h1>
+        <h1 className="font-bold lg:text-3xl text-lg text-blue">bairhradiator@gmail.com</h1>
 
 
        </div>
@@ -64,7 +64,7 @@ function Footer({}: Props) {
        <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
           <HiLocationMarker className="text-2xl mr-3 text-gray"></HiLocationMarker>
-          <p className='text-lg font-semibold text-gray'>diam nonumy eirmod tempor invidunt ut labore</p>
+          <p className='lg:text-lg text-base font-semibold text-gray'>diam nonumy eirmod tempor invidunt ut labore</p>
         </div>
 
         <div className="flex items-center cursor-pointer">

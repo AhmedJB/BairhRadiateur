@@ -34,7 +34,7 @@ const Qualities = (props: Props) => {
   return <>
     <div className="w-full">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-            <div className="flex w-full items-center justify-between px-6 py-20">
+            <div className="flex w-full flex-wrap items-center xl:justify-between justify-center gap-5 xl:gap-1 px-6 py-20">
                 {
                     cardData.map((e,i) => {
                    return <QualityCard key={`quality-${i}`} image={e.image} caption={e.caption} />      

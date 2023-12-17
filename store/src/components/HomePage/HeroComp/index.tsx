@@ -13,7 +13,7 @@ const HeroComp = (props: Props) => {
 		<div className={`${styles.left as string}`}>
 			<MainOffre />
 		</div>
-		<div className={`${styles.right as string}`}>
+		<div className={`${styles.right as string} lg:block hidden`}>
 			<SecondaryOffre />
 
 		</div>

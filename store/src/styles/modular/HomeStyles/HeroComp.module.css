@@ -8,3 +8,15 @@
   }
   .left { grid-area: left; }
   .right { grid-area: right; }
+
+
+
+@media only screen and (max-width:1030px) {
+	.container {
+		grid-template-areas: 
+		"left left";
+	}
+	.right {
+		display: none;
+	}
+}
