@@ -3,7 +3,7 @@ import Image from "next/image"
 import {AiOutlineSearch} from  'react-icons/ai'
 
 
-import liv from '../../../assets/general/liv.png'
+
 
 type Props = {}
 
@@ -25,14 +25,7 @@ const TopHeader = (props: Props) => {
 			<AiOutlineSearch className='mx-3 text-lg' />
 			</div>
 			 
-			 <div className='lg:flex hidden items-center'>
-				 <div className="relative w-[32px] h-[32px]">
-					 <Image src={liv} fill={true} alt="liv icon" />			 </div>
-					 <div className="flex flex-col justify-center px-4">
-						 <h2 className="text-xl font-semibold tracking-widest text-mainBlack my-0">LIVRAISON GRATUITE</h2>
-						 <p  className='text-sm text-gray -my-1'>Les jours ouvrables - Achats de 900 dh ou plus</p>
-					 </div>
-			 </div>
+			 
 		</div>
 	</div>
   )

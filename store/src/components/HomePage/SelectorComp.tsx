@@ -45,6 +45,10 @@ const SelectorComp = (props: Props) => {
         }
     }
 
+    const transparentStyle = {
+      
+    }
+
 
   return (
     <Box sx={style}>

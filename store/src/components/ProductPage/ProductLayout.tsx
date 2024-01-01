@@ -37,11 +37,18 @@ const ProductLayout = (props: Props) => {
 	useEffect(() => {
 		if (router.isReady  ){
 			let temp = [...tubs];
+			if (router.query.tube ){
 			temp.push("tub-"+router.query.tube as string)
+			}
+			let temp2 = [...marks];
+			if (router.query.mark){
+			temp2.push("mark-"+router.query.mark as string)
+			}
 			setTubs(temp);
+			setMarks(temp2);
 			setLoading(false);
 		}
-	},[router.isReady])
+	},[router.isReady,status])
 
 	const {data : marksd,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
 	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
@@ -64,12 +71,15 @@ const ProductLayout = (props: Props) => {
 	},[tubeStatus,tubesd])
 
 	const getIdByName = (data : Mark[] | Tube[],name : string,prefix : string) => {
-		const r = data.filter(e =>prefix + e.name === name)
-		if (r.length > 0){
-			return r[0]?.id
-		}else{
-			return undefined
+		if (status === "success"){
+			const r = data.filter(e =>prefix + e.name === name)
+			if (r.length > 0){
+				return r[0]?.id
+			}else{
+				return undefined
+			}
 		}
+		
 	}
 
 

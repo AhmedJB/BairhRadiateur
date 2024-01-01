@@ -15,6 +15,7 @@ import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { CartContext } from '../../../contexts/CartContext'
+import HeaderSideBar from '../HeaderSideBar'
 
 
 type Props = {}
@@ -26,6 +27,7 @@ const Header = (props: Props) => {
 	const cartState = useContext(CartContext)
 
 	const {status,data} = useSession();
+	const [open,setOpen] = useState(false);
 	const router = useRouter();
 
 	const logout =  () => {
@@ -60,31 +62,46 @@ const Header = (props: Props) => {
   return <>
 	<Auth handler={[AuthOpen,setAuthOpen]} classes={`${styles.modalAuth as string} xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 ` } />
 	<div className="w-full">
-		<div className="mx-auto w-full xl:container flex items-center justify-between px-4">
-			<Link href="/"><div className="relative w-[400px] h-[100px]">
+		
+			<div className="mx-auto w-full xl:container flex items-center justify-between px-4 h-[100px] cursor-none select-none">
+			{!open && <>
+			
+			
+			<Link href="/"><div className="relative md:w-[400px] h-[100px] w-[180px]">
 				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div></Link>
 
+			
+			
 			<div className="flex items-center">
-				<InfoComp icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
+				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
 				{
 					status === "authenticated" && <>
-						<InfoComp icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+						<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
 					</>
 				}
 				
 				
 				<div className='flex gap-3 items-center ml-4 cursor-pointer'>
-					<AiOutlineHeart className='text-4xl text-mainBlack font-semibold'/>
-					<AiOutlineShopping className='text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
+					<AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
+					<AiOutlineShopping className='lg:flex hidden text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
 					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>
+				<div className="flex flex-col lg:hidden items-end gap-2 cursor-pointer ml-4" onClick={() => {setOpen(true)}}>
+				<hr className="w-[30px] text-black font-semibold" />
+				<hr className="w-[25px] text-black font-semibold" />
+				<hr className="w-[20px] text-black font-semibold" />
 			</div>
+			</div>
+			</>
 
+		
+		}
 		</div>
+		
 
 	</div>
-  
+	<HeaderSideBar open={open} setOpen={setOpen} />
   </>
 }
 
