@@ -28,6 +28,9 @@ const ProductLayout = (props: Props) => {
 	const [tubList,setTubeList] = useState(["Tube1","Tube2","Tube3"])
 	// Price Range
 	const [priceRange,setPriceRange] = useState([0,20]) 
+	// Search term
+	const [searchTerm,setSearchTerm] = useState("");
+
 
 	// loader
 	const [loading,setLoading] = useState(true);
@@ -44,6 +47,9 @@ const ProductLayout = (props: Props) => {
 			if (router.query.mark){
 			temp2.push("mark-"+router.query.mark as string)
 			}
+			if (router.query.s){
+				setSearchTerm(router.query.s as string);
+			}
 			setTubs(temp);
 			setMarks(temp2);
 			setLoading(false);
@@ -54,8 +60,19 @@ const ProductLayout = (props: Props) => {
 	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
 
 
+	const searchProduct = () => {
+		const temp = (productData as generalProuctInfotT[]).filter(e => {
+			e.info?.name.toLowerCase().includes(searchTerm)
+		})
+		setFiltered(temp)
+	}
 
 
+	/* useEffect(() => {
+		if (searchTerm.length > 0) {
+			searchProduct();
+		}
+	},[searchTerm]) */
 	
 
 	useEffect(() => {
@@ -94,7 +111,8 @@ const ProductLayout = (props: Props) => {
 				const convertedTubs = tubs.map(e => getIdByName(tubesd as Tube[],e,"tub-"))
 				const marksCondtion = convertedMarks.includes(e.info?.markId as string) || marks.length === 0;
 				const tubsCondition = convertedTubs.includes(e.info?.tubeId as string) || tubs.length === 0;
-				return catCondition && priceCondition && marksCondtion && tubsCondition
+				const searchCondition = e.info?.name.toLowerCase().includes(searchTerm) || searchTerm.length === 0;
+				return catCondition && priceCondition && marksCondtion && tubsCondition && searchCondition
 			}   )
 
 			setFiltered(temp);

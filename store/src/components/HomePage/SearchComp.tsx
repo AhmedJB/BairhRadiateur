@@ -78,7 +78,9 @@ const SearchComp = (props: Props) => {
 			{/* <select className=' bg-transparent cursor-pointer outline-none  text-white font-semibold' >
 				<option disabled={true} selected={true} value={""}>Par Type</option>
 			</select> */}
-			<h1 className="text-white font-semibold hidden lg:block xl:text-2xl lg:text-lg">Personnalisez Votre recherche !</h1>
+			<div className="flex-grow flex justify-center items-center">
+			<h1 className="text-white font-semibold hidden lg:block xl:text-2xl lg:text-lg tracking-widest">Personnalisez Votre recherche !</h1>
+			</div>
 			<div className="md:bg-transparent bg-blue w-full md:w-fit">
 			<SelectorComp value={type} setValue={setType} label="Par Tube" options={typeOptions}    />
 			</div>

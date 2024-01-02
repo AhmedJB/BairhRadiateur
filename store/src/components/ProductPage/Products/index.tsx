@@ -8,6 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { generalProuctInfotT } from '../../../types/general';
 import { formatImage } from '../../../Helpers/helpers';
+import { BsExclamationCircle } from "react-icons/bs";
 
 
 
@@ -64,7 +65,7 @@ function Products({products,title}: Props) {
 
 
   return <>
-    <div className="w-full my-11">
+    <div className="w-full h-full my-11">
         <div className="w-full xl:container my-4 flex items-center justify-between">
             <h1 className="text-3xl font-semibold text-darkGray uppercase">{title ? title : "Nos Produits"}</h1>
              <Box sx={{ minWidth: 250 }}>
@@ -84,9 +85,10 @@ function Products({products,title}: Props) {
                 </FormControl>
             </Box>
         </div>
-		<div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
+		
             {
-               filtered && filtered[index] && <>
+               filtered && filtered[index]  && <>
+               <div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
                 {(filtered[index] as generalProuctInfotT[]).map((e,i) => {
                 if (e.info && e.serverInfo){
                     return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
@@ -100,11 +102,22 @@ function Products({products,title}: Props) {
                     }}>{i+1}</span>)
                 }
                 </div>
-                
+                </div>
                </> 
             }
 
-        </div>
+            {
+                (!filtered || !filtered[index] || (filtered[index] as generalProuctInfotT[]).length === 0 ) && <>
+                    <div className='h-[87%] w-full flex flex-col justify-center'>
+                        <div className="flex flex-col items-center gap-3 -translate-y-1/2">
+                            <h1 className="text-5xl text-mainBlack font-bold uppercase">Pas de produits</h1>
+                            <BsExclamationCircle className="text-[10rem]" />
+                        </div>
+                    </div>
+                </>
+            }
+
+        
     </div>
   </>
 }
