@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { CartContext } from '../../../contexts/CartContext'
 import HeaderSideBar from '../HeaderSideBar'
+import { toast } from 'react-toastify'
 
 
 type Props = {}
@@ -31,9 +32,11 @@ const Header = (props: Props) => {
 	const router = useRouter();
 
 	const logout =  () => {
-		console.log("signin out")
+		
 		signOut({
 			redirect : false
+		}).then(() => {
+			toast.success("Deconnecte")
 		}).catch(e => console.log(e));
 	}
 
@@ -77,13 +80,18 @@ const Header = (props: Props) => {
 				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
 				{
 					status === "authenticated" && <>
-						<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+					<a href="/profile/profile">
+					<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+					</a>
+						
 					</>
 				}
 				
 				
 				<div className='flex gap-3 items-center ml-4 cursor-pointer'>
+					<a href="/profile/favorite">
 					<AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
+					</a>
 					<AiOutlineShopping className='lg:flex hidden text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
 					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>

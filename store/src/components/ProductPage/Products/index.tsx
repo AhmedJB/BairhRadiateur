@@ -20,7 +20,8 @@ type Props = {
 
 function Products({products,title}: Props) {
 
-    const [value,setValue] = useState("");
+	
+    const [value,setValue] = useState("default");
     const [filtered,setFiltered] = useState<generalProuctInfotT[][]>([]);
     const [index,setIndex] = useState(0);
 
@@ -54,6 +55,27 @@ function Products({products,title}: Props) {
         }
         
     },[products])
+
+    useEffect(() => {
+        
+        if (value !== "default"){
+            const temp = [...products].sort((a,b) => {
+            if (a.info?.price && b.info?.price){
+                if (value === "croissant"){
+                    return a.info.price > b.info.price ? 1 : -1;
+                }else{
+                    return a.info.price < b.info.price ? 1 : -1;
+                }
+            }
+            return 1;
+            
+        })
+            splitHandler(temp);
+        }else{
+            splitHandler(products)
+        }
+
+    },[value])
 
     
     const handleFilter = (event: SelectChangeEvent) => {
@@ -91,7 +113,7 @@ function Products({products,title}: Props) {
                <div className='mx-auto w-full xl:container  flex items-center gap-[0.65rem] flex-wrap'>
                 {(filtered[index] as generalProuctInfotT[]).map((e,i) => {
                 if (e.info && e.serverInfo){
-                    return <ProductCard key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
+                    return <ProductCard products={products} key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
                 }
                     
                 })}
@@ -109,7 +131,7 @@ function Products({products,title}: Props) {
             {
                 (!filtered || !filtered[index] || (filtered[index] as generalProuctInfotT[]).length === 0 ) && <>
                     <div className='h-[87%] w-full flex flex-col justify-center'>
-                        <div className="flex flex-col items-center gap-3 -translate-y-1/2">
+                        <div className="flex flex-col items-center gap-3">
                             <h1 className="text-5xl text-mainBlack font-bold uppercase">Pas de produits</h1>
                             <BsExclamationCircle className="text-[10rem]" />
                         </div>

@@ -175,7 +175,10 @@ const ProductLayout = (props: Props) => {
 					/>
 				</div>
 				<div className={`${styles.content as string}  `}>
-					<Content products={filtered as generalProuctInfotT[]} />
+					{
+						status === "success" && <Content products={filtered as generalProuctInfotT[]} />
+					}
+					
 
 				</div>
 

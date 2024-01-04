@@ -39,8 +39,8 @@ const TopHeader = (props: Props) => {
             BAIRHRAD
           </span>
         </div>
-        <form onSubmit={submitSearch}>
-          <div className="mx-auto flex w-[400px] items-center rounded-[15px] border-2 border-gray bg-white lg:mx-0">
+        <form onSubmit={submitSearch} className="w-full md:w-fit">
+          <div className="mx-auto flex md:w-[400px] w-full items-center rounded-[15px] border-2 border-gray bg-white lg:mx-0">
             <input
               type="text"
               className="w-full rounded-xl  py-1 px-2 text-[0.9em] font-light text-mainBlack outline-none"

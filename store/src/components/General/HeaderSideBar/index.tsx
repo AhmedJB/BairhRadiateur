@@ -45,16 +45,19 @@ function HeaderSideBar({open,setOpen}: Props) {
 				
 				{
 					status === "authenticated" && <>
-                    <span className="self-center">
-                    <InfoComp show={true} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
-                    </span>
+                    {/* <span className="self-center"> */}
+                    <a href="/profile/profile">
+                    <InfoComp clickable={true} show={true} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+                    </a>
+                    {/* </span> */}
 						
 					</>
 				}
 				
 				
-				
+                <a href={`/profile/favorite`}>
                 <InfoComp clickable={true} show={true} icon={AiOutlineHeart} title={"Liste de"} content={"Favoris"} />
+                </a>
                 <span onClick={handleCartOpen}>
                 <InfoComp clickable={true} show={true} icon={AiOutlineShopping} title={"Liste "} content={"Achat"} />
                 </span>

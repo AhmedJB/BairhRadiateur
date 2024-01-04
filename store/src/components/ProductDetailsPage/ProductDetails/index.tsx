@@ -154,7 +154,6 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
 
 
   const handleAddToCart = () => {
- 
     let data = cartState?.cartData ? cartState.cartData : [];
     if (cartState  && filtered){
       let temp = [...data];

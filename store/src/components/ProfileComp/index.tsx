@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Favorites from './Favorites';
+import Profile from './Profile';
 
 type Props = {}
 
@@ -22,7 +23,7 @@ function ProfileComp({}: Props) {
       case "favorite":
         return <Favorites />
       default:
-        return <h1>Profile</h1>
+        return <Profile />
     }
   }
 
@@ -30,7 +31,7 @@ function ProfileComp({}: Props) {
   {
     router.isReady && <>
     <div className="w-full ">
-		<div className={`mx-auto w-full xl:container flex flex-col`} >
+		<div className={`mx-auto w-full xl:container flex flex-col p-4`} >
     {getPage()}
       </div></div>
     

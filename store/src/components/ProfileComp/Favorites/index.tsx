@@ -11,7 +11,10 @@ function Favorites({}: Props) {
 
 
 	return <>
-	<Content title={"Mes Favoris"} products={productData as generalProuctInfotT[]} />
+	{
+		status === "success" && 	<Content title={"Mes Favoris"} products={productData as generalProuctInfotT[]} />
+
+	}
 	</>
 }
 

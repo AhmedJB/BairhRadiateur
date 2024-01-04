@@ -184,9 +184,7 @@ export const authRouter = createTRPCRouter({
               info : products[index],
               serverInfo : productResp
             })
-          }
-          
-          
+          } 
         }
         return finalRes;
       }else{
@@ -305,7 +303,21 @@ export const authRouter = createTRPCRouter({
     }
     
       
-    })
+    }),
+  updateUserInfo : protectedProcedure
+   .input(z.object({
+    username : z.string(),
+    email : z.string().email()
+   }))
+   .mutation(async ({input,ctx}) => {
+       const u = await ctx.prisma.user.update({
+        where : {
+         id : ctx.session.user.id
+        },
+        data : input
+       })
+       return u;
+   })
 });
 
 

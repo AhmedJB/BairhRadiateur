@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from "next/image"
 import {AiFillStar,AiOutlineStar} from "react-icons/ai"
 import {BsFillCartPlusFill}  from  "react-icons/bs"
 import Link from 'next/link'
 import HeartCheckboxComponent from '../../General/HeartCheckboxComponent'
+import { CartContext } from '../../../contexts/CartContext'
+import { generalProuctInfotT } from '../../../types/general'
+import { toast } from 'react-toastify'
 
 type Props = {
     image : string,
@@ -13,15 +16,48 @@ type Props = {
     price : number,
     id : string,
     key:string,
-    pid : string
+    pid : string,
+    products : generalProuctInfotT[]
 
 }
 
 const ProductCard = (props: Props) => {
+  const cartState = useContext(CartContext);
+
+  const handleAddToCart = () => {
+
+    const filtered = props.products.filter(e => {
+        return e.info?.id === props.pid})[0];
+    let data = cartState?.cartData ? cartState.cartData : [];
+    if (cartState  && filtered){
+      let temp = [...data];
+      let index = -1;
+      let old = temp.filter((e,i) => {
+        if (e?.product?.info?.id === filtered.info?.id){
+          index = i;
+          return true;
+        }
+      } );
+      if (old.length === 0){
+        const data = {
+          product : filtered,
+          quantity : 1
+        }
+        temp.push(data);
+      }else if ( old[0] ){
+        temp.splice(index,1);
+        old[0].quantity += 1 
+        temp.push(old[0])
+      }
+      cartState.setCartData(temp);
+      toast.success("Produit est ajoute")
+    }
+  }
+
   return  <>
     <div key={`product-${props.id}`} className="flex flex-col min-h-[350px] w-[300px]  shadow-xl rounded-2xl">
         <div className=" h-[220px] w-full relative mb-0 flex items-center ">
-            <span className="bg-blue p-2 rounded-full absolute transition-transform hover:scale-110 cursor-pointer right-[45px] top-[10px] z-10">
+            <span className="bg-blue p-2 rounded-full absolute transition-transform hover:scale-110 cursor-pointer right-[45px] top-[10px] z-10" onClick={handleAddToCart}>
             <BsFillCartPlusFill className=" text-white text-xl" />
             </span>
             <span className="bg-blue p-2 rounded-full absolute transition-transform hover:scale-110 cursor-pointer right-[5px] top-[10px] z-10 ">
