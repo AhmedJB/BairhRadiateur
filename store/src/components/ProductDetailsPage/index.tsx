@@ -16,7 +16,7 @@ function ProductDetailsPage({}: Props) {
 		<ProductDetails  setMark={setMark} setProductId_={setProductId} />
 		<div className="w-full ">
 		<div className='mx-auto w-full xl:container px-4 flex items-center'>
-			<h1 className="text-xl font-semibold text-darkGray w-2/12">Recommendation</h1> <hr className="w-10/12 border-lighterGray" />
+			<h1 className="text-xl font-semibold text-darkGray w-[180px]">Recommendation</h1> <hr className="w-[calc(100%-180px)] border-lighterGray" />
 		</div>
 	</div>
 	{mark &&

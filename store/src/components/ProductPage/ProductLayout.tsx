@@ -9,6 +9,7 @@ import { AirlineSeatReclineNormalSharp } from '@mui/icons-material';
 import { generalProuctInfotT } from '../../types/general';
 import { Mark, Tube } from '@prisma/client';
 import { useRouter } from 'next/router';
+import LeftSidebar from '../General/LeftSidebar';
 
 type Props = {
 }
@@ -30,7 +31,8 @@ const ProductLayout = (props: Props) => {
 	const [priceRange,setPriceRange] = useState([0,20]) 
 	// Search term
 	const [searchTerm,setSearchTerm] = useState("");
-
+	// filter sidebar
+	const [openSideBar,setOpenSidebar] = useState(false);
 
 	// loader
 	const [loading,setLoading] = useState(true);
@@ -147,7 +149,7 @@ const ProductLayout = (props: Props) => {
   return (<>
 	{
 		!loading && <>
-		<div className="w-full ">
+		<div className="w-full p-3 ">
 		<div className={`mx-auto w-full xl:container flex flex-col`} >
 			<BreadCrumbs  
 				path = {[
@@ -159,6 +161,7 @@ const ProductLayout = (props: Props) => {
 			/>
 			<div className={`${styles.gridContainer as string} `}>
 				<div className={`${styles.sidebar as string} `}>
+
 					<Sidebar 
 						catList={catList}
 						markList={markList}
@@ -176,7 +179,7 @@ const ProductLayout = (props: Props) => {
 				</div>
 				<div className={`${styles.content as string}  `}>
 					{
-						status === "success" && <Content products={filtered as generalProuctInfotT[]} />
+						status === "success" && <Content products={filtered as generalProuctInfotT[]} setOpen={setOpenSidebar} />
 					}
 					
 
@@ -184,8 +187,26 @@ const ProductLayout = (props: Props) => {
 
 			</div>
 
+
+
 		</div>
 	</div>
+	<LeftSidebar open={openSideBar} setOpen={setOpenSidebar} >
+	<Sidebar 
+						catList={catList}
+						markList={markList}
+						tubList={tubList}
+						categories={categories}
+						marks={marks}
+						tubs={tubs}
+						priceRange={priceRange}
+						setCategories={setCategories}
+						setMarks={setMarks}
+						setTubs={setTubs}
+						setPriceRange={setPriceRange}
+					
+					/>
+					</LeftSidebar>
 		</>
 	}
 	

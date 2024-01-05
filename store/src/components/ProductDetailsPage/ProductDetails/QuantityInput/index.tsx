@@ -11,8 +11,8 @@ const QuantityInput = ({quantity,updateQuantity} :Props) => {
   
 
   return (
-    <div className="flex items-center ">
-      <div className='border border-mainBlack flex items-center justify-between p-3 w-[250px]'>
+    <div className="flex items-center w-full sm:w-fit justify-center sm:justify-start">
+      <div className='border border-mainBlack flex items-center justify-between p-3 lg:w-[250px] w-[298px] mx-3 sm:mx-0 '>
       <button
         className="px-2 py-1 rounded-md bg-blue-500 text-mainBlack"
         onClick={() => updateQuantity(-1)}

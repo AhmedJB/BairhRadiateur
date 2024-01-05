@@ -189,8 +189,8 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
     <>
       <Container>
         <div className={`mx-auto ${styles.app as string} max-w-[1100px] my-16`}>
-          <div className={"flex gap-11 "}>
-            <div className={"flex flex-col items-center ml-4"} key={product.id}>
+          <div className={"flex flex-col lg:flex-row lg:gap-11 gap-3 "}>
+            <div className={"flex flex-col items-center sm:ml-4 ml-0"} key={product.id}>
               <div className={ `${styles["big-img"] as string} relative`}>
                 <img src={formatImage(filtered?.serverInfo.images[index]?.image)} alt="" />
                 
@@ -203,12 +203,12 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
                 myRef={myRef}
               />
             </div>
-            <div className={"flex flex-col gap-3 pt-12"}>
+            <div className={"flex flex-col lg:items-start items-center gap-3 pt-12"}>
               <div className="">
-                <h2 className="text-2xl font-semibold text-mainBlack mt-3 inter">
+                <h2 className="text-2xl font-semibold text-mainBlack mt-3 inter text-center sm:text-left">
                   {filtered?.info?.name}
                 </h2>
-                <h3 className="text-lighterGray  text-lg font-medium">{filtered?.serverInfo.ptype}</h3>
+                <h3 className="text-lighterGray  text-lg font-medium text-center sm:text-left">{filtered?.serverInfo.ptype}</h3>
                 <StarReview rating={product.rating} />
                 <p className="text-mainBlack text-3xl font-semibold p-2 my-4">
                   {filtered?.info?.price} MAD
@@ -251,16 +251,21 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
                 </p>
               )}
 
-              <div className={`flex items-center ${openDescription ? "" : "mt-6"}`}>
+              <div className={`flex sm:flex-row flex-col items-center ${openDescription ? "" : "mt-6"}`}>
+                <div className="flex items-center justify-center sm:justify-start">
                 <TbTruckDelivery className="text-5xl text-mainBlack " />
-                <p className="text-lg text-mainBlack font-medium mx-2 w-[300px]">Delivery </p>
+                <p className="text-lg text-mainBlack font-medium mx-2 sm:w-[300px] w-fit">Delivery </p>
+                </div>
+                
                 <span className={"text-lg font-medium text-red"}>
                   {filtered?.info && formatDelivery(filtered?.info?.minShipping, filtered?.info?.maxShipping)}
                 </span>
               </div>
-              <div className={"flex items-center mb-4"}>
+              <div className={"flex sm:flex-row flex-col items-center mb-4"}>
+              <div className="flex items-center justify-center sm:justify-start">
               <GiReturnArrow className="text-5xl text-mainBlack scale-x-[-1] " />
-                <p className="text-lg text-mainBlack font-medium mx-2 w-[300px]">Product Exchange and Return  </p>
+                <p className="text-lg text-mainBlack font-medium mx-2 sm:w-[300px] w-fit">Product Exchange and Return  </p>
+                </div>
                 <span className={"text-lg font-medium text-red"}>
                 Terms & Conditions
                 </span>

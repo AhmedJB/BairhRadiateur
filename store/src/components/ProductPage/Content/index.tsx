@@ -4,12 +4,13 @@ import { generalProuctInfotT } from '../../../types/general'
 
 type Props = {
   products: generalProuctInfotT[],
-  title ?: string
+  title ?: string,
+  setOpen? : (v:React.SetStateAction<boolean>) => void
 }
 
-const Content = ({title,products}: Props) => {
+const Content = ({title,products,setOpen}: Props) => {
   return (
-	<Products products={products} title={title} />
+	<Products products={products} title={title} setOpen={setOpen} />
   )
 }
 
