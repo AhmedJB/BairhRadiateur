@@ -24,11 +24,11 @@ const ChatId  = "-4039182700"
 
 
 export async function sendMessage(text : string) {
-    bot.sendMessage(ChatId,text)
+    await bot.sendMessage(ChatId,text)
 }
 
 const formatOrderDate = (date : Date) => {
-    const formattedDateTime: string = `${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR')}`;
+    const formattedDateTime = `${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR')}`;
     return formattedDateTime;
 }
 

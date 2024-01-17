@@ -20,7 +20,7 @@ const TopHeader = (props: Props) => {
 		if (old_path === "/products"){
 			router.reload();
 		}
-	})
+	}).catch(() => {console.log("")})
 	
   };
 

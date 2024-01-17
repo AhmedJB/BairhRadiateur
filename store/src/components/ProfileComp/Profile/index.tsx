@@ -20,11 +20,11 @@ function Profile({}: Props) {
     const userUpdateMutation = api.authHandler.updateUserInfo.useMutation({
         onSuccess : () => {
             toast.success("Success")
-            refetch();
+            refetch().catch(() => {console.log("")});
         },
         onError : () => {
             toast.error("Failed ")
-            refetch();
+            refetch().catch(() => {console.log("")});
         }
     })
 
@@ -33,7 +33,7 @@ function Profile({}: Props) {
 
     useEffect(() => {
         if (status === "error"){
-            router.push("/")
+            router.push("/").catch(() => {console.log("")})
         }else if (status === "success"){
             setUserData({
                 username : userInfoResp?.username as string,
@@ -42,19 +42,20 @@ function Profile({}: Props) {
             setShow(true)
         }
     },[userInfoResp,status])
+    type onChangeType = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
 
-    const handleFormChange = (event: React.ChangeEvent<any>) => {
+    const handleFormChange = (event: React.ChangeEvent<onChangeType>) => {
         event.preventDefault();
         const nv = event.target.value;
-        let temp  = {...userData} as ProfileDataT
-        const name = event.target.name as string;
+        const temp  = {...userData} as ProfileDataT
+        const name = event.target.name;
         temp[name as keyof ProfileDataT] = nv; 
         setUserData(temp);
     }
 
 
-    const confirm = async () => {
+    const confirm = () => {
         
         userUpdateMutation.mutate(userData as ProfileDataT);
 

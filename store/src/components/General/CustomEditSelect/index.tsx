@@ -31,7 +31,7 @@ function CustomEditSelect({options_,target,currentValue,handleValueChange}: Prop
 
 	const markMutation = api.adminHandler.addMark.useMutation({
 		onSuccess : () => {
-			utils.authHandler.getMarks.invalidate();
+			utils.authHandler.getMarks.invalidate().catch(() => "");
 			setCurrentMode(Modes.SELECT)
 		},
 		onError : (err) => {
@@ -41,7 +41,7 @@ function CustomEditSelect({options_,target,currentValue,handleValueChange}: Prop
 
 	const tubeMutation = api.adminHandler.addTube.useMutation({
 		onSuccess : () => {
-			utils.authHandler.getTubes.invalidate();
+			utils.authHandler.getTubes.invalidate().catch(() => "");
 			setCurrentMode(Modes.SELECT)
 
 		},

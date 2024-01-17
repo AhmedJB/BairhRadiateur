@@ -29,7 +29,7 @@ import { api } from "../../../server/utils/api";
 import { generalProuctInfotT } from "../../../types/general";
 import { formatImage } from "../../../Helpers/helpers";
 import { CartContext } from "../../../contexts/CartContext";
-import { orderColumns } from "@tanstack/react-table";
+import ImageViewer from "react-simple-image-viewer"
 
 interface Product {
   _id: string;
@@ -94,6 +94,9 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
   const myRef : RefObject<HTMLDivElement> = useRef(null);
   const [openDescription, setOpenDescription] = useState(false);
 
+  const [images,setImages] = useState<string[]>([]);
+  const [openViewer,setOpenViewer] = useState(false);
+
   const cartState = useContext(CartContext);
 
   useEffect(() => {
@@ -108,10 +111,25 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
       const temp = (productData as generalProuctInfotT[]).filter(e => e.info && e.info.id === productId )
       
       setFiltered(temp[0])
+      const tempImages = [];
+      if (temp[0]?.serverInfo.images){
+       for (const im of temp[0]?.serverInfo.images){
+        tempImages.push(formatImage(im.image))
+       }
+      }
+      setImages(tempImages)
       setMark(temp[0]?.info?.markId as string)
       setProductId_(temp[0]?.info?.id as string)
     }
   },[productId,status,productData])
+
+  /**
+   * viewer logic
+   */
+
+  const closeViewer = () => {
+    setOpenViewer(false);
+  }
 
   /* useEffect(() => {
     const images = myRef.current!.children;
@@ -154,11 +172,11 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
 
 
   const handleAddToCart = () => {
-    let data = cartState?.cartData ? cartState.cartData : [];
+    const data = cartState?.cartData ? cartState.cartData : [];
     if (cartState  && filtered){
-      let temp = [...data];
+      const temp = [...data];
       let index = -1;
-      let old = temp.filter((e,i) => {
+      const old = temp.filter((e,i) => {
         if (e?.product?.info?.id === productId){
           index = i;
           return true;
@@ -182,7 +200,7 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
 
   const orderDirectly = () => {
     handleAddToCart();
-    router.push("/confirm")
+    router.push("/confirm").catch(() => {console.log("")})
   }
 
   return (
@@ -192,7 +210,9 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
           <div className={"flex flex-col lg:flex-row lg:gap-11 gap-3 "}>
             <div className={"flex flex-col items-center sm:ml-4 ml-0"} key={product.id}>
               <div className={ `${styles["big-img"] as string} relative`}>
-                <img src={formatImage(filtered?.serverInfo.images[index]?.image)} alt="" />
+                <img src={formatImage(filtered?.serverInfo.images[index]?.image)} onClick={() => {
+                  setOpenViewer(true)
+                }} alt="" />
                 
                   <HeartCheckboxComponent pid={filtered && filtered.info ? filtered.info.id : ""}  className="absolute top-2  right-1 "  size="text-sm" />
                 
@@ -275,6 +295,16 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
           </div>
         </div>
       </Container>
+      {
+        openViewer && <>
+        <ImageViewer
+          src={images}
+          currentIndex={index}
+          closeOnClickOutside={ true }
+          onClose={ closeViewer }
+        />
+        </>
+      }
     </>
   );
 };

@@ -41,13 +41,13 @@ const ProductLayout = (props: Props) => {
 
 	useEffect(() => {
 		if (router.isReady  ){
-			let temp = [...tubs];
+			const temp = [...tubs];
 			if (router.query.tube ){
-			temp.push("tub-"+router.query.tube as string)
+			temp.push(`tub-${router.query.tube as string}`)
 			}
-			let temp2 = [...marks];
+			const temp2 = [...marks];
 			if (router.query.mark){
-			temp2.push("mark-"+router.query.mark as string)
+			temp2.push(`mark-${router.query.mark as string}`)
 			}
 			if (router.query.s){
 				setSearchTerm(router.query.s as string);

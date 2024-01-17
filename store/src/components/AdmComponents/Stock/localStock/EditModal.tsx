@@ -57,7 +57,7 @@ function EditModal({open,closeModal,product}: Props) {
 
 
 	const formatData = (data : Tube[] | Mark[]) => {
-		let res = data.map((e,i) => {
+		const res = data.map((e,i) => {
 			return {
 				value : e.id,
 				label : e.name

@@ -18,7 +18,7 @@ function ProductRecommendation({mark, productId}: Props) {
     const {data : productData,status} = api.authHandler.getRecommendation.useQuery({mark : mark}); 
 
 
-    function selectRandomElements(array_param: generalProuctInfotT[], numElements: number = 6): generalProuctInfotT[] {
+    function selectRandomElements(array_param: generalProuctInfotT[], numElements = 6): generalProuctInfotT[] {
         const array = [...array_param]
         const selectedElements: generalProuctInfotT[] = [];
         for (let i = 0; i < Math.min(numElements, (productData as generalProuctInfotT[]).length); i++) {

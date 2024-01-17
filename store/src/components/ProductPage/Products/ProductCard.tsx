@@ -28,11 +28,11 @@ const ProductCard = (props: Props) => {
 
     const filtered = props.products.filter(e => {
         return e.info?.id === props.pid})[0];
-    let data = cartState?.cartData ? cartState.cartData : [];
+    const data = cartState?.cartData ? cartState.cartData : [];
     if (cartState  && filtered){
-      let temp = [...data];
+      const temp = [...data];
       let index = -1;
-      let old = temp.filter((e,i) => {
+      const old = temp.filter((e,i) => {
         if (e?.product?.info?.id === filtered.info?.id){
           index = i;
           return true;

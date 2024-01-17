@@ -39,7 +39,7 @@ function ConfirmCart({}: Props) {
     <tbody>
     {
             cartState.cartData.map((e,i) => {
-                return <tr className="bg-white border-b">
+                return <tr key={`cart-${i}`} className="bg-white border-b">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                 <div className="relative w-[150px] aspect-square">
                             <Image src={DemoImage} fill={true} alt="cart-image" className="bg-contain" />
