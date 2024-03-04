@@ -14,14 +14,27 @@ type Props = {
 
 }
 
+
+
 const RecommendationCard = (props: Props) => {
+
+    function trimText(inputText: string): string {
+        const length = 25;
+        if (inputText.length <= length) {
+          return inputText;
+        } else {
+          return inputText.slice(0, length - 3) + '...';
+        }
+      }
+
+
   return  <>
-    <Link key={props.key} href={`/details/${props.pid}`}>
+    <a key={props.key} href={`/details/${props.pid}`}>
     <div  className="flex flex-col h-[300px] w-[200px]">
         <div className="w-full h-1/2 relative mb-3">
             <Image src={props.image} className="rounded-md" alt="prod Image" fill={true} />
         </div>
-        <h3 className="text-mainBlack text-[16px] my-0 font-semibold">{props.title}</h3>
+        <h3 className="text-mainBlack text-[16px] my-0 font-semibold">{trimText(props.title)}</h3>
         <h3 className="text-lighterGray  text-[16px] font-medium">{props.subtitle}</h3>
         <div className="flex items-center my-1">
         {
@@ -37,7 +50,7 @@ const RecommendationCard = (props: Props) => {
 
     </div>
 
-    </Link>
+    </a>
   </>
 
 }

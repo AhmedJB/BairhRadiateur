@@ -56,7 +56,7 @@ const SearchComp = (props: Props) => {
 			
 			base_url += `${type !== "" ? "&&" : "?"}mark=${marque}`
 		}
-		router.push(base_url)
+		router.push(base_url).catch(() => console.log(""))
 	}
 
   return <>

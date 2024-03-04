@@ -26,8 +26,8 @@ function CartCard({quantity,product}: Props) {
 
       const adjustQuantity = (step : number) => {
         if (cartState?.cartData){
-            let data = cartState?.cartData ? cartState.cartData : [];
-            let temp = [...data];
+            const data = cartState?.cartData ? cartState.cartData : [];
+            const temp = [...data];
             let index = -1;
             const old = temp.filter((e,i) => {
                 if (e?.product?.info?.id === product.info?.id){
@@ -36,7 +36,7 @@ function CartCard({quantity,product}: Props) {
                 }
             } );
             if (old[0]){
-                let p = old[0];
+                const p = old[0];
                 if (p.quantity + step <= 0){
                     temp.splice(index,1);
 
@@ -59,7 +59,7 @@ function CartCard({quantity,product}: Props) {
         </div>
         <div className="h-full flex flex-col pt-2">
                 <h1 className="text-md text-black font-semibold">
-                    {trimText(`${product.info?.name}`)}
+                    {trimText(`${product.info?.name as string}`)}
                 </h1>
                 <div className="flex gap-2 items-center">
                     <div className=" text-gray font-semibold border-[1px] border-gray rounded-sm w-[35px] h-[35px] text-2xl cursor-pointer text-center  p-0 hover:text-red hover:border-red transition-colors  "

@@ -35,7 +35,7 @@ function ShippingInfo({}: Props) {
 
     useEffect(() => {
         if (status === "error"){
-            router.push("/")
+            router.push("/").catch(() => "")
         }else if (status === "success"){
             setUserData({
                 address : userInfoResp?.UserInformation?.address as string,
@@ -47,20 +47,20 @@ function ShippingInfo({}: Props) {
     },[userInfoResp,status])
 
 
-    const handleFormChange = (event: React.ChangeEvent<any>) => {
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
         const nv = event.target.value;
-        let temp  = {...userData} as ShippingT
-        const name = event.target.name as string;
+        const temp  = {...userData} as ShippingT
+        const name = event.target.name;
         temp[name as keyof ShippingT] = nv; 
         setUserData(temp);
     }
 
 
-    const confirm = async () => {
+    const confirm =  () => {
         if (cartState && cartState.cartData && userData){
             
-            let orderProducts = [];
+            const orderProducts = [];
             let total = 0;
             for (const cartObj of cartState.cartData){
                 if (cartObj.product.info){

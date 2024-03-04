@@ -24,11 +24,11 @@ const HeartCheckboxComponent = ({size,color,className,pid} : Props) => {
   const FavoriteMutation = api.authHandler.handleFavorite.useMutation( {
     onSuccess : (resp ) => {
       console.log("updated")
-      refetch();
-      utils.authHandler.getFavorites.invalidate().catch(e => console.log("error is in getFavorites : " + e))
+      refetch().catch(() => {console.log("")});
+      utils.authHandler.getFavorites.invalidate().catch(e => console.log(`error is in getFavorites ` ))
     },
     onError : (data) => {
-
+      console.log("")
     }
   })
 

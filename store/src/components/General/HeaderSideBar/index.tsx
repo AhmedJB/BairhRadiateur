@@ -12,7 +12,7 @@ import logo from '../../../assets/general/LOGO.svg'
 
 type Props = {
     open : boolean;
-    setOpen : any
+    setOpen : (v :boolean) => void
 }
 
 function HeaderSideBar({open,setOpen}: Props) {
@@ -46,18 +46,22 @@ function HeaderSideBar({open,setOpen}: Props) {
 				{
 					status === "authenticated" && <>
                     {/* <span className="self-center"> */}
-                    <a href="/profile/profile">
+                    <Link href="/profile/profile">
+                        <a>
                     <InfoComp clickable={true} show={true} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
-                    </a>
+                          </a>  
+                    </Link>
                     {/* </span> */}
 						
 					</>
 				}
 				
 				
-                <a href={`/profile/favorite`}>
-                <InfoComp clickable={true} show={true} icon={AiOutlineHeart} title={"Liste de"} content={"Favoris"} />
-                </a>
+                <Link href={`/profile/favorite`}>
+                    <a>
+                    <InfoComp clickable={true} show={true} icon={AiOutlineHeart} title={"Liste de"} content={"Favoris"} />
+                    </a>
+                </Link>
                 <span onClick={handleCartOpen}>
                 <InfoComp clickable={true} show={true} icon={AiOutlineShopping} title={"Liste "} content={"Achat"} />
                 </span>

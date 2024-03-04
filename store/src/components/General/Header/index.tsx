@@ -80,18 +80,22 @@ const Header = (props: Props) => {
 				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
 				{
 					status === "authenticated" && <>
-					<a href="/profile/profile">
-					<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
-					</a>
+					<Link href="/profile/profile">
+						<a>
+						<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+						</a>
+					</Link>
 						
 					</>
 				}
 				
 				
 				<div className='flex gap-3 items-center ml-4 cursor-pointer'>
-					<a href="/profile/favorite">
-					<AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
-					</a>
+					<Link href="/profile/favorite">
+						<a>
+						<AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
+						</a>
+					</Link>
 					<AiOutlineShopping className='lg:flex hidden text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
 					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>

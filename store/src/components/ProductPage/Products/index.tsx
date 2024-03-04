@@ -30,7 +30,7 @@ function Products({products,title,setOpen}: Props) {
 
 
     const splitHandler = (prods : generalProuctInfotT[]) => {
-        let final : generalProuctInfotT[][] = []
+        const final : generalProuctInfotT[][] = []
         let temp : generalProuctInfotT[] = [];
         for (let i = 0 ; i < prods.length ; i++) {
 
@@ -135,7 +135,7 @@ function Products({products,title,setOpen}: Props) {
                 })}
                 <div className="flex items-center mt-10 w-full gap-3">
                 {
-                    (new Array(filtered.length)).fill(0).map((e,i) => <span className={`w-[40px] aspect-square ${index === i ? "bg-blue text-white" : "bg-white text-black"} font-semibold smooth-shadow-1  grid place-items-center rounded-xl cursor-pointer transition-transform hover:scale-110 `} onClick={() => {
+                    (new Array(filtered.length)).fill(0).map((e,i) => <span key={`pagin-${i}`} className={`w-[40px] aspect-square ${index === i ? "bg-blue text-white" : "bg-white text-black"} font-semibold smooth-shadow-1  grid place-items-center rounded-xl cursor-pointer transition-transform hover:scale-110 `} onClick={() => {
                         setIndex(i);
                     }}>{i+1}</span>)
                 }
