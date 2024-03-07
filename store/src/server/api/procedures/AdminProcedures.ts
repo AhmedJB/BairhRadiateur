@@ -22,10 +22,16 @@ export const getUsers =  adminProcedure
 
 export const getAppProducts = adminProcedure.
         query(async ({ctx}) : Promise<ProductRespT[] | null> => {
+			console.log(`Product URL : ${AppUrl + "silentpd"}`)
             const resp = await axios.get(AppUrl + "silentpd")
+			console.log("Response")
+			console.log(resp)
             if (resp.status === 200){
+				console.log(`Success`)
                 return resp.data as ProductRespT[]
             }else {
+				console.log(`Failed`)
+				console.log(resp.data)
                 return null
             }
         })
