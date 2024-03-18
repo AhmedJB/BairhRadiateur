@@ -70,21 +70,21 @@ const Header = (props: Props) => {
 			{!open && <>
 			
 			
-			<Link href="/"><div className="relative md:w-[400px] h-[100px] w-[180px]">
+			<Link href="/" legacyBehavior><div className="relative md:w-[400px] h-[100px] w-[180px]">
 				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div></Link>
 
 			
 			
 			<div className="flex items-center">
-				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 247 589"} />
+				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212 6 61 085 662"} />
 				{
 					status === "authenticated" && <>
 					<Link href="/profile/profile">
-						<a>
-						<InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
-						</a>
-					</Link>
+
+                        <InfoComp show={false} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+
+                    </Link>
 						
 					</>
 				}
@@ -92,10 +92,10 @@ const Header = (props: Props) => {
 				
 				<div className='flex gap-3 items-center ml-4 cursor-pointer'>
 					<Link href="/profile/favorite">
-						<a>
-						<AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
-						</a>
-					</Link>
+
+                        <AiOutlineHeart className='lg:flex hidden text-4xl text-mainBlack font-semibold'/>
+
+                    </Link>
 					<AiOutlineShopping className='lg:flex hidden text-4xl text-mainBlack font-semibold transition-transform hover:scale-105' onClick={handleCartOpen}/>
 					<AiOutlinePoweroff onClick={status === "unauthenticated" ?  () => setAuthOpen(true) : logout} className='text-4xl text-mainBlack font-semibold'/>
 				</div>
@@ -114,7 +114,7 @@ const Header = (props: Props) => {
 
 	</div>
 	<HeaderSideBar open={open} setOpen={setOpen} />
-  </>
+  </>;
 }
 
 

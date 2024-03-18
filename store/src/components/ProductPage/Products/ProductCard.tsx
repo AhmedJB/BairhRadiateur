@@ -54,7 +54,7 @@ const ProductCard = (props: Props) => {
     }
   }
 
-  return  <>
+  return <>
     <div key={`product-${props.id}`} className="flex flex-col min-h-[350px] w-[300px]  shadow-xl rounded-2xl">
         <div className=" h-[220px] w-full relative mb-0 flex items-center ">
             <span className="bg-blue p-2 rounded-full absolute transition-transform hover:scale-110 cursor-pointer right-[45px] top-[10px] z-10" onClick={handleAddToCart}>
@@ -67,7 +67,7 @@ const ProductCard = (props: Props) => {
             
             <Image src={props.image} className="rounded-tl-md rounded-tr-md" alt="prod Image" fill={true} />
         </div>
-        <Link href={"/details/"+props.id}><button className='w-full p-1 text-white bg-blue'>Aperçu</button></Link>
+        <Link href={"/details/"+props.id} legacyBehavior><button className='w-full p-1 text-white bg-blue'>Aperçu</button></Link>
         <div className="p-2">
         <h3 className="text-mainBlack text-[16px] my-0 font-semibold">{props.title}</h3>
         <h3 className="text-lighterGray  text-[16px] font-medium">{props.subtitle}</h3>
@@ -87,7 +87,7 @@ const ProductCard = (props: Props) => {
         
 
     </div>
-  </>
+  </>;
 
 }
 

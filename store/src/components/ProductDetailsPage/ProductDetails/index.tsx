@@ -30,6 +30,7 @@ import { generalProuctInfotT } from "../../../types/general";
 import { formatImage } from "../../../Helpers/helpers";
 import { CartContext } from "../../../contexts/CartContext";
 import ImageViewer from "react-simple-image-viewer"
+import { toast } from "react-toastify";
 
 interface Product {
   _id: string;
@@ -194,6 +195,7 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
         temp.push(old[0])
       }
       cartState.setCartData(temp);
+      toast.info("Le produit est ajoute")
     }
     
   }

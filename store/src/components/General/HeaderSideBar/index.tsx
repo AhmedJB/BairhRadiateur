@@ -39,7 +39,7 @@ function HeaderSideBar({open,setOpen}: Props) {
             
                 <div className="flex flex-col gap-3 h-full">
                     <div className="flex flex-col flex-1 ">
-                    <Link href="/"><div className="relative lg:w-[400px] h-[100px] w-[250px] mx-auto">
+                    <Link href="/" legacyBehavior><div className="relative lg:w-[400px] h-[100px] w-[250px] mx-auto">
 				<Image src={logo as StaticImageData}  alt={"logo"} fill={true} />
  			</div></Link>
 				
@@ -47,9 +47,9 @@ function HeaderSideBar({open,setOpen}: Props) {
 					status === "authenticated" && <>
                     {/* <span className="self-center"> */}
                     <Link href="/profile/profile">
-                        <a>
-                    <InfoComp clickable={true} show={true} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
-                          </a>  
+
+                        <InfoComp clickable={true} show={true} icon={FaRegUser} title={"Bonjour!"} content={data?.user?.username} />
+
                     </Link>
                     {/* </span> */}
 						
@@ -58,9 +58,9 @@ function HeaderSideBar({open,setOpen}: Props) {
 				
 				
                 <Link href={`/profile/favorite`}>
-                    <a>
+
                     <InfoComp clickable={true} show={true} icon={AiOutlineHeart} title={"Liste de"} content={"Favoris"} />
-                    </a>
+
                 </Link>
                 <span onClick={handleCartOpen}>
                 <InfoComp clickable={true} show={true} icon={AiOutlineShopping} title={"Liste "} content={"Achat"} />
@@ -79,7 +79,7 @@ function HeaderSideBar({open,setOpen}: Props) {
         </>
         }
   
-    </>
+    </>;
 }
 
 export default HeaderSideBar

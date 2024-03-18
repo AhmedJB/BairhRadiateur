@@ -17,7 +17,7 @@ function ConfirmationPage({}: Props) {
     const [show,setShow] = useState(false);
 
     useEffect(() => {
-        if (session.status === "unauthenticated" || (!cartData?.cartData || cartData.cartData.length === 0)){
+        if ( (!cartData?.cartData || cartData.cartData.length === 0)){
             router.push("/").catch(() => "")
         }
         setShow(true)

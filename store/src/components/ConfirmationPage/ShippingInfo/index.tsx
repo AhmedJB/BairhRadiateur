@@ -17,6 +17,7 @@ interface ShippingT {
 function ShippingInfo({}: Props) {
     const session = useSession();
     const [show,setShow] = useState(false);
+    const [guestMod,setGuestMod] = useState(false);
     const [userData,setUserData] = useState<ShippingT>();
     const cartState = useContext(CartContext)
     const router = useRouter();
@@ -35,7 +36,14 @@ function ShippingInfo({}: Props) {
 
     useEffect(() => {
         if (status === "error"){
-            router.push("/").catch(() => "")
+            //router.push("/").catch(() => "")
+            setGuestMod(true);
+            setUserData({
+                address : "",
+                nom : "Guest",
+                tel :""
+            })
+            setShow(true)
         }else if (status === "success"){
             setUserData({
                 address : userInfoResp?.UserInformation?.address as string,

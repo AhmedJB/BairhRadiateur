@@ -229,7 +229,7 @@ export const authRouter = createTRPCRouter({
       }
       
     }),
-  submitOrder : protectedProcedure
+  submitOrder : publicProcedure
   .input(z.object({
     order : z.object({
       name : z.string(),

@@ -293,11 +293,11 @@ export default function Auth(props: Props) {
             }
           >
             En vous inscrivant, vous acceptez nos{" "}
-            <Link href="/info/conditions">
+            <Link href="/info/conditions" legacyBehavior>
               <span>{"Conditions d'utilisation"}</span>
             </Link>{" "}
             et{" "}
-            <Link href="/info/conf">
+            <Link href="/info/conf" legacyBehavior>
               <span className="text-red">Politique de confidentialité</span>
             </Link>
           </p>

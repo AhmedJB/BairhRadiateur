@@ -38,7 +38,10 @@ function Cart({}: Props) {
                     })) */
                 }
             </div>
-            <Link href="/confirm" className='w-full flex items-center justify-center'>
+            <Link
+                href="/confirm"
+                className='w-full flex items-center justify-center'
+                legacyBehavior>
             <button className="p-2 font-semibold text-lg text-white bg-blue rounded-xl w-[150px] mx-auto mt-5">Continue</button>
             </Link>
         </div>
@@ -50,7 +53,7 @@ function Cart({}: Props) {
 
     }
         
-    </>
+    </>;
 
 }
 
