@@ -25,3 +25,6 @@ services:
         - "database:85.31.236.214"
       links:
         - "gestionApp:apphost"
+
+volumes:
+  media-volume:
