@@ -15,7 +15,7 @@ const config = {
     defaultLocale: "en",
   },
   images: {
-    domains: ['127.0.0.1', 'localhost'],
+    domains: ["127.0.0.1", "localhost", "bairhradiateur.ma"],
   },
 };
 export default config;
