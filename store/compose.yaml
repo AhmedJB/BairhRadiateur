@@ -8,7 +8,7 @@ services:
       extra_hosts:
         - "database:85.31.236.214"
       volumes:
-        - media-volume:/usr/src/app/media 
+        - "media-volume:/usr/src/app/media"
     
     gestionFront:
       image: appfront:alpha
