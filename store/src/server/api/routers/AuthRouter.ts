@@ -67,7 +67,9 @@ export const authRouter = createTRPCRouter({
   fetchProducts : publicProcedure
   .query(async ({ctx}) => {
     const products = await ctx.prisma.importedProduct.findMany({
-       
+       where : {
+        isEnabled : true
+       }
     })
     const ids = products.map(e => e.productId)
     const resp = await ServerHandler.post("silentProducts/getinfo",{
