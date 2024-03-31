@@ -31,13 +31,13 @@ const TopHeader = (props: Props) => {
           <div className="promoBG -rotate-3 px-4 text-lg font-semibold text-white">
             5%
           </div>
-          <span className="text-md mx-2 font-semibold tracking-widest text-mainBlack">
-            500dh*
+          <span className="text-sm mx-2 font-semibold tracking-widest text-mainBlack brightness-50 opacity-60">
+          Réduction de 5% pour les achats qui dépassent 2000dh
           </span>
-          <span className="text-md font-light">Coupon Code :</span>
+          {/* <span className="text-md font-light">Coupon Code :</span>
           <span className="text-md mx-2 font-semibold tracking-widest text-mainBlack">
             BAIRHRAD
-          </span>
+          </span> */}
         </div>
         <form onSubmit={submitSearch} className="w-full md:w-fit">
           <div className="mx-auto flex md:w-[400px] w-full items-center rounded-[15px] border-2 border-gray bg-white lg:mx-0">

@@ -10,7 +10,7 @@ const MainOffre = (props: Props) => {
 	<div className='w-full bg-lightWhite flex items-center'>
 		<div className='flex flex-col items-center w-full p-4'>
 			<h2  className='text-blue  md:text-3xl text-xl uppercase font-semibold tracking-wider '>Radiateur</h2>
-			<h2  className='text-lightgray  md:text-2xl text-lg uppercase font-semibold tracking-wider '>MERCEDES 207 - 3r</h2>
+			<h2  className='text-lightgray  md:text-xl text-lg uppercase font-semibold tracking-wider '>207 aluminium tube plat</h2>
 			<div className="relative w-[450px] aspect-square max-w-full lg:hidden block">
 			<Image src={radiator} alt={"radiator"} fill={true} />
 			</div>

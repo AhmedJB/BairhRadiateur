@@ -6,6 +6,12 @@ import bottomLeft from "../../../assets/home/bottomLeft.png"
 import bottomRight from "../../../assets/home/bottomRight.png"
 import centerImage from "../../../assets/home/centerImage.png"
 import metalImage from "../../../assets/home/radiator.png"
+import Cuiv from "../../../assets/home/Cuiv.jpg"
+import Clim from "../../../assets/home/Clim.jpg"
+import Faisceaux from "../../../assets/home/Faisceaux.jpg"
+import Chaff from "../../../assets/home/Chauff.jpg"
+import AL from "../../../assets/home/AL.jpg"
+import Test from "../../../assets/home/Test.jpg"
 import DecouvertCard from './DecouvertCard'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -18,10 +24,10 @@ function Decouvert({}: Props) {
       <div className="w-full my-11">
           <div className='mx-auto w-full xl:container px-4 flex items-center flex-wrap xl:flex-nowrap justify-center xl:justify-start '>
 
-          <div className="justify-center flex xl:flex-col flex-row flex-wrap items-center gap-3">
+          <div className="justify-center flex xl:flex-col flex-row flex-wrap items-center gap-3 mb-2 xl:mb-0">
               <div className="flex items-center  ">
-                  
-              <Link href={`/products?tube=cuivre`} ><DecouvertCard color="text-yellow" border="border-yellow" image={metalImage} title="Cuivre" /></Link>
+              <Link href={`/products?tube=aluminium`} ><DecouvertCard color="text-white" border="border-alum" image={AL} title="Radiateur Eau" metal={"Aluminium"} /></Link>
+             
                       <div className="relative hidden xl:block w-[200px] h-[200px]">
                       <Image src={topLeft} alt="topLeft" fill={true} /> 
                       </div>
@@ -30,7 +36,7 @@ function Decouvert({}: Props) {
               </div>
               <div className="flex items-center ">
               
-              <Link href={`/products?tube=aluminium`} ><DecouvertCard color="text-white" border="border-white" image={metalImage} title="Aluminium" /></Link>
+              <Link href={`/products?tube=cuivre`} ><DecouvertCard color="text-yellow" border="border-cuivre" image={Cuiv} title="Radiateur Eau" metal={"Cuivre"} /></Link>
                       <div className="relative hidden xl:block w-[200px] h-[200px]">
                         <Image src={bottomLeft} alt="topLeft" fill={true} />
                       </div>
@@ -45,13 +51,13 @@ function Decouvert({}: Props) {
               <Image src={centerImage} alt="centerImage" className="rounded-lg" fill={true} />
           </div>
 
-          <div className="flex justify-center xl:flex-col flex-row flex-wrap items-center gap-3">
+          <div className="flex justify-center xl:flex-col flex-row flex-wrap items-center gap-4">
               <div className="flex items-center  ">
               
               <div className="relative hidden xl:block w-[200px] h-[200px]">
                <Image src={topRight} alt="topRight" fill={true} /> 
                       </div>
-                      <Link href={`/products?tube=chauffage`} > <><DecouvertCard color="text-red" border="border-red" image={metalImage} title="Chauffage" /></>  </Link> 
+                      <Link href={`/products?tube=chauffage`} > <><DecouvertCard color="text-red" border="border-chauff" image={Chaff} title="Radiateur Chauffage" /></>  </Link> 
                 
               </div>
               <div className="flex items-center ">
@@ -59,11 +65,18 @@ function Decouvert({}: Props) {
               <div className="relative hidden xl:block w-[200px] h-[200px]">
                <Image src={bottomRight} alt="topRight" fill={true} />
                       </div>
-                      <Link href={`/products?tube=clim`} >   <DecouvertCard color="text-blue" border="border-blue" image={metalImage} title="Clim" /> </Link> 
+                      <Link href={`/products?tube=clim`} >   <DecouvertCard color="text-blue" border="border-clim" image={Clim} title="Radiateur Clim" /> </Link> 
               </div>
 
 
           </div>
+          
+          </div>
+          <div className="w-full flex flex-col items-center justify-center xl:-translate-y-16 mt-1">
+          <div className="relative hidden xl:block w-[200px] h-[200px] ">
+               <Image src={bottomRight} alt="topRight" className={`rotate-45`} fill={true} />
+                      </div>
+          <Link href={`/products?tube=clim`} >   <DecouvertCard color="text-blue" border="border-gray" image={Faisceaux} title="Radiateur Faisseaux" /> </Link> 
           </div>
       </div>
   );

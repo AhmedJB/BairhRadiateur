@@ -39,14 +39,17 @@ const ProductLayout = (props: Props) => {
 
 	const router = useRouter();
 
+	const {data : marksd,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
+	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
+
 	useEffect(() => {
 		if (router.isReady  ){
 			const temp = [...tubs];
-			if (router.query.tube ){
+			if (router.query.tube && tubList.includes(router.query.tube as string) ){
 			temp.push(`tub-${router.query.tube as string}`)
 			}
 			const temp2 = [...marks];
-			if (router.query.mark){
+			if (router.query.mark && markList.includes(router.query.mark as string)){
 			temp2.push(`mark-${router.query.mark as string}`)
 			}
 			if (router.query.s){
@@ -56,10 +59,9 @@ const ProductLayout = (props: Props) => {
 			setMarks(temp2);
 			setLoading(false);
 		}
-	},[router.isReady,status])
+	},[router.isReady,status,markList,tubList])
 
-	const {data : marksd,status : markStatus,refetch : markRefetch}  = api.authHandler.getMarks.useQuery();
-	const {data : tubesd,status : tubeStatus,refetch  : tubeRefetch} = api.authHandler.getTubes.useQuery();
+	
 
 
 	const searchProduct = () => {
