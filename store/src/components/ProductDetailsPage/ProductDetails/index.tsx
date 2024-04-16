@@ -31,6 +31,7 @@ import { formatImage } from "../../../Helpers/helpers";
 import { CartContext } from "../../../contexts/CartContext";
 import ImageViewer from "react-simple-image-viewer"
 import { toast } from "react-toastify";
+import { NextSeo, ProductJsonLd } from "next-seo";
 
 interface Product {
   _id: string;
@@ -207,6 +208,32 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
 
   return (
     <>
+    {
+      filtered?.info &&<>
+       <NextSeo
+      title={`Bairhradiateur | ${filtered.info.name}`}
+  
+      openGraph={{
+        type: 'website',
+        locale: 'fr_MA',
+        url: `https://bairhradiateur.ma/details/${filtered.info.productId}`,
+        siteName: 'Bairhradiateur',
+      }}
+    />
+    <ProductJsonLd
+      productName={filtered.info.name}
+      images={filtered.serverInfo.images.map(e => formatImage(e.image))}  
+      material={filtered.serverInfo.ptype}
+      offers={[
+        {
+          price : `${filtered.info.price}`,
+          priceCurrency : 'MAD'
+        }
+      ]}
+    />
+    </>
+    }
+    
       <Container>
         <div className={`mx-auto ${styles.app as string} max-w-[1100px] my-16`}>
           <div className={"flex flex-col lg:flex-row lg:gap-11 gap-3 "}>

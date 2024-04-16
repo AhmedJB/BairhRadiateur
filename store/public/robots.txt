@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bairhradiateur.ma
+
+# Sitemaps
+Sitemap: https://bairhradiateur.ma/sitemap.xml
