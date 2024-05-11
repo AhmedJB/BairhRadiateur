@@ -26,7 +26,7 @@ function Decouvert({}: Props) {
 
           <div className="justify-center flex xl:flex-col flex-row flex-wrap items-center gap-3 mb-2 xl:mb-0">
               <div className="flex items-center  ">
-              <Link href={`/products?tube=aluminium`} ><DecouvertCard color="text-white" border="border-alum" image={AL} title="Radiateur Eau" metal={"Aluminium"} /></Link>
+              <Link href={`/products?cat=eau`} ><DecouvertCard color="text-white" border="border-alum" image={AL} title="Radiateur Eau" metal={"Aluminium"} /></Link>
              
                       <div className="relative hidden xl:block w-[200px] h-[200px]">
                       <Image src={topLeft} alt="topLeft" fill={true} /> 
@@ -36,7 +36,7 @@ function Decouvert({}: Props) {
               </div>
               <div className="flex items-center ">
               
-              <Link href={`/products?tube=cuivre`} ><DecouvertCard color="text-yellow" border="border-cuivre" image={Cuiv} title="Radiateur Eau" metal={"Cuivre"} /></Link>
+              <Link href={`/products?cat=cuivre`} ><DecouvertCard color="text-yellow" border="border-cuivre" image={Cuiv} title="Radiateur Eau" metal={"Cuivre"} /></Link>
                       <div className="relative hidden xl:block w-[200px] h-[200px]">
                         <Image src={bottomLeft} alt="topLeft" fill={true} />
                       </div>
@@ -57,7 +57,7 @@ function Decouvert({}: Props) {
               <div className="relative hidden xl:block w-[200px] h-[200px]">
                <Image src={topRight} alt="topRight" fill={true} /> 
                       </div>
-                      <Link href={`/products?tube=chauffage`} > <><DecouvertCard color="text-red" border="border-chauff" image={Chaff} title="Radiateur Chauffage" /></>  </Link> 
+                      <Link href={`/products?cat=chauf`} > <><DecouvertCard color="text-red" border="border-chauff" image={Chaff} title="Radiateur Chauffage" /></>  </Link> 
                 
               </div>
               <div className="flex items-center ">
@@ -65,7 +65,7 @@ function Decouvert({}: Props) {
               <div className="relative hidden xl:block w-[200px] h-[200px]">
                <Image src={bottomRight} alt="topRight" fill={true} />
                       </div>
-                      <Link href={`/products?tube=clim`} >   <DecouvertCard color="text-blue" border="border-clim" image={Clim} title="Radiateur Clim" /> </Link> 
+                      <Link href={`/products?cat=clime`} >   <DecouvertCard color="text-blue" border="border-clim" image={Clim} title="Radiateur Clim" /> </Link> 
               </div>
 
 
@@ -76,7 +76,7 @@ function Decouvert({}: Props) {
           <div className="relative hidden xl:block w-[200px] h-[200px] ">
                <Image src={bottomRight} alt="topRight" className={`rotate-45`} fill={true} />
                       </div>
-          <Link href={`/products?tube=clim`} >   <DecouvertCard color="text-blue" border="border-gray" image={Faisceaux} title="Radiateur Faisseaux" /> </Link> 
+          <Link href={`/products?cat=faisseaux`} >   <DecouvertCard color="text-blue" border="border-gray" image={Faisceaux} title="Radiateur Faisseaux" /> </Link> 
           </div>
       </div>
   );

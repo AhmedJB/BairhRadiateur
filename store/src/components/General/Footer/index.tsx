@@ -19,7 +19,7 @@ function Footer({}: Props) {
 
        <div className="w-full flex flex-wrap justify-center ">
            <p className="text-gray text-justify  text-lg font-medium w-full md:w-6/12 md:border-r-2 border-transparent  p-6 min-w-full">
-               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+               {`Bairh Radiateur, basée à Fès, au Maroc, bénéficie de 10 ans d'expérience dans la vente et la réparation de radiateurs pour voitures et poids lourds. Importateur de plus de 500 modèles de Chine, elle assure une large couverture des besoins.`}
 
                            </p>
             <div className="md:w-3/12 w-full px-14 flex flex-col xl:border-r-2 border-gray min-h-[230px] min-w-[250px]">
@@ -82,8 +82,12 @@ function Footer({}: Props) {
        
 
        <div className="flex items-center cursor-pointer">
+        <a href={`https://www.facebook.com/bairhradiator/`}>
          <BsFacebook className="text-xl transition-colors hover:text-blue mr-4 font-semibold text-gray"></BsFacebook>
+        </a>
+        <a href={`https://www.instagram.com/bairhradiator/`}>
          <AiOutlineInstagram className="text-2xl transition-colors hover:text-blue font-semibold text-gray" />
+        </a>
        </div>
 
       </div>

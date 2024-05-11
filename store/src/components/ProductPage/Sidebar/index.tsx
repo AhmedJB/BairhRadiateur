@@ -38,6 +38,12 @@ const Sidebar = ({catList,markList,tubList,categories,marks,tubs,priceRange,setC
   //const [priceRange,setPriceRange] = useState([0,20])
   
   // handle Price changes
+  const catMapping = {
+    "eau" : "Radiateur Eau",
+    "chauf" : "Radiateur Chauffage",
+    "clime" : "Radiateur Clime",
+    'antifel' : "Antigèlle"
+ }
   
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
     setPriceRange(newValue as number[]);
@@ -125,7 +131,7 @@ const Sidebar = ({catList,markList,tubList,categories,marks,tubs,priceRange,setC
       {
         catList.map((e,i) => {
           return <div key={`cat-${e}`} className="flex items-center justify-between pl-3">
-        <h4 className="text-lg font-medium text-darkGray ">{e}</h4>
+        <h4 className="text-lg font-medium text-darkGray ">{catMapping[e as keyof typeof catMapping] ? catMapping[e as keyof typeof catMapping] : e}</h4>
         <Checkbox
           checked={categories.includes(`cat-${e}`)}
           onChange={handleCheckBoxChange}

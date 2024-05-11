@@ -30,6 +30,9 @@ function EditModal({open,closeModal,product}: Props) {
 	useEffect(() => {
 		if (product){
 			setModifiedProduct(product);
+			console.log(product.markId)
+			setSelectedMark(product.markId)
+			setSelectedTube(product.tubeId)
 			setVisible(product.isEnabled);
 		}
 		

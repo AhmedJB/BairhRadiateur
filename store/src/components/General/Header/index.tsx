@@ -66,7 +66,7 @@ const Header = (props: Props) => {
 	<Auth handler={[AuthOpen,setAuthOpen]} classes={`${styles.modalAuth as string} xl:p-5 xl:pb-1 md:p-2 md:pb-1 p-1 ` } />
 	<div className="w-full">
 		
-			<div className="mx-auto w-full xl:container flex items-center justify-between px-4 h-[100px] cursor-none select-none">
+			<div className="mx-auto w-full xl:container flex items-center justify-between px-4 h-[100px]  select-none">
 			{!open && <>
 			
 			

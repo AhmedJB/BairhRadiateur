@@ -52,14 +52,20 @@ const ProductLayout = (props: Props) => {
 			if (router.query.mark && markList.includes(router.query.mark as string)){
 			temp2.push(`mark-${router.query.mark as string}`)
 			}
+			const temp3 = [...categories];
+			if (router.query.cat && catList.includes(router.query.cat as string) ){
+			temp3.push(`cat-${router.query.cat as string}`)
+			console.log(temp3)
+			}
 			if (router.query.s){
 				setSearchTerm(router.query.s as string);
 			}
 			setTubs(temp);
 			setMarks(temp2);
+			setCategories(temp3);
 			setLoading(false);
 		}
-	},[router.isReady,status,markList,tubList])
+	},[router.isReady,status,markList,tubList,catList])
 
 	
 
