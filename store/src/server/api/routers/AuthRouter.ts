@@ -255,7 +255,7 @@ export const authRouter = createTRPCRouter({
         }
       }
     }) 
-    await sendMessage(formatOrder(input,res.id,res.date));
+    await sendMessage(formatOrder(input,res.id,res.date),input.order.tel);
     return res;
   }),
   getRecommendation : publicProcedure
