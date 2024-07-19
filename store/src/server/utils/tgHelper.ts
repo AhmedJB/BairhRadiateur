@@ -23,8 +23,18 @@ const bot = new TelegramBot(TELEGRAM_API_KEY);
 const ChatId  = "-4039182700"
 
 
-export async function sendMessage(text : string) {
-    await bot.sendMessage(ChatId,text)
+export async function sendMessage(text : string,phone:string) {
+    const reply_markup = {
+        inline_keyboard: [
+          [
+            {
+              text: "Whatsapp",
+              url: `https://wa.me/${phone}?text=${encodeURIComponent(text)}`,
+            },
+          ],
+        ],
+      };
+    await bot.sendMessage(ChatId,text,{reply_markup})
 }
 
 const formatOrderDate = (date : Date) => {

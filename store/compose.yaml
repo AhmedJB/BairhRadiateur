@@ -10,10 +10,26 @@ services:
       volumes:
         - "media-volume:/usr/src/app/media"
     
+    gestionApp2:
+      image: "gestion:alpha2"
+      ports:
+        - "8000:8000"
+      extra_hosts:
+        - "database:85.31.236.214"
+      volumes:
+        - "media-volume:/usr/src/app/media"
+    
     gestionFront:
       image: appfront:alpha
       ports:
         - "4000:3000"
+      links:
+        - "gestionApp:apphost"
+
+    gestionFront2:
+      image: appfront:alpha2
+      ports:
+        - "5000:3000"
       links:
         - "gestionApp:apphost"
 
