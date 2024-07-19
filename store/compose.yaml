@@ -13,7 +13,7 @@ services:
     gestionApp2:
       image: "gestion:alpha2"
       ports:
-        - "8000:8000"
+        - "8001:80"
       extra_hosts:
         - "database:85.31.236.214"
       volumes:
