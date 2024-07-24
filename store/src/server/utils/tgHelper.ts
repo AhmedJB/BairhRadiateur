@@ -24,6 +24,7 @@ const ChatId  = "-4039182700"
 
 
 export async function sendMessage(text : string,phone:string) {
+    phone = formatNumber(phone)
     const reply_markup = {
         inline_keyboard: [
           [
@@ -59,4 +60,12 @@ Total : ${prod.price * prod.quantity}
     }
     message += `####### Total Final : ${data.order.total} MAD ###############`
     return message
+}
+
+
+export const formatNumber = (phone:string) => {
+    if (phone.startsWith("06") || phone.startsWith("07")){
+        phone = phone.replace("0","+212")
+    }
+    return phone
 }

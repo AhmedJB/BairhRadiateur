@@ -31,7 +31,7 @@ services:
       ports:
         - "5000:3000"
       links:
-        - "gestionApp:apphost"
+        - "gestionApp2:apphost"
 
     storeFront:
       image: "storefront:alpha"

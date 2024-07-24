@@ -6,6 +6,7 @@ import { api } from '../../../server/utils/api';
 import { useRouter } from 'next/router';
 import { CartContext } from '../../../contexts/CartContext';
 import { toast } from 'react-toastify';
+import ContainedLoader from '../../General/ContainedLoader';
 
 type Props = {}
 interface ShippingT {
@@ -110,6 +111,9 @@ function ShippingInfo({}: Props) {
         <button className="p-2 rounded-lg bg-blue text-white font-semibold" onClick={confirm}>Confirmer</button>
     </div>
 </div> </>
+  }
+  {
+    !show && <><ContainedLoader /></>
   }
     
     
