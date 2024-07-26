@@ -42,7 +42,8 @@ const Sidebar = ({catList,markList,tubList,categories,marks,tubs,priceRange,setC
     "eau" : "Radiateur Eau",
     "chauf" : "Radiateur Chauffage",
     "clime" : "Radiateur Clime",
-    'antifel' : "Antigèlle"
+    'antifel' : "Antigèlle",
+    "0" : "Intercoler"
  }
   
   const handlePriceChange = (event: Event, newValue: number | number[]) => {
