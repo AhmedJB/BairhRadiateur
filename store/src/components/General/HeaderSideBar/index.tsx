@@ -33,8 +33,8 @@ function HeaderSideBar({open,setOpen}: Props) {
 
 
   return <>
-    {open && <><div className="fixed h-screen w-screen bg-black opacity-30 z-[9996] top-0" onClick={close}></div>
-                <div className={`fixed w-[300px] max-w-[90%] bg-white  h-screen right-0 top-0 z-[9997] md:py-4 py-1 flex flex-col ${open ? "translate-x-0 smooth-shadow-cart" : "translate-x-full"} transition-transform`}>
+    {open && <><div className="fixed h-full w-screen bg-black opacity-30 z-[9996] top-0" onClick={close}></div>
+                <div className={`fixed w-[300px] max-w-[90%] bg-white  h-full right-0 top-0 z-[9997] md:py-4 py-1 flex flex-col ${open ? "translate-x-0 smooth-shadow-cart" : "translate-x-full"} transition-transform`}>
                 
             
                 <div className="flex flex-col gap-3 h-full">

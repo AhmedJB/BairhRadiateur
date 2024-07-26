@@ -21,6 +21,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <Head>
+        <link rel="icon" href="/ICON.jpg" />
+      </Head>
       <GoogleTagManager
         gtmId="GTM-5794H7FM"
       />

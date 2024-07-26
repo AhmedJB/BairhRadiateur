@@ -17,7 +17,7 @@ const BreadCrumbs = (props: Props) => {
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         <li className="inline-flex items-center">
           <a
-            href="/d"
+            href="/"
             className=" inline-flex items-center text-sm font-semibold text-mainBlack hover:text-blue "
           >
             <svg
