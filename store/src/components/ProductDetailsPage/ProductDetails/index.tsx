@@ -291,7 +291,7 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
               </button>
               {openDescription && (
                 <p className="text-mainBlack md:w-[550px] w-full mx-2 text-md font-normal p-1 opacity-80 mb-5 max-h-[200px] overflow-y-auto">
-                  {product.description}
+                  {filtered?.info?.description }
 
 
 
