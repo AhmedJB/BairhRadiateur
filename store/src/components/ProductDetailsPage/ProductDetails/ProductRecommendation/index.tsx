@@ -48,7 +48,7 @@ function ProductRecommendation({mark, productId}: Props) {
             {
                 recommendations && recommendations.map((e,i) => {
                     if (e.info && e.serverInfo){
-                        return <RecommendationCard key={`recommendation-${i}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} pid={e.info.id} />
+                        return <RecommendationCard key={`recommendation-${i}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} isReduced={e.info.isReduced} newPrice={e.info.newPrice} title={e.info.name} subtitle={""} rating={4} price={e.info.price} pid={e.info.id} />
                     }
                     
                 })

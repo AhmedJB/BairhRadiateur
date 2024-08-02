@@ -21,6 +21,7 @@ function EditModal({open,closeModal,product}: Props) {
 
 	const [modifiedProduct , setModifiedProduct] = useState<ImportedProduct>();
 	const [visible,setVisible] = useState(false);
+	const [reduction,setReduction] = useState(false);
 
 	const [selectedTube , setSelectedTube] = useState(product?.tubeId)
 	const [selectedMark , setSelectedMark] = useState(product?.markId)
@@ -34,6 +35,8 @@ function EditModal({open,closeModal,product}: Props) {
 			setSelectedMark(product.markId)
 			setSelectedTube(product.tubeId)
 			setVisible(product.isEnabled);
+			setReduction(product.isReduced);
+
 		}
 		
 	},[product])
@@ -91,7 +94,7 @@ function EditModal({open,closeModal,product}: Props) {
 			const key = t.id as keyof typeof temp;
 			const temp : ImportedProduct = {...modifiedProduct};
 			let val : string | number = t.value;
-			if (key === "price"){
+			if (key === "price" || key === "newPrice"){
 				val = Number(val);
 			}else if (key === "minShipping" || key === "maxShipping"){
 				val = Number(val)
@@ -113,7 +116,9 @@ function EditModal({open,closeModal,product}: Props) {
 					name : modifiedProduct.name,
 					description : modifiedProduct.description,
 					price : modifiedProduct.price,
+					newPrice : modifiedProduct.newPrice,
 					isEnabled : visible,
+					isReduced : reduction,
 					id : modifiedProduct.id,
 					minShipping : modifiedProduct.minShipping,
 					maxShipping : modifiedProduct.maxShipping,
@@ -196,10 +201,29 @@ function EditModal({open,closeModal,product}: Props) {
 							inputType={InputTypeEnum.input}
 							type="number"
 							id="price"
+							disabled={reduction}
 							value={modifiedProduct.price.toFixed(2)}
 							changeFunc={handleInputChange}							
 							
 						/>	
+						<InputField
+							label={"Promotion"}
+							inputType={InputTypeEnum.switch}
+							checked={reduction}
+							setChecked={setReduction}
+
+							/>
+							{
+								reduction && <InputField 
+								label="Prix Nouveau"
+								inputType={InputTypeEnum.input}
+								type="number"
+								id="newPrice"
+								value={modifiedProduct.newPrice.toFixed(2)}
+								changeFunc={handleInputChange}							
+								
+							/>	
+							}
 
 
 						<div className="w-full flex items-center gap-3">
@@ -230,6 +254,8 @@ function EditModal({open,closeModal,product}: Props) {
 							setChecked={setVisible}
 
 							/>
+						
+						
 							<button
 							onClick={(() => submitChanges()) as React.MouseEventHandler<HTMLButtonElement>}
                   className={

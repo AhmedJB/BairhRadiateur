@@ -23,6 +23,7 @@ type Props = {
     inputType: InputTypeEnum;
     placeholder?: string;
     checked?: boolean;
+    disabled ?: boolean;
     setChecked?: Dispatch<SetStateAction<boolean>>;
     switchLabel?: string;
     options?: SelectOptionsT[];
@@ -43,7 +44,7 @@ const CustomSwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-function InputField({ label, required, sublabel, type, inputType, placeholder,id, checked, setChecked, switchLabel, options, name, changeFunc, defaultValue, value }: Props) {
+function InputField({ label, required, sublabel, type, inputType, placeholder,id, checked, setChecked, switchLabel, options, name, changeFunc, defaultValue, value,disabled }: Props) {
 
     const handleSwitchChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (setChecked) {
@@ -80,6 +81,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder,id
                         value={value}
                         id={id}
                         defaultValue={defaultValue}
+                        disabled={disabled}
                         type={type}
                     />
                 </>
@@ -95,6 +97,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder,id
                         defaultValue={defaultValue}
                         id={id}
                         value={value}
+                        disabled={disabled}
 
 
 
@@ -113,6 +116,7 @@ function InputField({ label, required, sublabel, type, inputType, placeholder,id
                             checked={checked}
                             onChange={handleSwitchChange}
                             inputProps={{ 'aria-label': 'controlled' }}
+                            disabled={disabled}
                         />
 
                     </div>

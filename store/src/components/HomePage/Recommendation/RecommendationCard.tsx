@@ -10,6 +10,8 @@ type Props = {
     subtitle : string,
     rating : number,
     price : number,
+    isReduced : boolean,
+    newPrice : number,
     pid : string
 
 }
@@ -46,7 +48,14 @@ const RecommendationCard = (props: Props) => {
 
 
         </div>
-        <h1 className="text-2xl text-darkGray my-1 font-semibold">{`DH ${props.price}`}</h1>
+        
+        <div className={`flex items-center gap-2`}>
+        {
+            props.isReduced && <h1 className={`text-2xl  my-1 font-semibold text-darkGray`}>{`${props.newPrice}DH`}</h1>
+          }
+          <h1 className={`text-2xl  my-1 font-semibold ${props.isReduced ? "text-red  line-through" : "text-darkGray"}`}>{`${props.price}DH `}</h1>
+          
+        </div>
 
     </div>
 

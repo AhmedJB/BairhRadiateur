@@ -102,6 +102,8 @@ model ImportedProduct {
   productId   String
   price       Float
   isEnabled   Boolean     @default(false)
+  isReduced   Boolean     @default(false)
+  newPrice    Float       @default(0)
   name        String
   description String      @default("")
   minShipping Int         @default(0)

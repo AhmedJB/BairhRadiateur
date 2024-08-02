@@ -259,9 +259,19 @@ const ProductDetails = ({setMark,setProductId_}: Props) => {
                 </h2>
                 <h3 className="text-lighterGray  text-lg font-medium text-center sm:text-left">{filtered?.serverInfo.ptype}</h3>
                 <StarReview rating={product.rating} />
-                <p className="text-mainBlack text-3xl font-semibold p-2 my-4">
+                <div className={`flex items-center gap-2`}>
+                {
+            filtered?.info?.isReduced && <p className={` text-3xl font-semibold p-2 my-4 text-mainBlack`}>
+            {filtered?.info?.newPrice} MAD
+          </p>
+          }
+
+                <p className={` text-3xl font-semibold p-2 my-4 ${filtered?.info?.isReduced ? "text-red  line-through" : "text-mainBlack"}`}>
                   {filtered?.info?.price} MAD
                 </p>
+                
+                </div>
+                
               </div>
 
               <QuantityInput quantity={quantity} updateQuantity={handleStep} />

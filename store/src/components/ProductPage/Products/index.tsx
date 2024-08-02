@@ -129,7 +129,7 @@ function Products({products,title,setOpen}: Props) {
                <div className='mx-auto w-full xl:container  sm:flex sm:flex-row flex flex-col items-center gap-[0.65rem] flex-wrap'>
                 {(filtered[index] as generalProuctInfotT[]).map((e,i) => {
                 if (e.info && e.serverInfo){
-                    return <ProductCard products={products} key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} id={e.info.id} pid={e.info.id} />
+                    return <ProductCard products={products} key={`product-${e.info.id}`} image={e.serverInfo.images.length > 0 ? formatImage(e.serverInfo.images[0]?.image) : ""} title={e.info.name} subtitle={""} rating={4} price={e.info.price} isReduced={e.info.isReduced} newPrice={e.info.newPrice} id={e.info.id} pid={e.info.id} />
                 }
                     
                 })}

@@ -92,9 +92,14 @@ export const columns: (handleModal : (product : ImportedProduct) => any ) => Col
       header: "Prix",
     },
     {
+      accessorKey: "newPrice",
+      header: "Prix Nouveau",
+    },
+    {
       accessorKey: "isEnabled",
       header: "Visible",
     },
+    
     {
       id: "actions",
       cell: ({ row }) => {
