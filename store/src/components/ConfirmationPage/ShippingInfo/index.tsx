@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { CartContext } from '../../../contexts/CartContext';
 import { toast } from 'react-toastify';
 import ContainedLoader from '../../General/ContainedLoader';
+import ConfirmMessage from '../ConfirmMessage';
 
 type Props = {}
 interface ShippingT {
@@ -20,12 +21,15 @@ function ShippingInfo({}: Props) {
     const [show,setShow] = useState(false);
     const [guestMod,setGuestMod] = useState(false);
     const [userData,setUserData] = useState<ShippingT>();
+    const [confirmation,setConfirmation]  = useState(false);
     const cartState = useContext(CartContext)
     const router = useRouter();
     const {data : userInfoResp , status} = api.authHandler.getUserInfo.useQuery();
     const submitOrderMutation = api.authHandler.submitOrder.useMutation({
         onSuccess : () => {
             toast.success("Success")
+            setConfirmation(true)
+            
         },
         onError : () => {
             toast.error("Failed Order")
@@ -98,22 +102,28 @@ function ShippingInfo({}: Props) {
 
     }
 
+    
+   
+    
 
 
   return <>
   {
-    show && <><div className="flex flex-col mt-5 md:w-1/2 w-full mx-auto">
+    show && !confirmation && <><div className="flex flex-col mt-5 md:w-1/2 w-full mx-auto">
     <h1 className="text-mainBlack font-semibold text-2xl">Confirmer vos donnes </h1>
-    <InputField inputType={InputTypeEnum.input} label="Nom" name="nom" value={userData?.nom} changeFunc={handleFormChange} />
-    <InputField inputType={InputTypeEnum.input} label="Tel" name="tel" value={userData?.tel} changeFunc={handleFormChange} />
-    <InputField inputType={InputTypeEnum.input} label="Addresse" name="address" value={userData?.address} changeFunc={handleFormChange} />
+    <InputField inputType={InputTypeEnum.input} label="Nom الاسم الكامل" name="nom" value={userData?.nom} changeFunc={handleFormChange} />
+    <InputField inputType={InputTypeEnum.input} label="Tel  رقم الهاتف" name="tel" value={userData?.tel} changeFunc={handleFormChange} />
+    <InputField inputType={InputTypeEnum.input} label="Addresse العنوان" name="address" value={userData?.address} changeFunc={handleFormChange} />
     <div className="w-full flex items-center justify-center">
         <button className="p-2 rounded-lg bg-blue text-white font-semibold" onClick={confirm}>Confirmer</button>
     </div>
 </div> </>
   }
   {
-    !show && <><ContainedLoader /></>
+    !show && !confirmation && <><ContainedLoader /></>
+  }
+  {
+    show && confirmation && <ConfirmMessage />
   }
     
     
