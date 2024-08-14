@@ -32,6 +32,7 @@
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
+    "embla-carousel-auto-height": "^8.1.8",
     "embla-carousel-autoplay": "^8.1.8",
     "embla-carousel-react": "^8.1.8",
     "flowbite": "^1.6.3",

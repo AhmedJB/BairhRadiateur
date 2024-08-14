@@ -11,6 +11,7 @@ import {
   } from "../../ui/carousel"
 import Banner from '../../../assets/general/banner.png'
 import Autoplay from "embla-carousel-autoplay"
+import AutoHeight from 'embla-carousel-auto-height'
 
 type Props = {}
 
@@ -50,12 +51,13 @@ const MainOffre = (props: Props) => {
 	Autoplay({
 	  delay: 5000,
 	}),
+	AutoHeight()
   ]}
   >
   <CarouselContent>
     <CarouselItem>{oldOffre}</CarouselItem>
-    <CarouselItem>
-	<div className='w-full h-full bg-lightWhite flex items-center relative'>
+    <CarouselItem className='flex flex-col justify-center h-[300px] w-[400px] max-w-full'>
+	<div className='w-full  h-[300px] bg-lightWhite flex items-center relative'>
 		<Image src={Banner} alt={`banner`} fill={true} />		</div> 
 	</CarouselItem>
   </CarouselContent>
