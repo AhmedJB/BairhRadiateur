@@ -2,11 +2,12 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
+  prefix: "",
   theme: {
     container: {
       center: true,
@@ -17,28 +18,23 @@ module.exports = {
     },
     extend: {
       colors: {
-        transparent: "transparent",
-        current: "currentColor",
-        white: "#ffffff",
-        blue: "#2FA3DF",
-        red: "#E91D2B",
-        yellow: "#FFCA50",
-        mainBlack: "#101010",
-        darkGray: "#434343",
-        gray: "#8E8E8E",
-        lightgray: "#C9C9C9",
-        lightWhite: "#EEEEEE",
-        lighterGray: "#B8B8B8",
-        alum: "#72c8f1",
-        clim: "#b8c881",
-        cuivre: "#FFCA50",
-        chauff: "#E91D2B",
+        transparent: 'transparent',
+      current: 'currentColor',
+      'white': '#ffffff',
+      blue : '#2FA3DF',
+      red : '#E91D2B',
+      yellow : '#FFCA50',
+      mainBlack : '#101010',
+      darkGray : '#434343',
+      gray: '#8E8E8E',
+      lightgray : '#C9C9C9',
+      lightWhite : '#EEEEEE',
+      lighterGray : '#B8B8B8',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -75,12 +71,12 @@ module.exports = {
       },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
+          to: { height: "0" },
         },
       },
       animation: {
@@ -90,4 +86,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-};
+}

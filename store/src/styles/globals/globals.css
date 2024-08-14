@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
@@ -16,245 +15,243 @@
 	html,body{
 		font-family: 'Poppins', sans-serif;
 	}
-	
-	:root{
-		--red : #E91D2B;
+
+@layer base {
+  :root {
+    --red : #E91D2B;
 		--blue : #2FA3DF;
-		--background: 0 0% 100%;
-		--foreground: 222.2 47.4% 11.2%;
-	 
-		--muted: 210 40% 96.1%;
-		--muted-foreground: 215.4 16.3% 46.9%;
-	 
-		--popover: 0 0% 100%;
-		--popover-foreground: 222.2 47.4% 11.2%;
-	 
-		--card: 0 0% 100%;
-		--card-foreground: 222.2 47.4% 11.2%;
-	 
-		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
-	 
-		--primary: 222.2 47.4% 11.2%;
-		--primary-foreground: 210 40% 98%;
-	 
-		--secondary: 210 40% 96.1%;
-		--secondary-foreground: 222.2 47.4% 11.2%;
-	 
-		--accent: 210 40% 96.1%;
-		--accent-foreground: 222.2 47.4% 11.2%;
-	 
-		--destructive: 0 100% 50%;
-		--destructive-foreground: 210 40% 98%;
-	 
-		--ring: 215 20.2% 65.1%;
-	 
-		--radius: 0.5rem;
-	}
-	
-	.dark {
-		--background: 224 71% 4%;
-		--foreground: 213 31% 91%;
-	 
-		--muted: 223 47% 11%;
-		--muted-foreground: 215.4 16.3% 56.9%;
-	 
-		--popover: 224 71% 4%;
-		--popover-foreground: 215 20.2% 65.1%;
-	 
-		--card: 224 71% 4%;
-		--card-foreground: 213 31% 91%;
-	 
-		--border: 216 34% 17%;
-		--input: 216 34% 17%;
-	 
-		--primary: 210 40% 98%;
-		--primary-foreground: 222.2 47.4% 1.2%;
-	 
-		--secondary: 222.2 47.4% 11.2%;
-		--secondary-foreground: 210 40% 98%;
-	 
-		--accent: 216 34% 17%;
-		--accent-foreground: 210 40% 98%;
-	 
-		--destructive: 0 63% 31%;
-		--destructive-foreground: 210 40% 98%;
-	 
-		--ring: 216 34% 17%;
-	 
-		--radius: 0.5rem;
-	  }
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --red : #E91D2B;
+		--blue : #2FA3DF;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
 
 	/* width */
-::-webkit-scrollbar {
-	width: 5px;
-  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: var(--red); 
+    }
+    
   
-  /* Track */
-  ::-webkit-scrollbar-track {
-	background: #f1f1f1; 
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background : var(--blue);
   }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-	background: var(--red); 
-  }
+    
+    
+    
+    
+    .lds-grid {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+      }
+      .lds-grid div {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: lds-grid 1.2s linear infinite;
+      }
+      .lds-grid div:nth-child(1) {
+      top: 8px;
+      left: 8px;
+      animation-delay: 0s;
+      }
+      .lds-grid div:nth-child(2) {
+      top: 8px;
+      left: 32px;
+      animation-delay: -0.4s;
+      }
+      .lds-grid div:nth-child(3) {
+      top: 8px;
+      left: 56px;
+      animation-delay: -0.8s;
+      }
+      .lds-grid div:nth-child(4) {
+      top: 32px;
+      left: 8px;
+      animation-delay: -0.4s;
+      }
+      .lds-grid div:nth-child(5) {
+      top: 32px;
+      left: 32px;
+      animation-delay: -0.8s;
+      }
+      .lds-grid div:nth-child(6) {
+      top: 32px;
+      left: 56px;
+      animation-delay: -1.2s;
+      }
+      .lds-grid div:nth-child(7) {
+      top: 56px;
+      left: 8px;
+      animation-delay: -0.8s;
+      }
+      .lds-grid div:nth-child(8) {
+      top: 56px;
+      left: 32px;
+      animation-delay: -1.2s;
+      }
+      .lds-grid div:nth-child(9) {
+      top: 56px;
+      left: 56px;
+      animation-delay: -1.6s;
+      }
+      @keyframes lds-grid {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
+      }
+      
+    
+    
+    .promoBG{
+      background: hsla(0, 61%, 52%, 1);
+    
+    background: linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
+    
+    background: -moz-linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
+    
+    background: -webkit-linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CF3939", endColorstr="#E91D2B", GradientType=1 );
+    }
+    
+    .lightBorder{
+      border: 1px solid #707070;
+    }
+    
+    
+    .backdrop{
+      position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(0,0,0,.8823529411764706);
+        /* justify-content: center;
+        
+        display:flex;
+      
+        align-items: center; */
+        overflow-y: visible;
+      }
+    
+    
+    
+      .modal {
+      margin: 40px auto;
+      overflow-x: hidden;
+      
+      width:fit-content;
+      transition: width 2s, height 4s;
+      }
+      
+      
+      
+      
+      .modal::-webkit-scrollbar {
+      width: 1px;
+      }
+      
+      /* Track */
+      .modal::-webkit-scrollbar-track {
+      background: transparent; 
+      }
+       
+      /* Handle */
+      .modal::-webkit-scrollbar-thumb {
+      background: transparent;
+      height:2px;
+      width:2px; 
+      }
+      
+      /* Handle on hover */
+      .modal::-webkit-scrollbar-thumb:hover {
+      background:var(--red); 
+      }
+    
+    
+      .smooth-shadow-1 {
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      }
   
-
-.custom-scroll::-webkit-scrollbar-thumb {
-	background : var(--blue);
-}
-	
-	
-	
-	
-	.lds-grid {
-		display: inline-block;
-		position: relative;
-		width: 80px;
-		height: 80px;
-	  }
-	  .lds-grid div {
-		position: absolute;
-		width: 16px;
-		height: 16px;
-		border-radius: 50%;
-		background: var(--red);
-		animation: lds-grid 1.2s linear infinite;
-	  }
-	  .lds-grid div:nth-child(1) {
-		top: 8px;
-		left: 8px;
-		animation-delay: 0s;
-	  }
-	  .lds-grid div:nth-child(2) {
-		top: 8px;
-		left: 32px;
-		animation-delay: -0.4s;
-	  }
-	  .lds-grid div:nth-child(3) {
-		top: 8px;
-		left: 56px;
-		animation-delay: -0.8s;
-	  }
-	  .lds-grid div:nth-child(4) {
-		top: 32px;
-		left: 8px;
-		animation-delay: -0.4s;
-	  }
-	  .lds-grid div:nth-child(5) {
-		top: 32px;
-		left: 32px;
-		animation-delay: -0.8s;
-	  }
-	  .lds-grid div:nth-child(6) {
-		top: 32px;
-		left: 56px;
-		animation-delay: -1.2s;
-	  }
-	  .lds-grid div:nth-child(7) {
-		top: 56px;
-		left: 8px;
-		animation-delay: -0.8s;
-	  }
-	  .lds-grid div:nth-child(8) {
-		top: 56px;
-		left: 32px;
-		animation-delay: -1.2s;
-	  }
-	  .lds-grid div:nth-child(9) {
-		top: 56px;
-		left: 56px;
-		animation-delay: -1.6s;
-	  }
-	  @keyframes lds-grid {
-		0%, 100% {
-		  opacity: 1;
-		}
-		50% {
-		  opacity: 0.3;
-		}
-	  }
-	  
-	
-	
-	.promoBG{
-		background: hsla(0, 61%, 52%, 1);
-	
-	background: linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
-	
-	background: -moz-linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
-	
-	background: -webkit-linear-gradient(90deg, hsla(0, 61%, 52%, 1) 0%, hsla(356, 82%, 51%, 1) 100%);
-	
-	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#CF3939", endColorstr="#E91D2B", GradientType=1 );
-	}
-	
-	.lightBorder{
-		border: 1px solid #707070;
-	}
-	
-	
-	.backdrop{
-		position: fixed;
-		  top: 0;
-		  left: 0;
-		  height: 100%;
-		  width: 100%;
-		  z-index: 1000;
-		  background: rgba(0,0,0,.8823529411764706);
-		  /* justify-content: center;
-		  
-		  display:flex;
-	  
-		  align-items: center; */
-		  overflow-y: visible;
-	  }
-	
-	
-	
-	  .modal {
-		margin: 40px auto;
-		overflow-x: hidden;
-		
-		width:fit-content;
-		transition: width 2s, height 4s;
-	  }
-	  
-	  
-	  
-	  
-	  .modal::-webkit-scrollbar {
-		width: 1px;
-	  }
-	  
-	  /* Track */
-	  .modal::-webkit-scrollbar-track {
-		background: transparent; 
-	  }
-	   
-	  /* Handle */
-	  .modal::-webkit-scrollbar-thumb {
-		background: transparent;
-		height:2px;
-		width:2px; 
-	  }
-	  
-	  /* Handle on hover */
-	  .modal::-webkit-scrollbar-thumb:hover {
-		background:var(--red); 
-	  }
-	
-	
-	  .smooth-shadow-1 {
-		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-	  }
-
-	  .smooth-shadow-cart {
-		box-shadow: rgba(100, 100, 111, 0.2) -50px 0px 29px 0px;
-	  }
-
-
-
-
-
+      .smooth-shadow-cart {
+      box-shadow: rgba(100, 100, 111, 0.2) -50px 0px 29px 0px;
+      }

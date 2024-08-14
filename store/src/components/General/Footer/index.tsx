@@ -55,8 +55,8 @@ function Footer({}: Props) {
      <div className="flex lg:flex-row flex-col-reverse lg:items-start w-full lg:justify-between gap-3 lg:gap-0">
      <div className="flex flex-col px-2 lg:px-10">
        <h1 className="font-bold lg:text-xl text-base text-white uppercase tracking-widest"> Questions?</h1>
-       <h1 className="font-bold lg:text-3xl text-lg text-blue">+212 5 35 729 511</h1>
-       <h1 className="font-bold lg:text-3xl text-lg text-blue">bairhradiator@gmail.com</h1>
+       <Link href='tel:+212535729511'><h1 className="font-bold lg:text-3xl text-lg text-blue">+212 5 35 729 511</h1></Link>
+       <Link href='mailto:bairhradiator@gmail.com'><h1 className="font-bold lg:text-3xl text-lg text-blue">bairhradiator@gmail.com</h1></Link>
 
 
       </div>

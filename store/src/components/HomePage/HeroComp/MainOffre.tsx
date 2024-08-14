@@ -2,13 +2,20 @@ import React from 'react'
 import radiator from "../../../assets/home/radiator.png"
 import Image from "next/image"
 import Link from 'next/link'
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+  } from "../../ui/carousel"
+import Banner from '../../../assets/general/banner.png'
+import Autoplay from "embla-carousel-autoplay"
 
 type Props = {}
 
 const MainOffre = (props: Props) => {
-
-  return <>
-	<div className='w-full bg-lightWhite flex items-center'>
+  const oldOffre = <div className='w-full bg-lightWhite flex items-center'>
 		<div className='flex flex-col items-center w-full p-4'>
 			<h2  className='text-blue  md:text-3xl text-xl uppercase font-semibold tracking-wider '>Radiateur</h2>
 			<h2  className='text-lightgray  md:text-xl text-lg uppercase font-semibold tracking-wider '>207 aluminium tube plat</h2>
@@ -18,9 +25,7 @@ const MainOffre = (props: Props) => {
 			<h2  className='text-mainBlack  md:text-3xl text-2xl uppercase font-semibold tracking-wider mt-4 opacity-70'>A PARTIR DE</h2>
 			<h2  className='text-mainBlack  md:text-3xl text-2xl uppercase font-semibold tracking-wider  opacity-70 '>799DH</h2>
 			<p className="text-mainBlack md:text-md text-sm text-center md:text-left font-light my-2 tracking-wider">Commencez vos achats dès maintenant</p>
-			<Link href={"/products"}><button className='p-3 bg-darkGray uppercase text-white font-medium text-md cursor-pointer'>
-				{`Voir les produits`}
-			</button></Link>
+			
 			
 			
 		</div>
@@ -35,8 +40,28 @@ const MainOffre = (props: Props) => {
 			</h2>
 			
 		</div>
-
 	</div>
+  return <>
+	
+	<Carousel opts={{
+    loop: true,
+  }}
+  plugins={[
+	Autoplay({
+	  delay: 5000,
+	}),
+  ]}
+  >
+  <CarouselContent>
+    <CarouselItem>{oldOffre}</CarouselItem>
+    <CarouselItem>
+	<div className='w-full h-full bg-lightWhite flex items-center relative'>
+		<Image src={Banner} alt={`banner`} fill={true} />		</div> 
+	</CarouselItem>
+  </CarouselContent>
+</Carousel>
+
+	
   </>
 }
 
