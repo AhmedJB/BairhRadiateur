@@ -77,7 +77,7 @@ const Header = (props: Props) => {
 			
 			
 			<div className="flex items-center">
-				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212535729511"} />
+				<InfoComp show={false} icon={BiPhoneCall} title={"Besoin d'aide?"} content={"+212666364625"} />
 				{
 					status === "authenticated" && <>
 					<Link href="/profile/profile">
